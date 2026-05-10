@@ -222,41 +222,39 @@
       z-index: 1;
       width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 40px;
     }
 
-    /* The illustration wrapper */
-    .illustration {
+    .hero-cover-img {
       width: 100%;
-      max-width: 400px;
-      position: relative;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
-    /* Floating quote */
-    .float-quote {
+    .hero-cover-caption {
       position: absolute;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: .95rem;
-      font-weight: 300;
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 180px;
+      bottom: 32px;
+      left: 32px;
+      right: 32px;
+      background: rgba(251,248,243,.88);
+      backdrop-filter: blur(10px);
+      padding: 16px 20px;
+      border-left: 2px solid var(--gold);
     }
-    .float-quote.tl { top: 8%; left: -14%; }
-    .float-quote.br { bottom: 12%; right: -10%; font-size: .82rem; }
-    .float-quote span {
-      display: block;
-      font-family: var(--sans);
-      font-size: .65rem;
-      font-style: normal;
-      letter-spacing: .1em;
+    .hero-cover-caption .cap-label {
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .16em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+    .hero-cover-caption .cap-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--ink);
     }
 
     /* Hero bottom band */
@@ -425,37 +423,76 @@
       width: 100%;
       height: 100%;
       min-height: 280px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
-      transition: transform .5s;
+      overflow: hidden;
+      background: var(--paper);
     }
-    .ed-cell:hover .ed-thumb { transform: scale(1.03); }
+    .ed-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform .6s ease;
+    }
+    .ed-cell:hover .ed-thumb img { transform: scale(1.04); }
 
-    .t1 { background: linear-gradient(160deg, #F0E6D6 0%, #D9BC96 100%); }
-    .t2 { background: linear-gradient(160deg, #E4EDE4 0%, #B8CDB8 100%); }
-    .t3 { background: linear-gradient(160deg, #EDE4DC 0%, #C9A898 100%); }
-    .t4 { background: linear-gradient(160deg, #F5EBE0 0%, #E2C9A8 100%); }
-    .t5 { background: linear-gradient(160deg, #E8E4F0 0%, #C0B8D8 100%); }
-
-    .ed-icon {
-      font-size: 3rem;
-      opacity: .55;
+    /* Always-visible base label */
+    .ed-base {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(28,22,18,.78) 0%, transparent 100%);
+      padding: 40px 20px 18px;
+      pointer-events: none;
+    }
+    .ed-base .ed-tag {
+      font-size: .6rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 4px;
+    }
+    .ed-base .ed-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.25;
     }
 
+    /* Hover overlay — extended description */
     .ed-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(28,22,18,.72) 0%, transparent 55%);
+      background: rgba(28,22,18,.55);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 24px 22px;
+      justify-content: center;
+      align-items: center;
+      padding: 28px;
+      text-align: center;
       opacity: 0;
       transition: opacity .3s;
     }
     .ed-cell:hover .ed-overlay { opacity: 1; }
+    .ed-overlay .ed-desc {
+      font-size: .88rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.88);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+    .ed-overlay .ed-link {
+      margin-top: 16px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      border-bottom: 1px solid var(--gold-lt);
+      padding-bottom: 2px;
+    }
 
     .ed-tag {
       font-size: .62rem;
@@ -923,114 +960,17 @@
     </div>
   </div>
 
-  <!-- Hero illustration panel -->
+  <!-- Hero cover art panel -->
   <div class="hero-right">
     <div class="hero-right-inner">
-      <div class="illustration">
-        <div class="float-quote tl">
-          "Art does what words cannot reach."
-          <span>— Behind the Mask</span>
-        </div>
-
-        <!-- Main illustration: mask as dawn, open and warm -->
-        <svg viewBox="0 0 380 480" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
-          <!-- Background glow -->
-          <ellipse cx="190" cy="240" rx="170" ry="200" fill="url(#bg1)" opacity=".3"/>
-
-          <!-- Soft watercolor wash under mask -->
-          <ellipse cx="190" cy="230" rx="130" ry="155" fill="url(#wash)" opacity=".18"/>
-
-          <!-- Main mask silhouette -->
-          <path d="
-            M100 175
-            C100 115 145 72 190 68
-            C235 72 280 115 280 175
-            C280 228 268 265 253 284
-            C237 306 216 318 190 320
-            C164 318 143 306 127 284
-            C112 265 100 228 100 175Z
-          " fill="url(#maskBase)" stroke="#C8883A" stroke-width="1.5" stroke-opacity=".4"/>
-
-          <!-- Left brow — gentle, not fierce -->
-          <path d="M130 155 C140 147 155 145 167 148" stroke="#3B2F24" stroke-width="1.8" stroke-linecap="round" stroke-opacity=".5" fill="none"/>
-          <!-- Right brow -->
-          <path d="M213 148 C225 145 240 147 250 155" stroke="#3B2F24" stroke-width="1.8" stroke-linecap="round" stroke-opacity=".5" fill="none"/>
-
-          <!-- Left eye -->
-          <ellipse cx="148" cy="178" rx="20" ry="16" fill="#EDD5B4" opacity=".9"/>
-          <ellipse cx="148" cy="179" rx="11" ry="12" fill="#2C1E14" opacity=".8"/>
-          <ellipse cx="148" cy="179" rx="6"  ry="7"  fill="#1A100A" opacity="1"/>
-          <circle  cx="153" cy="174" r="4.5" fill="white" opacity=".9"/>
-          <circle  cx="143" cy="183" r="1.5" fill="white" opacity=".4"/>
-
-          <!-- Right eye -->
-          <ellipse cx="232" cy="178" rx="20" ry="16" fill="#EDD5B4" opacity=".9"/>
-          <ellipse cx="232" cy="179" rx="11" ry="12" fill="#2C1E14" opacity=".8"/>
-          <ellipse cx="232" cy="179" rx="6"  ry="7"  fill="#1A100A" opacity="1"/>
-          <circle  cx="237" cy="174" r="4.5" fill="white" opacity=".9"/>
-          <circle  cx="227" cy="183" r="1.5" fill="white" opacity=".4"/>
-
-          <!-- Nose bridge subtle -->
-          <path d="M185 195 C183 210 180 220 182 228 C185 233 195 233 198 228 C200 220 197 210 195 195" stroke="#C8883A" stroke-width="1.2" stroke-linecap="round" stroke-opacity=".3" fill="none"/>
-
-          <!-- Mouth — soft, at rest, a hint of peace -->
-          <path d="M162 270 C170 278 180 282 190 282 C200 282 210 278 218 270" stroke="#B85C45" stroke-width="2" stroke-linecap="round" fill="none" opacity=".6"/>
-
-          <!-- Tear — alchemy, not sadness (gold) -->
-          <path d="M148 198 C148 198 144 208 144 214 C144 220 148 224 152 220 C156 216 152 206 148 198Z" fill="url(#tearG)" opacity=".6"/>
-
-          <!-- Light rays from crown — emergence -->
-          <line x1="190" y1="65" x2="190" y2="30" stroke="url(#rayG)" stroke-width="1.2" stroke-linecap="round" opacity=".45"/>
-          <line x1="165" y1="70" x2="152" y2="36" stroke="url(#rayG)" stroke-width="1" stroke-linecap="round" opacity=".3"/>
-          <line x1="215" y1="70" x2="228" y2="36" stroke="url(#rayG)" stroke-width="1" stroke-linecap="round" opacity=".3"/>
-          <line x1="142" y1="80" x2="120" y2="52" stroke="url(#rayG)" stroke-width=".8" stroke-linecap="round" opacity=".2"/>
-          <line x1="238" y1="80" x2="260" y2="52" stroke="url(#rayG)" stroke-width=".8" stroke-linecap="round" opacity=".2"/>
-
-          <!-- Small botanical — growth from the chin/base -->
-          <path d="M190 322 C190 340 190 355 190 370" stroke="#4A6B52" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
-          <path d="M190 345 C184 338 174 336 168 340" stroke="#4A6B52" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".4"/>
-          <path d="M190 355 C196 348 206 346 212 350" stroke="#4A6B52" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".4"/>
-          <circle cx="168" cy="340" r="3" fill="#7A9E7E" opacity=".5"/>
-          <circle cx="212" cy="350" r="3" fill="#7A9E7E" opacity=".45"/>
-          <circle cx="190" cy="370" r="4" fill="#4A6B52" opacity=".4"/>
-
-          <!-- Faint inner words -->
-          <text x="190" y="245" text-anchor="middle" font-family="Georgia,serif" font-size="8.5" fill="#3B2F24" opacity=".18" font-style="italic" letter-spacing="1">you are not alone</text>
-          <text x="190" y="258" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#3B2F24" opacity=".12" font-style="italic" letter-spacing="1.5">you are seen</text>
-
-          <!-- Corner botanical accents -->
-          <circle cx="70"  cy="400" r="2.5" fill="#4A6B52" opacity=".25"/>
-          <circle cx="82"  cy="390" r="1.8" fill="#7A9E7E" opacity=".2"/>
-          <circle cx="310" cy="380" r="2"   fill="#C8883A" opacity=".22"/>
-
-          <defs>
-            <radialGradient id="bg1" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"   stop-color="#E8B86D"/>
-              <stop offset="100%" stop-color="#F7F2EB" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="wash" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"   stop-color="#D9BC96"/>
-              <stop offset="100%" stop-color="#F7F2EB" stop-opacity="0"/>
-            </radialGradient>
-            <linearGradient id="maskBase" x1="100" y1="68" x2="280" y2="320" gradientUnits="userSpaceOnUse">
-              <stop offset="0%"   stop-color="#FDF4E7"/>
-              <stop offset="100%" stop-color="#EDD2A8"/>
-            </linearGradient>
-            <linearGradient id="tearG" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%"   stop-color="#BF8640"/>
-              <stop offset="100%" stop-color="#E8B86D" stop-opacity=".2"/>
-            </linearGradient>
-            <linearGradient id="rayG" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%"   stop-color="#E8B86D" stop-opacity="0"/>
-              <stop offset="100%" stop-color="#BF8640"/>
-            </linearGradient>
-          </defs>
-        </svg>
-
-        <div class="float-quote br">
-          "What you survived made you<br>the only one who could speak this."
-          <span>— The Work</span>
-        </div>
+      <img
+        class="hero-cover-img"
+        src="https://behindthemask.art/wp-content/smush-webp/2025/09/Authenticity-scaled.jpg.webp"
+        alt="Authenticity — Behind the Mask"
+      />
+      <div class="hero-cover-caption">
+        <div class="cap-label">Featured Work</div>
+        <div class="cap-title">Authenticity</div>
       </div>
     </div>
   </div>
@@ -1097,69 +1037,69 @@
 
   <div class="editorial-grid">
     <div class="ed-cell hero-cell">
-      <div class="ed-thumb t1" style="min-height:580px;">
-        <div class="ed-icon">🌅</div>
+      <div class="ed-thumb" style="min-height:580px;">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Anonymous_1-scaled.jpg.webp" alt="Anonymous" />
       </div>
-      <div class="ed-overlay">
-        <div class="ed-tag">Grief &amp; Loss</div>
-        <div class="ed-title">Blameless</div>
-        <div class="ed-desc">There are things done to us that we never asked for, never deserved — and could not have prevented.</div>
-      </div>
-    </div>
-    <div class="ed-cell">
-      <div class="ed-thumb t2">
-        <div class="ed-icon">🌿</div>
-      </div>
-      <div class="ed-overlay">
-        <div class="ed-tag">Anxiety</div>
-        <div class="ed-title">The Body Knows</div>
-        <div class="ed-desc">Before the mind has words, the body speaks. This is that language.</div>
-      </div>
-    </div>
-    <div class="ed-cell">
-      <div class="ed-thumb t3">
-        <div class="ed-icon">🔥</div>
-      </div>
-      <div class="ed-overlay">
-        <div class="ed-tag">Shame &amp; Courage</div>
-        <div class="ed-title">Hollow Humiliation</div>
-        <div class="ed-desc">The words they used were about them. You just happened to be in the room.</div>
-      </div>
-    </div>
-    <div class="ed-cell">
-      <div class="ed-thumb t4">
-        <div class="ed-icon">✨</div>
-      </div>
-      <div class="ed-overlay">
+      <div class="ed-base">
         <div class="ed-tag">Identity</div>
-        <div class="ed-title">Faces of the Shadow Self</div>
-        <div class="ed-desc">The parts we hide are often the parts that most need to be seen.</div>
+        <div class="ed-title">Anonymous</div>
+      </div>
+      <div class="ed-overlay">
+        <div class="ed-desc">The face we show the world and the face we carry alone are rarely the same. Both are real. Both are you.</div>
+        <div class="ed-link">View Piece →</div>
       </div>
     </div>
     <div class="ed-cell">
-      <div class="ed-thumb t5">
-        <div class="ed-icon">🌙</div>
+      <div class="ed-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/11/Process-of-Healing-2_1-scaled.jpg.webp" alt="Process of Healing" />
+      </div>
+      <div class="ed-base">
+        <div class="ed-tag">Healing</div>
+        <div class="ed-title">Process of Healing</div>
       </div>
       <div class="ed-overlay">
-        <div class="ed-tag">Chronic Pain</div>
-        <div class="ed-title">Invisible Weight</div>
-        <div class="ed-desc">Pain that no one can see is still real. You are not making it up.</div>
+        <div class="ed-desc">Healing is not linear. It is layered, slow, and still worth every step.</div>
+        <div class="ed-link">View Piece →</div>
       </div>
     </div>
-  </div>
-
-  <div class="gallery-labels">
-    <div class="gl-label">
-      <div><div class="gl-cat">Grief &amp; Loss</div><div class="gl-name">Blameless</div></div>
-      <span class="gl-arrow">→</span>
+    <div class="ed-cell">
+      <div class="ed-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/10/The-Wolf-Series_1-min-scaled.jpg.webp" alt="The Wolf Series" />
+      </div>
+      <div class="ed-base">
+        <div class="ed-tag">Strength</div>
+        <div class="ed-title">The Wolf Series</div>
+      </div>
+      <div class="ed-overlay">
+        <div class="ed-desc">What looks dangerous from the outside is often just something that learned to protect itself.</div>
+        <div class="ed-link">View Piece →</div>
+      </div>
     </div>
-    <div class="gl-label">
-      <div><div class="gl-cat">Anxiety</div><div class="gl-name">The Body Knows</div></div>
-      <span class="gl-arrow">→</span>
+    <div class="ed-cell">
+      <div class="ed-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/10/Seasons_1-min-scaled.jpg.webp" alt="Seasons" />
+      </div>
+      <div class="ed-base">
+        <div class="ed-tag">Grief &amp; Change</div>
+        <div class="ed-title">Seasons</div>
+      </div>
+      <div class="ed-overlay">
+        <div class="ed-desc">Every season of suffering carries the seed of the next season of growth.</div>
+        <div class="ed-link">View Piece →</div>
+      </div>
     </div>
-    <div class="gl-label">
-      <div><div class="gl-cat">Shame</div><div class="gl-name">Hollow Humiliation</div></div>
-      <span class="gl-arrow">→</span>
+    <div class="ed-cell">
+      <div class="ed-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Unable-to-Cry_1-scaled.jpg.webp" alt="Unable to Cry" />
+      </div>
+      <div class="ed-base">
+        <div class="ed-tag">Emotional Pain</div>
+        <div class="ed-title">Unable to Cry</div>
+      </div>
+      <div class="ed-overlay">
+        <div class="ed-desc">Sometimes the pain is so deep it moves past tears into something heavier and harder to name.</div>
+        <div class="ed-link">View Piece →</div>
+      </div>
     </div>
   </div>
 
