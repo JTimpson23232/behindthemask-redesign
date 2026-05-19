@@ -1,1286 +1,1176 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Behind the Mask</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-
-    :root {
-      --ink:       #1C1612;
-      --earth:     #3B2F24;
-      --muted:     #7A6658;
-      --gold:      #BF8640;
-      --gold-lt:   #D9A85C;
-      --sage:      #3B2414;
-      --sage-lt:   #C3A882;
-      --blush:     #E2C5B4;
-      --paper:     #F7F2EB;
-      --cream:     #FBF8F3;
-      --white:     #FFFFFF;
-      --rule:      rgba(60,47,36,.1);
-
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans:  'DM Sans', system-ui, sans-serif;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-      font-family: var(--sans);
-      background: var(--cream);
-      color: var(--ink);
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    /* ── NAV ──────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 60px;
-      height: 64px;
-      background: rgba(251,248,243,.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .logo {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 400;
-      letter-spacing: .04em;
-      color: var(--ink);
-    }
-    .logo b { color: var(--gold); font-weight: 600; }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-    .nav-right a {
-      font-size: .8rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color .2s;
-    }
-    .nav-right a:hover { color: var(--ink); }
-
-    .nav-btn {
-      font-size: .8rem !important;
-      font-weight: 500 !important;
-      letter-spacing: .06em !important;
-      text-transform: uppercase !important;
-      color: var(--white) !important;
-      background: var(--gold);
-      padding: 9px 22px;
-      border-radius: 2px;
-      transition: background .2s !important;
-    }
-    .nav-btn:hover { background: var(--earth) !important; }
-
-    /* ── HERO ─────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      padding-top: 64px;
-      display: grid;
-      grid-template-columns: minmax(480px, 560px) 1fr;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 72px 40px 72px 60px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .kicker {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: .7rem;
-      font-weight: 500;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 36px;
-    }
-    .kicker-line {
-      width: 32px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .hero-h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.8rem, 4vw, 4.2rem);
-      font-weight: 300;
-      line-height: 1.06;
-      letter-spacing: -.01em;
-      color: var(--ink);
-      margin-bottom: 36px;
-    }
-    .hero-h1 i {
-      font-style: italic;
-      color: var(--gold);
-    }
-    .hero-h1 .outline {
-      -webkit-text-stroke: 1.5px var(--ink);
-      color: transparent;
-    }
-
-    .hero-rule {
-      width: 48px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      margin-bottom: 28px;
-    }
-
-    .hero-p {
-      font-size: 1.05rem;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--earth);
-      max-width: 440px;
-      margin-bottom: 52px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .btn-solid {
-      display: inline-block;
-      background: var(--ink);
-      color: var(--white);
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: 15px 34px;
-      border-radius: 2px;
-      transition: background .2s;
-    }
-    .btn-solid:hover { background: var(--earth); }
-
-    .btn-text {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color .2s;
-    }
-    .btn-text:hover { color: var(--ink); }
-    .btn-text svg { transition: transform .2s; }
-    .btn-text:hover svg { transform: translateX(3px); }
-
-    /* Hero right — illustrated panel */
-    .hero-right {
-      position: relative;
-      background: var(--paper);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    /* Grain texture overlay */
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: .5;
-      z-index: 0;
-    }
-
-    .hero-right-inner {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-    }
-
-    .hero-cover-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: left center;
-      display: block;
-    }
-
-    .hero-cover-caption {
-      position: absolute;
-      bottom: 32px;
-      left: 32px;
-      right: 32px;
-      background: rgba(251,248,243,.88);
-      backdrop-filter: blur(10px);
-      padding: 16px 20px;
-      border-left: 2px solid var(--gold);
-    }
-    .hero-cover-caption .cap-label {
-      font-size: .62rem;
-      font-weight: 500;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-    .hero-cover-caption .cap-title {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--ink);
-    }
-
-    /* Hero bottom band */
-    .hero-bottom {
-      grid-column: 1 / -1;
-      background: var(--ink);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      gap: 0;
-      overflow: hidden;
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 0;
-      animation: marquee 28s linear infinite;
-      white-space: nowrap;
-    }
-    .marquee-item {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      padding: 18px 32px;
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-style: italic;
-      font-weight: 300;
-      color: rgba(255,255,255,.7);
-    }
-    .marquee-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex-shrink: 0;
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ── SECTIONS ──────────────────────────────────── */
-
-    .section-wrap { padding: 100px 60px; }
-
-    .label {
-      font-size: .68rem;
-      font-weight: 500;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .label::before {
-      content: '';
-      width: 24px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 4vw, 3.6rem);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--ink);
-      margin-bottom: 24px;
-    }
-    .h2 i { font-style: italic; color: var(--gold); }
-
-    .body-lg {
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: var(--earth);
-    }
-
-    /* ── INTRO SPLIT ──────────────────────────────── */
-    .intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .intro-right {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .pull-quote {
-      font-family: var(--serif);
-      font-size: 1.7rem;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.4;
-      color: var(--ink);
-      border-left: 2px solid var(--gold);
-      padding-left: 28px;
-      margin: 12px 0;
-    }
-
-    .tag-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .tag {
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      color: var(--muted);
-      transition: all .18s;
-      cursor: pointer;
-    }
-    .tag:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-    .tag.active {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--white);
-    }
-
-    /* ── GALLERY EDITORIAL ─────────────────────────── */
-    .gallery-wrap {
-      background: var(--paper);
-    }
-
-    .gallery-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 56px;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-
-    /* Asymmetric editorial grid */
-    .editorial-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 2px;
-    }
-
-    .ed-cell {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .ed-cell.hero-cell { grid-row: span 2; }
-
-    .ed-thumb {
-      width: 100%;
-      height: 100%;
-      min-height: 280px;
-      position: relative;
-      overflow: hidden;
-      background: var(--paper);
-    }
-    .ed-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform .6s ease;
-    }
-    .ed-cell:hover .ed-thumb img { transform: scale(1.04); }
-
-    /* Always-visible base label */
-    .ed-base {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(28,22,18,.78) 0%, transparent 100%);
-      padding: 40px 20px 18px;
-      pointer-events: none;
-    }
-    .ed-base .ed-tag {
-      font-size: .6rem;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      margin-bottom: 4px;
-    }
-    .ed-base .ed-title {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--white);
-      line-height: 1.25;
-    }
-
-    /* Hover overlay — extended description */
-    .ed-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(28,22,18,.55);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 28px;
-      text-align: center;
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    .ed-cell:hover .ed-overlay { opacity: 1; }
-    .ed-overlay .ed-desc {
-      font-size: .88rem;
-      font-weight: 300;
-      color: rgba(255,255,255,.88);
-      line-height: 1.7;
-      max-width: 260px;
-    }
-    .ed-overlay .ed-link {
-      margin-top: 16px;
-      font-size: .7rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      border-bottom: 1px solid var(--gold-lt);
-      padding-bottom: 2px;
-    }
-
-    .ed-tag {
-      font-size: .62rem;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      margin-bottom: 6px;
-    }
-    .ed-title {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 400;
-      color: var(--white);
-      line-height: 1.3;
-    }
-    .ed-desc {
-      font-size: .78rem;
-      color: rgba(255,255,255,.7);
-      margin-top: 6px;
-      line-height: 1.6;
-    }
-
-    /* Label cards below grid */
-    .gallery-labels {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 2px;
-      margin-top: 2px;
-    }
-    .gl-label {
-      padding: 18px 22px;
-      background: var(--cream);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 2px solid transparent;
-      transition: border-color .2s;
-      cursor: pointer;
-    }
-    .gl-label:hover { border-color: var(--gold); }
-    .gl-label .gl-name {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--ink);
-    }
-    .gl-label .gl-cat {
-      font-size: .68rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .gl-arrow {
-      color: var(--gold);
-      font-size: .8rem;
-    }
-
-    .gallery-cta-row {
-      margin-top: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--rule);
-      padding-top: 32px;
-    }
-    .gallery-count {
-      font-family: var(--serif);
-      font-size: 3rem;
-      font-weight: 300;
-      color: var(--ink);
-      line-height: 1;
-    }
-    .gallery-count small {
-      display: block;
-      font-family: var(--sans);
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    /* ── WITNESS SECTION ───────────────────────────── */
-    .witness {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      min-height: 600px;
-    }
-
-    .witness-left {
-      background: var(--sage);
-      padding: 80px 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .witness-left::before {
-      content: '"';
-      position: absolute;
-      font-family: var(--serif);
-      font-size: 28rem;
-      font-weight: 600;
-      color: rgba(255,255,255,.04);
-      top: -80px;
-      left: -20px;
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .witness-left .label { color: rgba(255,255,255,.55); }
-    .witness-left .label::before { background: rgba(255,255,255,.4); }
-
-    .witness-left .h2 { color: var(--white); font-size: clamp(2rem,3.5vw,3rem); }
-    .witness-left .h2 i { color: rgba(232,184,109,.9); }
-    .witness-left .body-lg { color: rgba(255,255,255,.72); max-width: 420px; }
-
-    .btn-outline-white {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,.35);
-      color: var(--white);
-      font-size: .78rem;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: 13px 28px;
-      border-radius: 2px;
-      margin-top: 40px;
-      transition: all .2s;
-    }
-    .btn-outline-white:hover {
-      background: rgba(255,255,255,.1);
-      border-color: rgba(255,255,255,.6);
-    }
-
-    .witness-right {
-      background: var(--paper);
-      padding: 60px 56px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 28px;
-    }
-
-    .testimony {
-      padding: 28px;
-      background: var(--white);
-      border-radius: 2px;
-      box-shadow: 0 1px 12px rgba(28,22,18,.06);
-      position: relative;
-    }
-    .testimony::before {
-      content: '"';
-      position: absolute;
-      top: 16px;
-      left: 20px;
-      font-family: var(--serif);
-      font-size: 3.5rem;
-      color: var(--blush);
-      line-height: 1;
-    }
-    .testimony-text {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--earth);
-      padding-top: 24px;
-    }
-    .testimony-attr {
-      font-size: .68rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 16px;
-    }
-
-    /* ── REQUEST ───────────────────────────────────── */
-    .request-outer {
-      background: var(--cream);
-    }
-
-    .request-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .request-steps {
-      margin-top: 48px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .rstep {
-      display: flex;
-      gap: 24px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .rstep:last-child { border-bottom: none; }
-
-    .rstep-num {
-      font-family: var(--serif);
-      font-size: 2rem;
-      font-weight: 300;
-      color: var(--blush);
-      line-height: 1;
-      flex-shrink: 0;
-      width: 36px;
-    }
-    .rstep-body {}
-    .rstep-title {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-    .rstep-desc {
-      font-size: .86rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* Form */
-    .form-card {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      padding: 44px 40px;
-    }
-
-    .form-head {
-      font-family: var(--serif);
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-    .form-sub {
-      font-size: .86rem;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.65;
-      margin-bottom: 32px;
-    }
-
-    .fg {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .fg label {
-      font-size: .68rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .fg input,
-    .fg textarea,
-    .fg select {
-      font-family: var(--sans);
-      font-size: .92rem;
-      font-weight: 300;
-      color: var(--ink);
-      background: var(--white);
-      border: 1px solid var(--rule);
-      padding: 12px 16px;
-      outline: none;
-      width: 100%;
-      transition: border-color .18s;
-      resize: vertical;
-      border-radius: 0;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-    .fg input:focus,
-    .fg textarea:focus,
-    .fg select:focus {
-      border-color: var(--gold);
-    }
-
-    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-    .form-submit {
-      width: 100%;
-      padding: 15px;
-      background: var(--ink);
-      color: var(--white);
-      font-family: var(--sans);
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background .2s;
-      margin-top: 4px;
-      border-radius: 0;
-    }
-    .form-submit:hover { background: var(--earth); }
-
-    /* ── DIVIDER QUOTE ──────────────────────────────── */
-    .full-quote {
-      background: var(--ink);
-      padding: 80px 60px;
-      text-align: center;
-    }
-    .full-quote blockquote {
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 3vw, 2.6rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.45;
-      color: rgba(255,255,255,.88);
-      max-width: 780px;
-      margin: 0 auto 24px;
-    }
-    .full-quote cite {
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--gold-lt);
-      font-style: normal;
-    }
-
-    /* ── FOOTER ─────────────────────────────────────── */
-    footer {
-      background: var(--paper);
-      border-top: 1px solid var(--rule);
-      padding: 64px 60px 36px;
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
-      gap: 48px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .footer-logo {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 14px;
-    }
-    .footer-logo b { color: var(--gold); font-weight: 600; }
-    .footer-blurb {
-      font-size: .84rem;
-      font-weight: 300;
-      line-height: 1.75;
-      color: var(--muted);
-      max-width: 220px;
-      margin-bottom: 20px;
-    }
-
-    .socials { display: flex; gap: 10px; }
-    .soc {
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      transition: all .18s;
-    }
-    .soc:hover { border-color: var(--gold); color: var(--gold); }
-
-    .footer-col h5 {
-      font-size: .65rem;
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--ink);
-      margin-bottom: 18px;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a {
-      font-size: .84rem;
-      font-weight: 300;
-      color: var(--muted);
-      transition: color .18s;
-    }
-    .footer-col ul a:hover { color: var(--ink); }
-
-    .footer-bottom {
-      padding-top: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: .76rem;
-      color: var(--muted);
-      font-weight: 300;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .footer-bottom a { color: var(--muted); transition: color .18s; }
-    .footer-bottom a:hover { color: var(--ink); }
-    .footer-links { display: flex; gap: 24px; }
-
-    /* ── RESPONSIVE ─────────────────────────────────── */
-    @media (max-width: 960px) {
-      nav { padding: 0 24px; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      .hero-left { padding: 80px 32px; }
-      .section-wrap { padding: 72px 32px; }
-      .intro, .request-grid { grid-template-columns: 1fr; gap: 48px; }
-      .editorial-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-labels { grid-template-columns: 1fr 1fr; }
-      .witness { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr 1fr; }
-      .full-quote { padding: 64px 32px; }
-    }
-
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Generative Engine Optimization in St. George, Utah. Rank in Google. Get cited by ChatGPT, Claude, Perplexity, Gemini. Timpson Marketing</title>
+<meta name="description" content="St. George Utah's GEO-first SEO agency. Rank in Google AND get cited by ChatGPT, Claude, Perplexity, and Gemini. Serving Washington County businesses. SEO+GEO from $3,500/mo. 60-day mention-lift guarantee." />
+<meta property="og:title" content="Generative Engine Optimization. St. George, Utah. Timpson Marketing" />
+<meta property="og:description" content="Local St. George GEO agency. Productized SEO + GEO retainer. Visible AI citation lift in 60 days or month 1 refunded." />
+<meta property="og:type" content="website" />
+<link rel="canonical" href="https://timpsonmarketing.com/generative-engine-optimization-st-george-utah" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body, h1, h2, h3, h4, h5, p, ul, ol, blockquote { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: transparent; color: inherit; }
+
+  :root {
+    --bg:        #0A0A0F;
+    --bg-elev:   #101018;
+    --surface:   #15151D;
+    --surface-2: #1B1B26;
+    --border:    rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.16);
+    --text:      #F4F4F7;
+    --text-muted:#A6A6B5;
+    --text-dim:  #6B6B7A;
+    --brand:     #FF6B35;
+    --brand-2:   #FF3D7F;
+    --brand-3:   #6B4BFF;
+    --grad-ai:   linear-gradient(135deg, #FF6B35 0%, #FF3D7F 50%, #6B4BFF 100%);
+    --grad-headline: linear-gradient(180deg, #FFFFFF 0%, #B8B8C5 100%);
+    --font-display: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-serif:   "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --r-sm: 8px;  --r-md: 14px;  --r-lg: 20px;  --r-xl: 28px;
+    --container: 1200px;
+    --gutter: clamp(20px, 4vw, 40px);
+    --section-y: clamp(72px, 10vw, 140px);
+  }
+
+  html, body { background: var(--bg); color: var(--text); }
+  body {
+    font-family: var(--font-body);
+    font-size: 16px; line-height: 1.6; font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Typography */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--brand);
+    padding: 6px 12px;
+    border: 1px solid rgba(255,107,53,.32);
+    border-radius: 999px;
+    background: rgba(255,107,53,.06);
+  }
+  .eyebrow::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 0 10px var(--brand);
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;
+    color: var(--text);
+  }
+  h1 { font-size: clamp(36px, 5vw, 64px); }
+  h2 { font-size: clamp(30px, 4vw, 52px); }
+  h3 { font-size: clamp(22px, 2.4vw, 30px); }
+  h4 { font-size: 20px; }
+  .serif { font-family: var(--font-serif); font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
+  p { color: var(--text-muted); }
+  .lead { font-size: clamp(17px, 1.4vw, 21px); line-height: 1.55; color: var(--text-muted); max-width: 62ch; }
+
+  /* Layout */
+  .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+  section { padding-block: var(--section-y); position: relative; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 15px; padding: 14px 22px;
+    border-radius: 999px; white-space: nowrap;
+    transition: transform .2s, background .2s, color .2s, box-shadow .25s, border-color .2s;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary {
+    background: var(--brand); color: #0A0A0F;
+    box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 8px 24px -6px rgba(255,107,53,.45);
+  }
+  .btn-primary:hover { background: #ff8559; transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,.22) inset, 0 12px 36px -8px rgba(255,107,53,.6); }
+  .btn-ghost {
+    background: rgba(255,255,255,.04); color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.28); }
+  .btn-lg { padding: 16px 26px; font-size: 16px; }
+  .btn .arrow { transition: transform .2s; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* Nav */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    background: rgba(10,10,15,.72);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand-mark {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em;
+    font-size: 17px; color: var(--text);
+  }
+  .brand-mark .glyph {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--grad-ai);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800; font-size: 16px;
+    box-shadow: 0 8px 22px rgba(255,107,53,.45);
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color .15s; }
+  .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
+  .nav-cta { display: inline-flex; align-items: center; gap: 12px; }
+  @media (max-width: 920px) {
+    .nav-links, .nav-cta .btn-ghost { display: none; }
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding-top: clamp(56px, 8vw, 96px);
+    padding-bottom: clamp(40px, 6vw, 64px);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: -10% -10% auto -10%; height: 90%;
+    background:
+      radial-gradient(60% 50% at 18% 20%, rgba(255,107,53,.22), transparent 60%),
+      radial-gradient(50% 50% at 80% 0%, rgba(107,75,255,.18), transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  .hero-grid::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(60% 60% at 50% 30%, #000 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(60% 60% at 50% 30%, #000 30%, transparent 70%);
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero h1 {
+    font-size: clamp(40px, 5.6vw, 78px);
+    line-height: 1.02; letter-spacing: -0.035em; font-weight: 800;
+    max-width: 18ch; margin-top: 14px;
+  }
+  .hero h1 .grad { background: var(--grad-ai); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero h1 em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--text); }
+  .hero .lead { margin-top: 28px; font-size: clamp(17px, 1.5vw, 22px); max-width: 60ch; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; align-items: center; }
+  .hero-actions .meta { font-size: 13px; color: var(--text-dim); }
+
+  /* Local badge above headline */
+  .local-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: rgba(255,255,255,.03);
+    font-size: 13px; color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .local-badge .pin {
+    color: var(--brand);
+    display: inline-flex;
+  }
+
+  /* Trust bar */
+  .trust-bar {
+    margin-top: clamp(40px, 6vw, 72px);
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .trust-bar .stat {
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 4px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .trust-bar .stat:last-child { border-right: none; }
+  .trust-bar .num {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3.4vw, 40px);
+    font-weight: 800; letter-spacing: -0.025em;
+    color: var(--text); line-height: 1;
+  }
+  .trust-bar .num .accent { color: var(--brand); }
+  .trust-bar .label {
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: .06em; text-transform: uppercase;
+    font-family: var(--font-mono); font-weight: 500;
+  }
+  @media (max-width: 720px) {
+    .trust-bar { grid-template-columns: 1fr 1fr; }
+    .trust-bar .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 4px; }
+    .trust-bar .stat:nth-last-child(-n+2) { border-bottom: none; }
+  }
+
+  /* Section heads */
+  .section-head { display: flex; flex-direction: column; gap: 18px; max-width: 760px; margin-bottom: 52px; }
+  .section-head h2 { font-size: clamp(30px, 4.4vw, 56px); letter-spacing: -0.03em; }
+  .section-head h2 em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--brand); }
+  .section-head .lead { font-size: 18px; }
+
+  /* Commitment box */
+  .commitment-box {
+    background: radial-gradient(80% 80% at 0% 0%, rgba(255,107,53,.12), transparent 60%), var(--surface);
+    border: 1px solid rgba(255,107,53,.28);
+    border-left: 3px solid var(--brand);
+    border-radius: var(--r-md);
+    padding: 26px 30px;
+    margin: 24px 0;
+  }
+  .commitment-box .label {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 8px;
+  }
+  .commitment-box p { font-size: 15px; color: var(--text); line-height: 1.6; }
+  .commitment-box a { color: var(--brand); }
+
+  /* Maturity ladder */
+  .ladder {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin: 28px 0;
+  }
+  .ladder .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 22px 18px;
+    text-align: center;
+  }
+  .ladder .step .score {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--text-dim); letter-spacing: .12em;
+  }
+  .ladder .step .label {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 18px; color: var(--text);
+    margin: 8px 0 6px;
+  }
+  .ladder .step .desc {
+    font-size: 12px; color: var(--text-muted); line-height: 1.45;
+  }
+  .ladder .step.current {
+    background: radial-gradient(80% 80% at 50% 0%, rgba(255,107,53,.18), transparent 70%), var(--surface);
+    border-color: rgba(255,107,53,.32);
+  }
+  .ladder .step.current .label { color: var(--brand); }
+  @media (max-width: 800px) { .ladder { grid-template-columns: 1fr 1fr; } }
+
+  /* Pricing */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 32px 0;
+  }
+  .price-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 32px 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    position: relative;
+  }
+  .price-card.featured {
+    background: radial-gradient(120% 120% at 0% 0%, rgba(255,107,53,.18), transparent 50%), radial-gradient(80% 80% at 100% 100%, rgba(107,75,255,.16), transparent 60%), var(--surface);
+    border-color: rgba(255,107,53,.32);
+  }
+  .price-card .badge-most-popular {
+    position: absolute; top: -12px; right: 22px;
+    background: var(--brand); color: #0a0a0a;
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 999px; font-weight: 700;
+  }
+  .price-card .tier-name {
+    font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .price-card .tier-price {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 800; letter-spacing: -.025em;
+    color: var(--text); line-height: 1;
+  }
+  .price-card .tier-price small {
+    font-size: 14px; color: var(--text-muted); font-weight: 500; margin-left: 4px;
+  }
+  .price-card .tier-tagline {
+    font-size: 14px; color: var(--text-muted);
+    line-height: 1.5; margin-bottom: 8px;
+  }
+  .price-card ul.tier-includes {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .price-card ul.tier-includes li {
+    font-size: 14px; color: var(--text-muted);
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  .price-card ul.tier-includes li:first-child { border-top: none; padding-top: 0; }
+  .price-card ul.tier-includes li::before {
+    content: "→"; color: var(--brand); margin-right: 10px;
+    font-family: var(--font-mono);
+  }
+  .price-card .btn { margin-top: auto; }
+  @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  /* Deliverables */
+  .deliverables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 28px 0;
+  }
+  .deliverable {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 22px 24px;
+  }
+  .deliverable h4 {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 10px;
+  }
+  .deliverable p { font-size: 14px; color: var(--text-muted); line-height: 1.55; }
+  .deliverable strong { color: var(--text); font-weight: 600; }
+  @media (max-width: 700px) { .deliverables { grid-template-columns: 1fr; } }
+
+  /* Service areas (St. George localization block) */
+  .service-areas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .area-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 18px 20px;
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color .2s, transform .2s;
+  }
+  .area-chip:hover { border-color: rgba(255,107,53,.32); transform: translateY(-1px); }
+  .area-chip .area-pin {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(255,107,53,.10);
+    border: 1px solid rgba(255,107,53,.25);
+    color: var(--brand);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .area-chip .area-name {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 15px;
+    color: var(--text);
+  }
+  .area-chip .area-sub {
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+  @media (max-width: 900px) { .service-areas { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .service-areas { grid-template-columns: 1fr; } }
+
+  /* Vertical strip (industries) */
+  .verticals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 28px 0;
+  }
+  .vertical {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 26px 24px;
+  }
+  .vertical .v-tag {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--brand); margin-bottom: 8px;
+  }
+  .vertical h4 {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 18px; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .vertical p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  @media (max-width: 900px) { .verticals { grid-template-columns: 1fr; } }
+
+  /* FAQ */
+  .faq-item {
+    border-top: 1px solid var(--border);
+    padding: 22px 0;
+  }
+  .faq-item:first-child { border-top: none; padding-top: 0; }
+  .faq-q {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 18px; color: var(--text);
+    margin-bottom: 10px;
+  }
+  .faq-a { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+  .faq-a strong { color: var(--text); }
+
+  /* Proof bar */
+  .proof-bar {
+    display: flex; gap: 24px; flex-wrap: wrap; align-items: center;
+    padding: 18px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    margin-bottom: 8px;
+  }
+  .proof-bar .pill {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text-muted);
+  }
+  .proof-bar .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #4ADE80;
+    box-shadow: 0 0 0 3px rgba(74,222,128,.2);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,.2); }
+    50% { box-shadow: 0 0 0 7px rgba(74,222,128,.0); }
+  }
+  .proof-bar strong { color: var(--text); font-weight: 600; }
+  .proof-bar .sep { width: 1px; height: 18px; background: var(--border); }
+  .proof-bar .guarantee strong { color: var(--brand); }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg-elev);
+    padding-block: clamp(56px, 6vw, 80px) 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-col h4 {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text); margin-bottom: 16px;
+    font-family: var(--font-mono);
+  }
+  .footer-col a, .footer-col p {
+    display: block;
+    color: var(--text-muted); font-size: 14px;
+    margin-bottom: 10px;
+    transition: color .15s;
+  }
+  .footer-col a:hover { color: var(--text); }
+  .footer-desc { max-width: 280px; margin-top: 14px; }
+  .footer-bottom {
+    margin-top: 48px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim); font-size: 13px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+</style>
+
+<!-- Organization (entity grounding) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://timpsonmarketing.com/#organization",
+  "name": "Timpson Marketing",
+  "url": "https://timpsonmarketing.com/",
+  "description": "Generative Engine Optimization and SEO agency in St. George, Utah. Serving law firms, regenerative farms, and local service businesses across Washington County and the United States.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "St. George",
+    "addressRegion": "UT",
+    "postalCode": "84770",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "St. George", "containedInPlace": {"@type": "State", "name": "Utah"}},
+    {"@type": "City", "name": "Hurricane", "containedInPlace": {"@type": "State", "name": "Utah"}},
+    {"@type": "City", "name": "Washington", "containedInPlace": {"@type": "State", "name": "Utah"}},
+    {"@type": "City", "name": "Santa Clara", "containedInPlace": {"@type": "State", "name": "Utah"}},
+    {"@type": "City", "name": "Ivins", "containedInPlace": {"@type": "State", "name": "Utah"}},
+    {"@type": "AdministrativeArea", "name": "Washington County, Utah"},
+    {"@type": "Country", "name": "United States"}
+  ],
+  "serviceType": ["Generative Engine Optimization", "Search Engine Optimization", "AI Marketing", "Schema Marketing"],
+  "founder": {"@type": "Person", "name": "Joseph Timpson"},
+  "sameAs": ["https://www.facebook.com/timpson-marketing", "https://www.linkedin.com/company/timpson-marketing"]
+}
+</script>
+
+<!-- WebPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://timpsonmarketing.com/generative-engine-optimization-st-george-utah#webpage",
+  "url": "https://timpsonmarketing.com/generative-engine-optimization-st-george-utah",
+  "name": "Generative Engine Optimization in St. George, Utah",
+  "about": {"@id": "https://timpsonmarketing.com/#organization"},
+  "breadcrumb": {"@id": "https://timpsonmarketing.com/generative-engine-optimization-st-george-utah#breadcrumb"}
+}
+</script>
+
+<!-- Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://timpsonmarketing.com/generative-engine-optimization-st-george-utah#breadcrumb",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://timpsonmarketing.com/"},
+    {"@type": "ListItem", "position": 2, "name": "GEO Marketing", "item": "https://timpsonmarketing.com/geo-marketing"},
+    {"@type": "ListItem", "position": 3, "name": "St. George, Utah", "item": "https://timpsonmarketing.com/generative-engine-optimization-st-george-utah"}
+  ]
+}
+</script>
+
+<!-- Service (productized retainer offered locally) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://timpsonmarketing.com/generative-engine-optimization-st-george-utah#service",
+  "name": "Generative Engine Optimization. St. George, Utah",
+  "alternateName": ["GEO Marketing St. George", "AI Search Marketing Washington County", "LLM SEO Southern Utah"],
+  "description": "Productized SEO + GEO monthly retainer for St. George, Utah and Washington County businesses. Includes audit, schema deployment, content engineering, surface claims, authority outreach, and daily AI mention tracking across ChatGPT, Claude, Perplexity, and Gemini.",
+  "provider": {"@id": "https://timpsonmarketing.com/#organization"},
+  "areaServed": [
+    {"@type": "City", "name": "St. George, Utah"},
+    {"@type": "AdministrativeArea", "name": "Washington County, Utah"}
+  ],
+  "serviceType": "Generative Engine Optimization",
+  "url": "https://timpsonmarketing.com/generative-engine-optimization-st-george-utah",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Timpson Marketing Retainer Pricing",
+    "itemListElement": [
+      {"@type": "Offer", "name": "SEO + GEO Low Competition", "price": "3500", "priceCurrency": "USD",
+        "priceSpecification": {"@type": "UnitPriceSpecification", "price": "3500", "priceCurrency": "USD", "unitCode": "MON"}},
+      {"@type": "Offer", "name": "SEO + GEO Medium Competition", "price": "6000", "priceCurrency": "USD",
+        "priceSpecification": {"@type": "UnitPriceSpecification", "price": "6000", "priceCurrency": "USD", "unitCode": "MON"}},
+      {"@type": "Offer", "name": "SEO + GEO High Competition", "price": "9000", "priceCurrency": "USD",
+        "priceSpecification": {"@type": "UnitPriceSpecification", "price": "9000", "priceCurrency": "USD", "unitCode": "MON"}}
+    ]
+  }
+}
+</script>
+
+<!-- FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://timpsonmarketing.com/generative-engine-optimization-st-george-utah#faq",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is Generative Engine Optimization?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Generative Engine Optimization (GEO) is the practice of making a brand show up as the answer when a customer asks an AI engine like ChatGPT, Claude, Perplexity, or Gemini a question in the brand's category. It is structurally different from classic SEO because AI engines retrieve from a smaller, more curated set of sources and reward entity-grounded brands with proper schema, sameAs chains, and a 50-plus mention authority footprint."}},
+    {"@type": "Question", "name": "Are you actually based in St. George, Utah?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. Timpson Marketing is headquartered in St. George, Utah and the founder Joseph Timpson lives in Washington County. We work with local businesses in St. George, Hurricane, Ivins, Santa Clara, Washington, and across Southern Utah, and we serve national clients across the United States. In-person meetings are available for Washington County clients."}},
+    {"@type": "Question", "name": "Which St. George industries benefit most from GEO?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Any St. George business whose customers ask AI engines a question with a local intent. Law firms, healthcare and dental, real estate, vacation rentals, outdoor recreation outfitters, home services (HVAC, roofing, plumbing, solar), retirement and senior services, professional services, and tourism-adjacent businesses all see lift. Industries with high research-stage searches (legal, health, large purchases) see the fastest measurable AI citation gains."}},
+    {"@type": "Question", "name": "How long does it take to see results?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Most brands see initial AI mention rate lift inside 30 days on Perplexity (which weights directories heavily) and inside 60 days on ChatGPT and Claude (which weight schema and Wikidata). Gemini lags 60 to 90 days because it is grounded in Google Search results which respond more slowly. The daily mention dashboard captures the lift in real time across all four engines."}},
+    {"@type": "Question", "name": "What is the difference between GEO and SEO?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Classic SEO competes for the top 10 blue links in Google search. GEO competes for the single answer paragraph an AI engine returns. SEO rewards keyword density, backlinks, and pages. GEO rewards entity grounding, schema rigor, citation surface saturation, and 40 to 75 word answer paragraphs in the front 30 percent of every page. Most clients need both. We bundle them when budgets allow."}},
+    {"@type": "Question", "name": "Do you serve businesses outside St. George?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. The St. George headquarters is where we live and where in-person meetings happen, but the work is engine-native and runs nationally. We currently serve clients across roughly 30 states. The methodology, pricing, and guarantee are the same whether you are based in St. George or out of state."}},
+    {"@type": "Question", "name": "What is included in the SEO + GEO Low Competition tier at $3,500 per month?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Topical authority blogging, full Google Business Profile marketing, full-stack technical and on-page SEO, schema markup (FAQ, HowTo, Organization, Speakable), HARO link building, digital PR, Reddit marketing, entity marketing, citation surface management, AI visibility tracking across ChatGPT, Claude, Perplexity, and Gemini, and a monthly status report with quarterly QBR call. Month 1 includes the AI Visibility and Citation Authority Audit."}},
+    {"@type": "Question", "name": "Do you require a long-term contract?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Twelve-month minimums on all retainers. SEO and GEO are compounding work. The content, authority footprint, entity grounding, and schema build on each other month over month. Month 1 work doesn't pay back fully until month 4 or 5. Twelve months gives the cumulative work time to land. Cancel anytime after month 12 with 30 days notice."}},
+    {"@type": "Question", "name": "What if I'm not ready for a retainer yet?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Start with the free AI Visibility and Citation Authority Audit. We run the full audit pipeline, ship the report and the 30-day action plan, and you keep both regardless of whether you hire us. Zero commitment. It shows you exactly where your brand sits on the AI maturity ladder and what is blocking Google rank growth. From there you can decide which retainer makes sense."}}
+  ]
+}
+</script>
 </head>
+
 <body>
 
 <!-- NAV -->
-<nav>
-  <div class="logo">Behind the <b>Mask</b></div>
-  <div class="nav-right">
-    <a href="#">Gallery</a>
-    <a href="#">Topics</a>
-    <a href="#">About</a>
-    <a href="#" class="nav-btn">Share Your Story</a>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand-mark" aria-label="Timpson Marketing home">
+      <span class="glyph">T</span>
+      <span class="brand-text">Timpson Marketing</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/ai-marketing">AI Marketing</a>
+      <a href="/geo-marketing" aria-current="page">GEO Marketing</a>
+      <a href="/services">Services</a>
+      <a href="/case-studies">Work</a>
+      <a href="/about">About</a>
+      <a href="/ai-audit">Free AI Audit</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="/contact">Contact</a>
+      <a class="btn btn-primary" href="/ai-audit">Get Free AI Audit <span class="arrow">→</span></a>
+    </div>
   </div>
-</nav>
+</header>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <div class="kicker"><span class="kicker-line"></span>Art &amp; Human Experience</div>
-    <h1 class="hero-h1">
-      You were never<br>
-      too <i>much.</i><br>
-      You were always<br>
-      <span class="outline">enough.</span>
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container hero-inner">
+    <span class="local-badge">
+      <span class="pin" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </span>
+      Based in St. George, Utah. Serving Washington County and the U.S.
+    </span>
+    <span class="eyebrow" style="display:inline-flex;margin-top:14px;">SEO + GEO. St. George, Utah. Rank in Google. Get cited by AI.</span>
+    <h1>
+      St. George Utah's <em class="serif">generative</em><br/>
+      engine optimization agency.<br/>
+      <span class="grad">Rank in Google. Get cited by AI.</span>
     </h1>
-    <div class="hero-rule"></div>
-    <p class="hero-p">
-      Behind the Mask gives form to the experiences we were told to hide. Art that names the unnamed, holds the weight, and quietly says to another human: I have been there too.
+    <p class="lead">
+      Your customers are not just searching anymore. They are asking ChatGPT, Claude, Perplexity, and Gemini, and the engines name one business per answer. Timpson Marketing is the St. George agency that runs the full stack: Google rankings, AI engine citations, Reddit presence, entity authority, and daily mention tracking. One retainer. One team. Compounding results.
     </p>
     <div class="hero-actions">
-      <a href="#" class="btn-solid">Enter the Gallery</a>
-      <a href="#" class="btn-text">
-        Find Your Reflection
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <a class="btn btn-primary btn-lg" href="/ai-audit">Get your free AI Visibility &amp; Citation Authority Audit <span class="arrow">→</span></a>
+      <a class="btn btn-ghost btn-lg" href="#pricing">See retainer pricing</a>
+      <span class="meta">No commitment to see your audit. 12-month retainer minimums when you sign.</span>
     </div>
-  </div>
 
-  <!-- Hero cover art panel -->
-  <div class="hero-right">
-    <div class="hero-right-inner">
-      <img
-        class="hero-cover-img"
-        src="https://behindthemask.art/wp-content/smush-webp/2025/09/Authenticity-scaled.jpg.webp"
-        alt="Authenticity — Behind the Mask"
-      />
-      <div class="hero-cover-caption">
-        <div class="cap-label">Featured Work</div>
-        <div class="cap-title">Authenticity</div>
+    <div class="trust-bar" aria-label="Why GEO matters in 2026">
+      <div class="stat">
+        <div class="num"><span class="accent">14.2%</span></div>
+        <div class="label">Conversion rate from AI search referrals</div>
       </div>
-    </div>
-  </div>
-
-  <!-- Marquee band -->
-  <div class="hero-bottom" style="grid-column:1/-1; height:54px; overflow:hidden;">
-    <div class="marquee-track">
-      <div class="marquee-item"><span class="marquee-dot"></span>You are not strange for feeling what you feel</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>What you've survived deserves to be witnessed</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>Your story may be the thing that saves someone else</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>You are fully human — and that is enough</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>You are not strange for feeling what you feel</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>What you've survived deserves to be witnessed</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>Your story may be the thing that saves someone else</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>You are fully human — and that is enough</div>
-    </div>
-  </div>
-</div>
-
-<!-- INTRO -->
-<section class="section-wrap">
-  <div class="intro">
-    <div>
-      <div class="label">What This Is</div>
-      <h2 class="h2">Art has always been<br>humanity's way of<br><i>surviving the unspeakable</i><br>and passing it forward.</h2>
-      <a href="#" class="btn-solid" style="margin-top:40px; display:inline-block;">Read the Story Behind This</a>
-    </div>
-    <div class="intro-right">
-      <div class="pull-quote">
-        "These drawings were never meant to stay private. They were born from real nights and turned into something that says — I see you."
+      <div class="stat">
+        <div class="num">64.5%</div>
+        <div class="label">Of AI search traffic is ChatGPT</div>
       </div>
-      <p class="body-lg">
-        Every piece maps an experience that often has no language. Grief that people minimize. Pain nobody believes. The shame of things done to us that we carry as though they were our own.
-      </p>
-      <p class="body-lg">
-        Naming them in art doesn't make them smaller. It makes them <em>shareable</em> — and sharing them is how they become a gift to someone who needed to know they weren't alone.
-      </p>
-      <div class="tag-cloud">
-        <span class="tag active">All</span>
-        <span class="tag">Anxiety</span>
-        <span class="tag">Grief</span>
-        <span class="tag">Identity</span>
-        <span class="tag">Chronic Pain</span>
-        <span class="tag">Trauma</span>
-        <span class="tag">Shame</span>
-        <span class="tag">Healing</span>
+      <div class="stat">
+        <div class="num">45%</div>
+        <div class="label">Of consumers use AI for local business search</div>
+      </div>
+      <div class="stat">
+        <div class="num">50<span class="accent">+</span></div>
+        <div class="label">Mentions to clear Shadow Entity threshold</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="section-wrap gallery-wrap">
-  <div class="gallery-header">
-    <div>
-      <div class="label">The Collection</div>
-      <h2 class="h2" style="margin-bottom:0;">Find your<br><i>reflection.</i></h2>
-    </div>
-    <a href="#" class="btn-text" style="align-self:flex-end;">
-      View All Pieces
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </div>
-
-  <div class="editorial-grid">
-    <div class="ed-cell hero-cell">
-      <div class="ed-thumb" style="min-height:580px;">
-        <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Anonymous_1-scaled.jpg.webp" alt="Anonymous" />
-      </div>
-      <div class="ed-base">
-        <div class="ed-tag">Identity</div>
-        <div class="ed-title">Anonymous</div>
-      </div>
-      <div class="ed-overlay">
-        <div class="ed-desc">The face we show the world and the face we carry alone are rarely the same. Both are real. Both are you.</div>
-        <div class="ed-link">View Piece →</div>
-      </div>
-    </div>
-    <div class="ed-cell">
-      <div class="ed-thumb">
-        <img src="https://behindthemask.art/wp-content/smush-webp/2025/11/Process-of-Healing-2_1-scaled.jpg.webp" alt="Process of Healing" />
-      </div>
-      <div class="ed-base">
-        <div class="ed-tag">Healing</div>
-        <div class="ed-title">Process of Healing</div>
-      </div>
-      <div class="ed-overlay">
-        <div class="ed-desc">Healing is not linear. It is layered, slow, and still worth every step.</div>
-        <div class="ed-link">View Piece →</div>
-      </div>
-    </div>
-    <div class="ed-cell">
-      <div class="ed-thumb">
-        <img src="https://behindthemask.art/wp-content/smush-webp/2025/10/The-Wolf-Series_1-min-scaled.jpg.webp" alt="The Wolf Series" />
-      </div>
-      <div class="ed-base">
-        <div class="ed-tag">Strength</div>
-        <div class="ed-title">The Wolf Series</div>
-      </div>
-      <div class="ed-overlay">
-        <div class="ed-desc">What looks dangerous from the outside is often just something that learned to protect itself.</div>
-        <div class="ed-link">View Piece →</div>
-      </div>
-    </div>
-    <div class="ed-cell">
-      <div class="ed-thumb">
-        <img src="https://behindthemask.art/wp-content/smush-webp/2025/10/Seasons_1-min-scaled.jpg.webp" alt="Seasons" />
-      </div>
-      <div class="ed-base">
-        <div class="ed-tag">Grief &amp; Change</div>
-        <div class="ed-title">Seasons</div>
-      </div>
-      <div class="ed-overlay">
-        <div class="ed-desc">Every season of suffering carries the seed of the next season of growth.</div>
-        <div class="ed-link">View Piece →</div>
-      </div>
-    </div>
-    <div class="ed-cell">
-      <div class="ed-thumb">
-        <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Unable-to-Cry_1-scaled.jpg.webp" alt="Unable to Cry" />
-      </div>
-      <div class="ed-base">
-        <div class="ed-tag">Emotional Pain</div>
-        <div class="ed-title">Unable to Cry</div>
-      </div>
-      <div class="ed-overlay">
-        <div class="ed-desc">Sometimes the pain is so deep it moves past tears into something heavier and harder to name.</div>
-        <div class="ed-link">View Piece →</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="gallery-cta-row">
-    <div class="gallery-count">
-      25+
-      <small>Pieces in the collection</small>
-    </div>
-    <div style="text-align:right; max-width:360px;">
-      <p class="body-lg" style="font-size:.9rem; margin-bottom:20px;">
-        Every piece was drawn from real experience. Browse by topic, or let one find you.
+<!-- THE PROBLEM -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The shift you can't ignore</span>
+      <h2>If your St. George competitors get cited <em class="serif">before you do, you lose.</em></h2>
+      <p class="lead">
+        AI engines are answering questions that used to send users to Google. They name one business per answer. Brands without proper schema, a Wikidata entity, or a 50-plus mention authority footprint are structurally invisible. The good news is the gap is fixable. The bad news is most Southern Utah agencies are still selling 2018 SEO and have not heard of GEO.
       </p>
-      <a href="#" class="btn-solid">Browse All Pieces</a>
+    </div>
+
+    <div class="commitment-box">
+      <div class="label">The 60-day commitment</div>
+      <p>
+        On the GEO Foundation retainer or higher, if your daily mention rate has not lifted by at least 5 absolute percentage points on at least 2 of the 4 major AI engines (ChatGPT, Claude, Perplexity, Gemini) by day 60, we refund month 1 in full. We have not had to refund yet. We track every client daily, so we know before you do.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- FULL QUOTE DIVIDER -->
-<div class="full-quote">
-  <blockquote>
-    "You carried it in silence for so long. What if the thing you've been hiding is exactly what someone else needs to find?"
-  </blockquote>
-  <cite>Behind the Mask</cite>
-</div>
-
-<!-- WITNESS / TESTIMONIALS -->
-<div class="witness">
-  <div class="witness-left">
-    <div class="label">You Are Seen</div>
-    <h2 class="h2">
-      This is a place<br>where you can<br>arrive <i>as you are.</i>
-    </h2>
-    <p class="body-lg" style="color:rgba(255,255,255,.68);">
-      Mid-grief. Mid-healing. Mid-survival. You don't have to be "over it" to belong here. You don't have to explain yourself. You just have to show up.
-    </p>
-    <a href="#" class="btn-outline-white">Share What You're Carrying</a>
-  </div>
-  <div class="witness-right">
-    <div class="testimony">
-      <div class="testimony-text">I had no words for what I was feeling. Then I found this piece and showed it to my therapist. That session changed everything.</div>
-      <div class="testimony-attr">Community Member</div>
-    </div>
-    <div class="testimony">
-      <div class="testimony-text">For the first time I felt like someone had actually been inside my experience and drawn it out. I wasn't making it up.</div>
-      <div class="testimony-attr">Community Member</div>
-    </div>
-    <div class="testimony">
-      <div class="testimony-text">I sent this to my sister and she cried. We hadn't been able to talk about it for years. Art did what words couldn't.</div>
-      <div class="testimony-attr">Community Member</div>
-    </div>
-  </div>
-</div>
-
-<!-- REQUEST -->
-<section class="section-wrap request-outer">
-  <div class="request-grid">
-    <div>
-      <div class="label">On Your Request</div>
-      <h2 class="h2">Your experience<br>deserves to be<br><i>given form.</i></h2>
-      <p class="body-lg" style="max-width:420px;">
-        If there is something you've lived through that doesn't have a piece yet — something you've searched for and never quite found — you can ask for it. Your experience may become the thing that saves someone else.
+<!-- SERVICE AREAS -->
+<section style="padding-block: clamp(48px, 6vw, 80px);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Where we work</span>
+      <h2>St. George headquartered. <em class="serif">Washington County native.</em></h2>
+      <p class="lead">
+        Joseph Timpson lives in St. George, Utah. Local meetings are walk-in or drive-in for Washington County clients. Out-of-county and out-of-state engagements run remote with the same methodology and the same guarantee.
       </p>
-      <div class="request-steps">
-        <div class="rstep">
-          <div class="rstep-num">01</div>
-          <div class="rstep-body">
-            <div class="rstep-title">Describe what you've lived</div>
-            <div class="rstep-desc">You don't need the right words. The feeling is enough to start.</div>
-          </div>
-        </div>
-        <div class="rstep">
-          <div class="rstep-num">02</div>
-          <div class="rstep-body">
-            <div class="rstep-title">It becomes art</div>
-            <div class="rstep-desc">Your experience is turned into a drawing that names what others couldn't.</div>
-          </div>
-        </div>
-        <div class="rstep">
-          <div class="rstep-num">03</div>
-          <div class="rstep-body">
-            <div class="rstep-title">It goes into the world</div>
-            <div class="rstep-desc">Someone finds it. Feels a little less alone. That's the whole point.</div>
-          </div>
-        </div>
+    </div>
+
+    <div class="service-areas">
+      <div class="area-chip">
+        <span class="area-pin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="area-name">St. George</div><div class="area-sub">Headquarters · 84770</div></div>
+      </div>
+      <div class="area-chip">
+        <span class="area-pin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="area-name">Washington</div><div class="area-sub">Utah</div></div>
+      </div>
+      <div class="area-chip">
+        <span class="area-pin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="area-name">Hurricane</div><div class="area-sub">Utah</div></div>
+      </div>
+      <div class="area-chip">
+        <span class="area-pin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="area-name">Ivins</div><div class="area-sub">Utah</div></div>
+      </div>
+      <div class="area-chip">
+        <span class="area-pin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="area-name">Santa Clara</div><div class="area-sub">Utah</div></div>
+      </div>
+      <div class="area-chip">
+        <span class="area-pin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="area-name">Toquerville</div><div class="area-sub">Utah</div></div>
+      </div>
+      <div class="area-chip">
+        <span class="area-pin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="area-name">Cedar City</div><div class="area-sub">Iron County, UT</div></div>
+      </div>
+      <div class="area-chip">
+        <span class="area-pin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="area-name">Mesquite</div><div class="area-sub">Nevada · 80 mi</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section style="padding-block: clamp(48px, 6vw, 80px);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Local verticals we know</span>
+      <h2>Built for the businesses <em class="serif">that built St. George.</em></h2>
+      <p class="lead">
+        Southern Utah is service, healthcare, real estate, hospitality, outdoor recreation, and growing professional services. Every one of those categories has high-intent AI queries customers are asking right now. These are the verticals where we have the strongest GEO playbook depth.
+      </p>
+    </div>
+
+    <div class="verticals">
+      <div class="vertical">
+        <div class="v-tag">Law firms</div>
+        <h4>Personal injury, family, estate, criminal defense</h4>
+        <p>"Best personal injury lawyer in St. George" is now an AI prompt as often as a Google search. We are owners of The SEO For Law Firms (TSFLF). Schema rigor, named-author E-E-A-T markup, Justia and Avvo dominance, and HARO link building tuned for the legal vertical.</p>
+      </div>
+      <div class="vertical">
+        <div class="v-tag">Healthcare</div>
+        <h4>Dental, optometry, physical therapy, specialty clinics</h4>
+        <p>Patients ask AI before they ask a friend. Healthgrades, Vitals, RateMDs, schema rigor, MedicalBusiness markup, condition-and-procedure topical clusters, and HIPAA-safe reputation systems.</p>
+      </div>
+      <div class="vertical">
+        <div class="v-tag">Real estate &amp; vacation rentals</div>
+        <h4>Brokerages, individual agents, STR managers</h4>
+        <p>Buyers and travelers ask AI engines for neighborhood, price, and lifestyle recommendations. RealEstateAgent and Accommodation schema, neighborhood content clusters, and VRBO/Airbnb listing presence engineered for AI corroboration.</p>
+      </div>
+      <div class="vertical">
+        <div class="v-tag">Home services</div>
+        <h4>HVAC, roofing, plumbing, solar, pest control</h4>
+        <p>Emergency search is mostly mobile and increasingly AI-mediated. GBP marketing, full citation surface coverage, photo-rich AI training data, and review systems that move you into the corroboration set.</p>
+      </div>
+      <div class="vertical">
+        <div class="v-tag">Outdoor recreation &amp; tourism</div>
+        <h4>Outfitters, tours, jeep rentals, lodging</h4>
+        <p>Zion, Snow Canyon, Sand Hollow, and the surrounding parks drive massive AI travel-planning queries. TouristAttraction and TravelAgency schema, trip-planning topical clusters, and Reddit r/zion plus r/utah authority work.</p>
+      </div>
+      <div class="vertical">
+        <div class="v-tag">Senior &amp; retirement services</div>
+        <h4>Assisted living, home health, financial planning, estate</h4>
+        <p>Adult children doing research ask AI first. E-E-A-T weighted content, expert author markup, condition-specific topical clusters, and authority placements in retirement and elder care publications.</p>
       </div>
     </div>
 
-    <div class="form-card">
-      <div class="form-head">Make a Request</div>
-      <div class="form-sub">Tell me what you've experienced. I'll turn it into something that can hold it for you — and for everyone else who needed it.</div>
+    <div class="commitment-box">
+      <div class="label">If your vertical is not listed</div>
+      <p>
+        We have shipped GEO retainers for regenerative farms, web3 platforms, B2B SaaS, manufacturing, and pavement contracting. The playbook is vertical-agnostic. The free AI Visibility and Citation Authority Audit shows you exactly how your specific vertical maps onto the maturity ladder. <a href="/contact">Send us your URL.</a>
+      </p>
+    </div>
+  </div>
+</section>
 
-      <div class="fg-row">
-        <div class="fg">
-          <label>First Name</label>
-          <input type="text" placeholder="Your name" />
-        </div>
-        <div class="fg">
-          <label>Email</label>
-          <input type="email" placeholder="Where to reach you" />
-        </div>
+<!-- MATURITY LADDER -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The maturity ladder</span>
+      <h2>Where every brand starts. <em class="serif">Where the work takes you.</em></h2>
+      <p class="lead">
+        The Timpson Marketing GEO Maturity Scorecard rolls up six dimensions (technical, surfaces, authority, content, measurement, prompt panel) into a single 0 to 100 score and tier classification. Most brands begin as Shadow Entity. The retainer drives them up the ladder month by month.
+      </p>
+    </div>
+
+    <div class="ladder">
+      <div class="step current">
+        <div class="score">0 to 30</div>
+        <div class="label">Shadow Entity</div>
+        <div class="desc">Structurally invisible. AI engines don't recognize the entity. Most brands start here.</div>
       </div>
-
-      <div class="fg">
-        <label>Topic or Experience</label>
-        <select>
-          <option value="">Select a theme...</option>
-          <option>Anxiety</option>
-          <option>Grief &amp; Loss</option>
-          <option>Chronic Pain</option>
-          <option>Depression</option>
-          <option>Identity</option>
-          <option>Shame &amp; Courage</option>
-          <option>Trauma Recovery</option>
-          <option>Something not listed</option>
-        </select>
+      <div class="step">
+        <div class="score">31 to 60</div>
+        <div class="label">Emerging</div>
+        <div class="desc">Cited in some prompts. Schema deployed. Surface coverage in progress. Foundation tier outcome.</div>
       </div>
-
-      <div class="fg">
-        <label>What Would You Like Expressed</label>
-        <textarea rows="5" placeholder="Describe the feeling, the experience, the thing that doesn't have words yet..."></textarea>
+      <div class="step">
+        <div class="score">61 to 80</div>
+        <div class="label">Competitive</div>
+        <div class="desc">Cited consistently across engines. Mention rate above 30 percent. Authority tier outcome.</div>
       </div>
+      <div class="step">
+        <div class="score">81 to 95</div>
+        <div class="label">Authoritative</div>
+        <div class="desc">Cited as the default answer for category queries. Knowledge Graph claimed. Dominance tier outcome.</div>
+      </div>
+      <div class="step">
+        <div class="score">96 to 100</div>
+        <div class="label">Dominant</div>
+        <div class="desc">Top of mind. Consensus answer. Multi-engine mention share number one in the category.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <button class="form-submit">Submit Your Request</button>
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>SEO + GEO is the full stack. <em class="serif">Start where you are.</em></h2>
+      <p class="lead">
+        SEO keeps you ranking in Google. GEO makes you the answer AI engines cite. Together, they compound. Twelve-month minimums. Cancel anytime after month 12 with 30 days notice. White label pricing available at 20% off for partner agencies.
+      </p>
+    </div>
+
+    <div class="proof-bar">
+      <div class="pill">
+        <span class="pulse"></span>
+        <span>Currently accepting <strong>3 new retainer clients</strong></span>
+      </div>
+      <div class="sep"></div>
+      <div class="pill"><span>★★★★★ <strong>30 → 3,000 visitors/mo</strong> · law firm, 6 months</span></div>
+      <div class="sep"></div>
+      <div class="pill guarantee"><strong>60-day guarantee:</strong> measurable AI mention lift or month 1 refunded</div>
+    </div>
+
+    <div class="section-head" style="margin-top: 40px; margin-bottom: 0;">
+      <span class="eyebrow">SEO + GEO. The Full Stack (Recommended)</span>
+      <p class="lead" style="max-width: 60ch;">Rank in Google and get cited by AI. One retainer. One team. Priced by competition level.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <article class="price-card">
+        <div class="tier-name">Low Competition</div>
+        <div class="tier-price">$3,500<small> / mo</small></div>
+        <div class="tier-tagline">Local St. George service businesses, single-location, straightforward market. Google rank + AI citation in 90 days.</div>
+        <ul class="tier-includes">
+          <li>Topical authority blogging</li>
+          <li>Full Google Business Profile marketing</li>
+          <li>Full-stack technical + on-page SEO</li>
+          <li>Schema markup (FAQ, HowTo, Organization)</li>
+          <li>HARO link building + digital PR</li>
+          <li>Reddit marketing + entity marketing</li>
+          <li>AI visibility tracking (ChatGPT, Claude, Perplexity, Gemini)</li>
+          <li>Citation + surface management</li>
+          <li>Monthly status report + QBR call</li>
+        </ul>
+        <a class="btn btn-ghost" href="/ai-audit">Start with free audit <span class="arrow">→</span></a>
+      </article>
+
+      <article class="price-card featured">
+        <div class="badge-most-popular">Most chosen</div>
+        <div class="tier-name">Medium Competition</div>
+        <div class="tier-price">$6,000<small> / mo</small></div>
+        <div class="tier-tagline">Multi-location, multi-service, or regional markets with real competition. Built to dominate both Google and AI search.</div>
+        <ul class="tier-includes">
+          <li>Everything in Low Competition</li>
+          <li>Wikidata entity creation (founder + brand)</li>
+          <li>Programmatic city x service pages (24 to 50 pages)</li>
+          <li>Monthly authority outreach: HARO + podcasts + LinkedIn</li>
+          <li>Per-engine AI narrative reports</li>
+          <li>Brand SERP audit + cleanup</li>
+          <li>Bi-weekly strategy call</li>
+        </ul>
+        <a class="btn btn-primary" href="/ai-audit">Start with free audit <span class="arrow">→</span></a>
+      </article>
+
+      <article class="price-card">
+        <div class="tier-name">High Competition</div>
+        <div class="tier-price">$9,000<small> / mo</small></div>
+        <div class="tier-tagline">Statewide, national, or highly competitive verticals. Goal: default AI answer and category-leading Google rank.</div>
+        <ul class="tier-includes">
+          <li>Everything in Medium Competition</li>
+          <li>Google Knowledge Graph claim submission</li>
+          <li>Wikipedia notability sprint</li>
+          <li>Weekly authority outreach + paid placements</li>
+          <li>Quarterly schema re-deploy</li>
+          <li>Weekly executive report</li>
+          <li>Direct line to founder</li>
+        </ul>
+        <a class="btn btn-ghost" href="/contact">Book a discovery call <span class="arrow">→</span></a>
+      </article>
+    </div>
+
+    <div class="commitment-box" style="margin-top: 32px;">
+      <div class="label">The math</div>
+      <p>
+        SEO only starts at <strong style="color:var(--text);">$2,500/mo.</strong>
+        GEO only starts at <strong style="color:var(--text);">$2,000/mo.</strong>
+        Buy both standalone and you're at <strong style="color:var(--text);">$4,500/mo.</strong>
+        SEO + GEO combined starts at <strong style="color:var(--brand);">$3,500/mo.</strong>
+        One team, one strategy, one report, less money. That's the bundle.
+      </p>
+    </div>
+
+    <div class="section-head" style="margin-top: 52px; margin-bottom: 0;">
+      <span class="eyebrow">Standalone Services</span>
+      <p class="lead" style="max-width: 60ch;">Already have SEO covered? Need GEO only? We offer each as a standalone retainer.</p>
+    </div>
+
+    <div class="pricing-grid" style="grid-template-columns: 1fr 1fr;">
+      <article class="price-card">
+        <div class="tier-name">SEO Only</div>
+        <div class="tier-price" style="font-size: clamp(28px, 3vw, 36px);">$2,500 <span style="font-size:16px;color:var(--text-muted);font-weight:500;">to</span> $10,000<small> / mo</small></div>
+        <div class="tier-tagline">Four tiers: $2,500 / $4,500 / $7,000 / $10,000+. Custom above that. Priced by market size, competition, and content velocity needed.</div>
+        <ul class="tier-includes">
+          <li>Topical authority blogging</li>
+          <li>Full Google Business Profile marketing</li>
+          <li>Full-stack technical + on-page SEO</li>
+          <li>Schema markup</li>
+          <li>HARO link building + digital PR</li>
+          <li>Local SEO + authority building</li>
+        </ul>
+        <a class="btn btn-ghost" href="/contact">Get a quote <span class="arrow">→</span></a>
+      </article>
+
+      <article class="price-card">
+        <div class="tier-name">GEO Only</div>
+        <div class="tier-price" style="font-size: clamp(28px, 3vw, 36px);">$2,000 <span style="font-size:16px;color:var(--text-muted);font-weight:500;">to</span> $8,000<small> / mo</small></div>
+        <div class="tier-tagline">Three tiers: $2,000 / $5,000 / $8,000. Right for brands with existing SEO coverage that need AI citation lift only.</div>
+        <ul class="tier-includes">
+          <li>AI Visibility and Citation Authority Audit (month 1)</li>
+          <li>Reddit marketing + brand visibility</li>
+          <li>Topical authority blogging</li>
+          <li>Full schema markup</li>
+          <li>Entity marketing + citation management</li>
+          <li>AI mention tracking across ChatGPT, Claude, Perplexity, Gemini</li>
+        </ul>
+        <a class="btn btn-ghost" href="/ai-audit">Start with free audit <span class="arrow">→</span></a>
+      </article>
+    </div>
+
+    <div class="commitment-box" style="margin-top: 32px;">
+      <div class="label">White Label Partners</div>
+      <p>
+        We work with agencies. All pricing above is discounted 20% for white label engagements. Interested in reselling GEO or SEO under your brand? <a href="/contact">Reach out directly.</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What lands every month</span>
+      <h2>Specific deliverables. <em class="serif">Not retainer fog.</em></h2>
+      <p class="lead">
+        Every month on every tier, you receive these artifacts. We tell you what shipped, what didn't, and why. The same reporting whether you are in St. George or out of state.
+      </p>
+    </div>
+
+    <div class="deliverables">
+      <div class="deliverable">
+        <h4>Daily mention dashboard</h4>
+        <p>An 8-prompt panel runs across 4 AI engines every morning at 7 AM. <strong>You see week-over-week mention rate deltas, top cited domains by engine, and competitor mention share.</strong> The first thing every retainer client checks Monday morning. Slack alerts on significant moves.</p>
+      </div>
+      <div class="deliverable">
+        <h4>Monthly cornerstone rewrites</h4>
+        <p>Foundation: 3 pages per month. Authority: 5 to 7 pages. Dominance: 10 plus. Each rewrite is GEO-format: 40 to 75 word answer paragraph in the front 30 percent, FAQPage schema, named-entity density target, internal link grid. <strong>Page-level GEO score lift of 15 to 25 points typical.</strong></p>
+      </div>
+      <div class="deliverable">
+        <h4>Weekly surface claims</h4>
+        <p>Yelp, BBB, Avvo, Justia, LocalHarvest, Healthgrades, depending on vertical. <strong>3 to 5 directories per week, until the universal 18 plus vertical Tier 1 are 100 percent covered.</strong> Then we maintain monthly.</p>
+      </div>
+      <div class="deliverable">
+        <h4>Authority outreach</h4>
+        <p>HARO and Help A Reporter pitches, podcast guesting, founder LinkedIn long-form, Reddit answer engineering. Goal: 50 plus independent mentions to cross the Shadow Entity threshold within 6 months. <strong>Authority footprint count tracked monthly.</strong></p>
+      </div>
+      <div class="deliverable">
+        <h4>Per-engine narrative reports</h4>
+        <p>Every engine treats your brand differently. <strong>Why does Perplexity cite you but Claude doesn't?</strong> The narrative report shows top cited domains per engine, best and worst response samples, and engine-specific tactical recommendations.</p>
+      </div>
+      <div class="deliverable">
+        <h4>Monthly status report</h4>
+        <p>One page. What we shipped this month. What scored. What didn't. What we're doing next. Plain English. <strong>If a deliverable slipped, we say so and explain why.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Built on primary research</span>
+      <h2>This is not opinion. <em class="serif">It is the published research.</em></h2>
+      <p class="lead">
+        Every claim in our playbook traces to a primary research source. We cite Princeton's GEO paper, the Indig 1.2M-citation analysis, the Profound 680M-citation citation pattern study, the Ahrefs 75K-brand study, and the Relixir FAQPage citation rate analysis. We do not invent stats.
+      </p>
+    </div>
+
+    <div class="deliverables">
+      <div class="deliverable">
+        <h4>Princeton GEO paper</h4>
+        <p>Aggarwal et al., "GEO: Generative Engine Optimization" (KDD 2024). <strong>Quotation, statistic, and source-citation strategies lifted citation rate by 43, 33, and 28 percent</strong> respectively in controlled trials.</p>
+      </div>
+      <div class="deliverable">
+        <h4>Indig front-30% rule</h4>
+        <p>Across 1.2 million answer engine citations, <strong>44.2 percent originated in the first 30 percent of the source page.</strong> Our content briefs require an answer paragraph in that band, every page.</p>
+      </div>
+      <div class="deliverable">
+        <h4>Relixir FAQPage citation lift</h4>
+        <p><strong>Pages with FAQPage JSON-LD schema were cited 2.7x more often</strong> than pages without it across the same prompt set. Every cornerstone we ship has FAQPage schema.</p>
+      </div>
+      <div class="deliverable">
+        <h4>Ahrefs 75K-brand study</h4>
+        <p><strong>Brands with fewer than 50 independent mentions across high-trust sources fail LLM recognition in 72 percent of relevant prompts.</strong> The 50-mention threshold defines our Shadow Entity tier and the authority work that gets clients past it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Frequently asked</span>
+      <h2>Honest answers <em class="serif">to the questions you're actually asking.</em></h2>
+    </div>
+
+    <div style="max-width: 72ch;">
+      <div class="faq-item">
+        <div class="faq-q">What is Generative Engine Optimization?</div>
+        <div class="faq-a">Generative Engine Optimization (GEO) is the practice of making a brand show up as the answer when a customer asks an AI engine like ChatGPT, Claude, Perplexity, or Gemini a question in the brand's category. It is structurally different from classic SEO because AI engines retrieve from a smaller, more curated set of sources and reward entity-grounded brands with proper schema, sameAs chains, and a 50-plus mention authority footprint.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are you actually based in St. George, Utah?</div>
+        <div class="faq-a">Yes. Timpson Marketing is headquartered in St. George, Utah and the founder Joseph Timpson lives in Washington County. We work with local businesses in St. George, Hurricane, Ivins, Santa Clara, Washington, and across Southern Utah, and we serve national clients across the United States. In-person meetings are available for Washington County clients.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Which St. George industries benefit most from GEO?</div>
+        <div class="faq-a">Any St. George business whose customers ask AI engines a question with a local intent. Law firms, healthcare and dental, real estate, vacation rentals, outdoor recreation outfitters, home services (HVAC, roofing, plumbing, solar), retirement and senior services, professional services, and tourism-adjacent businesses all see lift. <strong>Industries with high research-stage searches (legal, health, large purchases) see the fastest measurable AI citation gains.</strong></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long does it take to see results?</div>
+        <div class="faq-a">Most brands see initial AI mention rate lift inside 30 days on Perplexity (which weights directories heavily) and inside 60 days on ChatGPT and Claude (which weight schema and Wikidata). Gemini lags 60 to 90 days because it is grounded in Google Search results which respond more slowly. The daily mention dashboard captures the lift in real time across all four engines.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between GEO and SEO?</div>
+        <div class="faq-a">Classic SEO competes for the top 10 blue links in Google search. GEO competes for the single answer paragraph an AI engine returns. SEO rewards keyword density, backlinks, and pages. GEO rewards entity grounding, schema rigor, citation surface saturation, and 40 to 75 word answer paragraphs in the front 30 percent of every page. <strong>Most clients need both.</strong> We bundle them when budgets allow.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you serve businesses outside St. George?</div>
+        <div class="faq-a">Yes. The St. George headquarters is where we live and where in-person meetings happen, but the work is engine-native and runs nationally. We currently serve clients across roughly 30 states. The methodology, pricing, and guarantee are the same whether you are based in St. George or out of state.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is included in the SEO + GEO Low Competition tier at $3,500 per month?</div>
+        <div class="faq-a">Topical authority blogging, full Google Business Profile marketing, full-stack technical and on-page SEO, schema markup (FAQ, HowTo, Organization, Speakable), HARO link building, digital PR, Reddit marketing, entity marketing, citation surface management, AI visibility tracking across ChatGPT, Claude, Perplexity, and Gemini, and a monthly status report with quarterly QBR call. Month 1 includes the AI Visibility and Citation Authority Audit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How is the daily mention dashboard different from monthly reports?</div>
+        <div class="faq-a">Most agencies ship monthly PDFs with last month's data. We run an 8-prompt panel across 4 AI engines every morning at 7 AM and append the results to a rolling history. <strong>The dashboard shows week-over-week mention rate deltas per engine, top cited domains by engine</strong> (so we know who is winning AI mention share in your category), and Slack alerts when significant moves happen. You see proof of growth daily, not 30 days after the fact.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you require a long-term contract?</div>
+        <div class="faq-a">Twelve-month minimums on all retainers. SEO and GEO are compounding work. The content, authority footprint, entity grounding, and schema build on each other month over month. Month 1 work doesn't pay back fully until month 4 or 5. Twelve months gives the cumulative work time to land. Cancel anytime after month 12 with 30 days notice.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I'm not ready for a retainer yet?</div>
+        <div class="faq-a">Start with the free AI Visibility and Citation Authority Audit. We run the full audit pipeline, ship the report and the 30-day action plan, and you keep both regardless of whether you hire us. Zero commitment. It shows you exactly where your brand sits on the AI maturity ladder and what's blocking Google rank growth. From there you can decide which retainer makes sense.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="container">
+    <div class="section-head" style="text-align: center; align-items: center; margin: 0 auto;">
+      <h2 style="margin-top:14px;">The free AI Visibility &amp; Citation Authority Audit takes <em class="serif" style="color:var(--brand)">10 minutes to start.</em><br/>The 30-page report is yours forever.</h2>
+      <p class="lead" style="margin: 20px auto 0; max-width: 62ch;">
+        Zero commitment. We'll show you exactly where your brand sits on the maturity ladder, what's blocking AI engine recognition, and the specific 30-day plan to fix it. Even if you never hire us, you keep everything we ship.
+      </p>
+    </div>
+    <div class="hero-actions" style="justify-content: center; margin-top: 24px;">
+      <a class="btn btn-primary btn-lg" href="/ai-audit">Get your free GEO Audit <span class="arrow">→</span></a>
+      <a class="btn btn-ghost btn-lg" href="/contact">Talk to Joseph first</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">Behind the <b>Mask</b></div>
-      <p class="footer-blurb">Art that speaks what words cannot. A sanctuary for every experience that has ever needed a witness.</p>
-      <div class="socials">
-        <a href="#" class="soc" aria-label="Instagram">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="brand-mark">
+          <span class="glyph">T</span>
+          <span class="brand-text">Timpson Marketing</span>
         </a>
-        <a href="#" class="soc" aria-label="Facebook">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="#" class="soc" aria-label="YouTube">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
-        </a>
+        <p class="footer-desc">Generative Engine Optimization, SEO, paid ads, and paid media for small businesses ready to win the era when customers ask AI engines first.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/ai-marketing">AI Marketing</a>
+        <a href="/geo-marketing">GEO Marketing</a>
+        <a href="/services">Services</a>
+        <a href="/ai-audit">Free AI Audit</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about">About</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>St. George, Utah</p>
+        <a href="mailto:hello@timpsonmarketing.com">hello@timpsonmarketing.com</a>
       </div>
     </div>
-
-    <div class="footer-col">
-      <h5>Gallery</h5>
-      <ul>
-        <li><a href="#">All Pieces</a></li>
-        <li><a href="#">Recently Uncovered</a></li>
-        <li><a href="#">Find Your Reflection</a></li>
-        <li><a href="#">The Wolf Series</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Topics</h5>
-      <ul>
-        <li><a href="#">Anxiety</a></li>
-        <li><a href="#">Grief &amp; Loss</a></li>
-        <li><a href="#">Chronic Pain</a></li>
-        <li><a href="#">Identity</a></li>
-        <li><a href="#">All Topics</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Connect</h5>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Make a Request</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <span>&copy; 2024 Behind the Mask. All rights reserved.</span>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms</a>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Timpson Marketing. All rights reserved.</span>
+      <span>St. George, UT 84770 · Serving Washington County and the United States</span>
     </div>
   </div>
 </footer>
