@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infertility — A Series — Behind the Mask · Witness Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --ink:       #1C1612;
+      --earth:     #3B2F24;
+      --muted:     #7A6658;
+      --gold:      #BF8640;
+      --gold-lt:   #D9A85C;
+      --paper:     #F7F2EB;
+      --cream:     #FBF8F3;
+      --white:     #FFFFFF;
+      --rule:      rgba(60,47,36,.1);
+      --rule-st:   rgba(60,47,36,.18);
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 64px;
+      background: rgba(251,248,243,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .logo b { color: var(--gold); font-weight: 600; }
+
+    .nav-right { display: flex; align-items: center; gap: 40px; }
+    .nav-right a {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-right a:hover { color: var(--ink); }
+
+    /* ── SERIES HERO ──────────────────────────────── */
+    .series-hero {
+      padding: 180px 60px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .series-hero-left .series-kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+    .series-kicker-line {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .series-title {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+
+    .series-hero-right .series-tone {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.2vw, 1.7rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--earth);
+      max-width: 480px;
+      padding-bottom: 16px;
+    }
+    .series-hero-right .series-meta {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      font-size: .76rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .series-hero-right .series-meta b { color: var(--gold); font-weight: 500; }
+
+    /* ── PIECES — two-column witness ───────────────── */
+    .pieces { padding: 0; }
+
+    .piece {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 100px 60px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 80px;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    /* Image side */
+    .piece-art-col {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      height: fit-content;
+    }
+
+    .piece-art {
+      position: relative;
+      background: var(--paper);
+      overflow: hidden;
+      box-shadow:
+        0 1px 0 var(--rule),
+        0 40px 60px -40px rgba(28,22,18,.25);
+    }
+
+    .piece-art.placeholder {
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      border: 1px dashed var(--rule-st);
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0,
+          transparent 14px,
+          rgba(60,47,36,.025) 14px,
+          rgba(60,47,36,.025) 15px
+        );
+    }
+    .placeholder-label { text-align: center; }
+    .placeholder-label .pl-num {
+      font-family: var(--serif);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--gold);
+      opacity: .45;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .placeholder-label .pl-kicker {
+      font-size: .66rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .placeholder-label .pl-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--earth);
+      margin-bottom: 10px;
+    }
+    .placeholder-label .pl-note {
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 300;
+      font-style: italic;
+      max-width: 280px;
+      line-height: 1.65;
+      margin: 0 auto;
+    }
+
+    .piece-art img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .piece-caption-row {
+      margin-top: 18px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .piece-cap-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .piece-cap-num {
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Story side */
+    .piece-text-col {
+      padding-top: 8px;
+    }
+
+    .piece-num-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .7rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .piece-num-mark::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .piece-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 32px;
+      letter-spacing: -.005em;
+    }
+
+    .story {
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--earth);
+    }
+    .story p + p { margin-top: 1.3em; }
+    .story em { font-style: italic; color: var(--ink); }
+
+    /* Slot */
+    .story-slot {
+      padding: 28px 32px;
+      border-left: 2px solid var(--gold);
+      background: rgba(191,134,64,.04);
+      font-family: var(--sans);
+      font-size: .94rem;
+      font-style: normal;
+      line-height: 1.75;
+      color: var(--earth);
+    }
+    .story-slot .slot-label {
+      display: block;
+      font-size: .64rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .story-slot .slot-body { color: var(--muted); }
+    .story-slot .slot-body b { color: var(--ink); font-weight: 500; }
+
+    /* Reverse for piece 2 */
+    .piece.reversed .piece-art-col { order: 2; }
+    .piece.reversed .piece-text-col { order: 1; }
+
+    /* ── CLOSING ───────────────────────────────────── */
+    .closing {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 120px 60px 140px;
+      text-align: center;
+    }
+    .closing-line {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--earth);
+      margin-bottom: 48px;
+    }
+    .closing-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+    }
+    .btn-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .btn-text:hover { color: var(--ink); }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--paper);
+      border-top: 1px solid var(--rule);
+      padding: 48px 60px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .footer-logo b { color: var(--gold); font-weight: 600; }
+    .footer-line {
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-right { gap: 20px; }
+      .series-hero {
+        padding: 130px 24px 60px;
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .piece {
+        padding: 72px 24px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .piece-art-col { position: static; }
+      .piece.reversed .piece-art-col { order: 0; }
+      .piece.reversed .piece-text-col { order: 0; }
+      .closing { padding: 90px 24px 110px; }
+      footer { padding: 40px 24px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../../" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="../../#gallery">Gallery</a>
+    <a href="../../#about">About</a>
+    <a href="../../#request">Request</a>
+  </div>
+</nav>
+
+<!-- SERIES HERO -->
+<section class="series-hero">
+  <div class="series-hero-left">
+    <div class="series-kicker"><span class="series-kicker-line"></span>A Series</div>
+    <h1 class="series-title">Infertility</h1>
+  </div>
+  <div class="series-hero-right">
+    <p class="series-tone">Raw, but not hopeless. Honest.</p>
+    <div class="series-meta">
+      <b>Three</b> pieces &nbsp;·&nbsp; Words and art by the artist
+    </div>
+  </div>
+</section>
+
+<!-- PIECES -->
+<section class="pieces">
+
+  <!-- PIECE 1 — image LEFT -->
+  <article class="piece">
+    <div class="piece-art-col">
+      <div class="piece-art placeholder">
+        <div class="placeholder-label">
+          <div class="pl-num">I</div>
+          <div class="pl-kicker">Piece One</div>
+          <div class="pl-title">Pending</div>
+          <div class="pl-note">The first of the three will sit here once it arrives.</div>
+        </div>
+      </div>
+      <div class="piece-caption-row">
+        <div class="piece-cap-title">[Title of Piece 1]</div>
+        <div class="piece-cap-num">No. 01 / 03</div>
+      </div>
+    </div>
+
+    <div class="piece-text-col">
+      <div class="piece-num-mark">Part One</div>
+      <h2 class="piece-title">[Title of Piece 1]</h2>
+      <div class="story">
+        <div class="story-slot">
+          <span class="slot-label">Story · Part 01</span>
+          <p><b>Priscilla's opening passage drops in here.</b> On desktop the image sits on the left and stays in view while you read this column. The art and the words speak together — neither subordinate to the other.</p>
+          <p style="margin-top:14px;">Hold back the <b>painful truth confession</b> portion — the closing piece isn't ready yet.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PIECE 2 — image RIGHT -->
+  <article class="piece reversed">
+    <div class="piece-art-col">
+      <div class="piece-art placeholder">
+        <div class="placeholder-label">
+          <div class="pl-num">II</div>
+          <div class="pl-kicker">Piece Two</div>
+          <div class="pl-title">Pending</div>
+          <div class="pl-note">The second piece sits here.</div>
+        </div>
+      </div>
+      <div class="piece-caption-row">
+        <div class="piece-cap-title">[Title of Piece 2]</div>
+        <div class="piece-cap-num">No. 02 / 03</div>
+      </div>
+    </div>
+
+    <div class="piece-text-col">
+      <div class="piece-num-mark">Part Two</div>
+      <h2 class="piece-title">[Title of Piece 2]</h2>
+      <div class="story">
+        <div class="story-slot">
+          <span class="slot-label">Story · Part 02</span>
+          <p><b>Continuation of the story, middle section.</b> Sides alternate per piece so the eye stays moving and the rhythm of the read stays alive. On mobile the columns stack image-then-text, every piece.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PIECE 3 — image LEFT -->
+  <article class="piece">
+    <div class="piece-art-col">
+      <div class="piece-art placeholder">
+        <div class="placeholder-label">
+          <div class="pl-num">III</div>
+          <div class="pl-kicker">Piece Three</div>
+          <div class="pl-title">Pending</div>
+          <div class="pl-note">The third piece sits here. The closing piece is held back until ready.</div>
+        </div>
+      </div>
+      <div class="piece-caption-row">
+        <div class="piece-cap-title">[Title of Piece 3]</div>
+        <div class="piece-cap-num">No. 03 / 03</div>
+      </div>
+    </div>
+
+    <div class="piece-text-col">
+      <div class="piece-num-mark">Part Three</div>
+      <h2 class="piece-title">[Title of Piece 3]</h2>
+      <div class="story">
+        <div class="story-slot">
+          <span class="slot-label">Story · Part 03 (closing)</span>
+          <p><b>Final published section.</b> Closes on a note that holds both the weight and the survival of the story — neither denying what happened nor performing the pain.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <p class="closing-line">
+    "If you've lived something like this, you are not alone in it. You may be the reason someone else makes it through."
+  </p>
+  <div class="closing-actions">
+    <a href="../../" class="btn-text">← Back to Gallery</a>
+    <a href="../../#request" class="btn-text">Share What You're Carrying →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Behind the <b>Mask</b></div>
+  <div class="footer-line">Someone Survived Something Here</div>
+</footer>
+
+</body>
+</html>

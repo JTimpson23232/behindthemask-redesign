@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infertility — A Series — Behind the Mask</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --ink:       #1C1612;
+      --earth:     #3B2F24;
+      --muted:     #7A6658;
+      --gold:      #BF8640;
+      --gold-lt:   #D9A85C;
+      --paper:     #F7F2EB;
+      --cream:     #FBF8F3;
+      --white:     #FFFFFF;
+      --rule:      rgba(60,47,36,.1);
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 64px;
+      background: rgba(251,248,243,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: .04em;
+      color: var(--ink);
+    }
+    .logo b { color: var(--gold); font-weight: 600; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .nav-right a {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-right a:hover { color: var(--ink); }
+    .nav-right a.current { color: var(--ink); }
+
+    .nav-btn {
+      font-size: .8rem !important;
+      font-weight: 500 !important;
+      letter-spacing: .06em !important;
+      text-transform: uppercase !important;
+      color: var(--white) !important;
+      background: var(--gold);
+      padding: 9px 22px;
+      border-radius: 2px;
+      transition: background .2s !important;
+    }
+    .nav-btn:hover { background: var(--earth) !important; }
+
+    /* ── SERIES HERO (quiet) ──────────────────────── */
+    .series-hero {
+      padding: 200px 60px 80px;
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .series-kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+    }
+    .series-kicker-line {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .series-title {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 6vw, 5.4rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin-bottom: 40px;
+    }
+
+    .series-tone {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--earth);
+      max-width: 540px;
+    }
+
+    .series-meta {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: .76rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .series-meta .count { color: var(--ink); }
+    .series-meta .count b { font-weight: 500; color: var(--gold); }
+
+    /* ── PIECE BLOCKS ──────────────────────────────── */
+    .pieces {
+      padding: 60px 0 80px;
+    }
+
+    .piece {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 64px 60px 80px;
+    }
+    .piece + .piece {
+      border-top: 1px solid var(--rule);
+    }
+
+    .piece-art {
+      position: relative;
+      margin-bottom: 40px;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    /* Placeholder cell (shown until real art is dropped in) */
+    .piece-art.placeholder {
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(60,47,36,.2);
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0,
+          transparent 16px,
+          rgba(60,47,36,.025) 16px,
+          rgba(60,47,36,.025) 17px
+        );
+    }
+    .placeholder-label {
+      text-align: center;
+      color: var(--muted);
+    }
+    .placeholder-label .pl-kicker {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .placeholder-label .pl-title {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--earth);
+      margin-bottom: 8px;
+    }
+    .placeholder-label .pl-note {
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 300;
+      font-style: italic;
+      max-width: 360px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    /* When an actual image is in place, this will be used instead */
+    .piece-art img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .piece-caption {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 36px;
+    }
+    .piece-title {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -.005em;
+    }
+    .piece-num {
+      font-family: var(--serif);
+      font-size: .9rem;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    /* ── STORY TEXT ────────────────────────────────── */
+    .story {
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--earth);
+    }
+    .story p + p { margin-top: 1.35em; }
+    .story em { font-style: italic; color: var(--ink); }
+
+    /* Bracketed slot for the real story text */
+    .story-slot {
+      padding: 28px 32px;
+      border-left: 2px solid var(--gold);
+      background: rgba(191,134,64,.04);
+      font-family: var(--sans);
+      font-size: .92rem;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.7;
+      color: var(--earth);
+    }
+    .story-slot .slot-label {
+      display: block;
+      font-size: .66rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .story-slot .slot-body {
+      color: var(--muted);
+    }
+    .story-slot .slot-body b {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── CLOSING ───────────────────────────────────── */
+    .closing {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 100px 60px 120px;
+      text-align: center;
+      border-top: 1px solid var(--rule);
+    }
+    .closing-line {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--earth);
+      margin-bottom: 36px;
+    }
+    .closing-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .btn-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .btn-text:hover { color: var(--ink); }
+    .btn-text svg { transition: transform .2s; }
+    .btn-text:hover svg { transform: translateX(3px); }
+    .btn-text.back svg { transform: rotate(180deg); }
+    .btn-text.back:hover svg { transform: rotate(180deg) translateX(3px); }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--paper);
+      border-top: 1px solid var(--rule);
+      padding: 48px 60px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .footer-logo b { color: var(--gold); font-weight: 600; }
+    .footer-line {
+      font-size: .8rem;
+      color: var(--muted);
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 760px) {
+      nav { padding: 0 24px; }
+      .series-hero { padding: 140px 28px 60px; }
+      .piece { padding: 56px 28px 64px; }
+      .closing { padding: 80px 28px 96px; }
+      footer { padding: 40px 28px; }
+      .piece-caption { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../../" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="../../#gallery">Gallery</a>
+    <a href="../../#topics">Topics</a>
+    <a href="../../#about">About</a>
+    <a href="../../#request" class="nav-btn">Share Your Story</a>
+  </div>
+</nav>
+
+<!-- SERIES HERO -->
+<section class="series-hero">
+  <div class="series-kicker"><span class="series-kicker-line"></span>A Series</div>
+  <h1 class="series-title">Infertility</h1>
+  <p class="series-tone">Raw, but not hopeless. Honest.</p>
+
+  <div class="series-meta">
+    <span class="count"><b>Three</b> pieces — read top to bottom</span>
+    <span>Words and art by the artist</span>
+  </div>
+</section>
+
+<!-- PIECE BLOCKS -->
+<section class="pieces">
+
+  <!-- PIECE 1 -->
+  <article class="piece">
+    <div class="piece-art placeholder">
+      <div class="placeholder-label">
+        <div class="pl-kicker">Piece 01</div>
+        <div class="pl-title">Pending</div>
+        <div class="pl-note">The first of the three infertility pieces will sit here once it's sent.</div>
+      </div>
+    </div>
+    <div class="piece-caption">
+      <div class="piece-title">[Title of Piece 1]</div>
+      <div class="piece-num">No. 01 / 03</div>
+    </div>
+    <div class="story">
+      <div class="story-slot">
+        <span class="slot-label">Story — Part 01</span>
+        <p class="slot-body">
+          <b>Priscilla's written story, opening section.</b>
+          Paragraph 1 of her writing drops in here. Set in Cormorant Garamond at 1.18rem, 1.75 line-height, ample paragraph spacing. Reads as a survivor's letter, not a clinical account.
+        </p>
+        <p class="slot-body" style="margin-top: 14px;">
+          Hold back the <b>painful truth confession</b> portion — the ending picture isn't ready yet, so that closing passage stays unpublished for now.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- PIECE 2 -->
+  <article class="piece">
+    <div class="piece-art placeholder">
+      <div class="placeholder-label">
+        <div class="pl-kicker">Piece 02</div>
+        <div class="pl-title">Pending</div>
+        <div class="pl-note">The second piece sits here.</div>
+      </div>
+    </div>
+    <div class="piece-caption">
+      <div class="piece-title">[Title of Piece 2]</div>
+      <div class="piece-num">No. 02 / 03</div>
+    </div>
+    <div class="story">
+      <div class="story-slot">
+        <span class="slot-label">Story — Part 02</span>
+        <p class="slot-body">
+          <b>Continuation of the story, middle section.</b>
+          The story flows across the three pieces as one piece of writing, broken at natural pauses. Each break sits where the next image begins — the eye rests on the art, then continues reading.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- PIECE 3 -->
+  <article class="piece">
+    <div class="piece-art placeholder">
+      <div class="placeholder-label">
+        <div class="pl-kicker">Piece 03</div>
+        <div class="pl-title">Pending</div>
+        <div class="pl-note">The third piece sits here. The fourth piece (the closing one with the unfinished ending) is held back per Priscilla's note.</div>
+      </div>
+    </div>
+    <div class="piece-caption">
+      <div class="piece-title">[Title of Piece 3]</div>
+      <div class="piece-num">No. 03 / 03</div>
+    </div>
+    <div class="story">
+      <div class="story-slot">
+        <span class="slot-label">Story — Part 03 (closing)</span>
+        <p class="slot-body">
+          <b>Final published section.</b>
+          Closes on a note that holds both the weight and the survival of the story — neither denying what happened nor performing the pain. The "painful truth confession" lines stay out of this section until the closing piece is finished.
+        </p>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <p class="closing-line">
+    "If you've lived something like this, you are not alone in it. You may be the reason someone else makes it through."
+  </p>
+  <div class="closing-actions">
+    <a href="../../" class="btn-text back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Gallery
+    </a>
+    <a href="../../#request" class="btn-text">
+      Share What You're Carrying
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Behind the <b>Mask</b></div>
+  <div class="footer-line">Art that says: someone survived something here.</div>
+</footer>
+
+</body>
+</html>

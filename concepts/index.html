@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Series Concepts — Behind the Mask</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Caveat:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --ink:       #1C1612;
+      --earth:     #3B2F24;
+      --muted:     #7A6658;
+      --gold:      #BF8640;
+      --paper:     #F7F2EB;
+      --cream:     #FBF8F3;
+      --white:     #FFFFFF;
+      --rule:      rgba(60,47,36,.1);
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── INTRO ──────────────────────────────────────── */
+    .intro {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 100px 60px 60px;
+      text-align: left;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .intro-kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+    .intro-kicker::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .intro-title {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .intro-title i { font-style: italic; color: var(--gold); }
+
+    .intro-lede {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--earth);
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+
+    .intro-note {
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 640px;
+    }
+    .intro-note b { color: var(--ink); font-weight: 500; }
+
+    /* ── CONCEPTS GRID ──────────────────────────────── */
+    .grid {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 80px 60px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px -30px rgba(28,22,18,.18);
+    }
+
+    .card-preview {
+      height: 360px;
+      position: relative;
+      overflow: hidden;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Each card has its own mood preview */
+
+    /* 01 — Editorial: cream, refined, centered */
+    .card.editorial .card-preview {
+      background: #FBF8F3;
+      color: #1C1612;
+    }
+    .card.editorial .preview-kicker {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .65rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: #BF8640;
+    }
+    .card.editorial .preview-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.4rem;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.01em;
+      color: #1C1612;
+      align-self: flex-start;
+    }
+    .card.editorial .preview-tone {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: #3B2F24;
+      max-width: 360px;
+    }
+
+    /* 02 — Journal: warm paper, handwriting accents, asymmetric */
+    .card.journal .card-preview {
+      background: #F0E6D2;
+      color: #2A2118;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.32 0 0 0 0 0.22 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .card.journal .preview-kicker {
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      color: #A06A2A;
+      transform: rotate(-1.5deg);
+      align-self: flex-start;
+    }
+    .card.journal .preview-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.6rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1;
+      color: #2A2118;
+      align-self: flex-start;
+      padding-left: 8px;
+    }
+    .card.journal .preview-tone {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 400;
+      color: #5E4F3E;
+      max-width: 340px;
+      border-left: 2px solid #A06A2A;
+      padding-left: 16px;
+    }
+
+    /* 03 — Sanctuary: dark warm umber, art-glow */
+    .card.sanctuary .card-preview {
+      background: #1E1813;
+      color: #F0E4CC;
+      background-image:
+        radial-gradient(ellipse 600px 400px at 50% 30%, rgba(217,168,92,.08), transparent 70%);
+    }
+    .card.sanctuary .preview-kicker {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: .62rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: #A07F4A;
+    }
+    .card.sanctuary .preview-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.02em;
+      color: #F0E4CC;
+      align-self: flex-start;
+    }
+    .card.sanctuary .preview-tone {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 300;
+      color: #E4D5B5;
+      max-width: 340px;
+      opacity: .85;
+    }
+
+    /* 04 — Witness: cream with two-column hint */
+    .card.witness .card-preview {
+      background: #FBF8F3;
+      color: #1C1612;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 32px;
+    }
+    .card.witness .preview-left,
+    .card.witness .preview-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card.witness .preview-art {
+      background: #F7F2EB;
+      border: 1px dashed rgba(60,47,36,.18);
+      flex: 1;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: #BF8640;
+      opacity: .55;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent 0,
+          transparent 10px,
+          rgba(60,47,36,.04) 10px,
+          rgba(60,47,36,.04) 11px
+        );
+    }
+    .card.witness .preview-kicker {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .62rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: #BF8640;
+      margin-bottom: 10px;
+    }
+    .card.witness .preview-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.05;
+      color: #1C1612;
+      margin-bottom: 14px;
+    }
+    .card.witness .preview-tone {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: #3B2F24;
+      line-height: 1.45;
+    }
+
+    /* ── CARD META ──────────────────────────────────── */
+    .card-meta {
+      padding: 32px 40px 36px;
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+    }
+
+    .card-num {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .card-name {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .card-name i { font-style: italic; color: var(--earth); }
+
+    .card-tagline {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .card-desc {
+      font-size: .92rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--earth);
+      margin-bottom: 24px;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 4px;
+      transition: color .2s;
+    }
+    .card-link:hover { color: var(--gold); }
+    .card-link svg { transition: transform .2s; }
+    .card-link:hover svg { transform: translateX(3px); }
+
+    /* ── HOW TO CHOOSE ──────────────────────────────── */
+    .footer-note {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 60px 100px;
+      text-align: left;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-note h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .footer-note p {
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 14px;
+    }
+    .footer-note p b { color: var(--ink); font-weight: 500; }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      .intro { padding: 80px 24px 50px; }
+      .grid { padding: 60px 24px; grid-template-columns: 1fr; gap: 28px; }
+      .card-preview { height: 280px; padding: 28px; }
+      .card.witness .card-preview { padding: 22px; }
+      .card-meta { padding: 24px 28px 30px; }
+      .footer-note { padding: 48px 24px 80px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-kicker">Behind the Mask · Series Concepts</div>
+  <h1 class="intro-title">Four directions for the<br><i>Infertility</i> series.</h1>
+  <p class="intro-lede">
+    Same content. Same tone. Four different rooms for the work to live in.
+  </p>
+  <p class="intro-note">
+    Every concept shows the same three placeholder pieces with the same bracketed story slots. The actual artwork and Priscilla's written story will drop into whichever direction she chooses. The "painful truth confession" portion stays unpublished until the closing piece is finished.
+    <br><br>
+    <b>The brief:</b> raw but not hopeless, honest, real and emotionally safe, creative and artistic. Someone survived something here — not look how tortured I was.
+  </p>
+</section>
+
+<!-- CONCEPTS GRID -->
+<section class="grid">
+
+  <!-- 01 EDITORIAL -->
+  <a href="01-editorial/" class="card editorial">
+    <div class="card-preview">
+      <div class="preview-kicker">A Series</div>
+      <div class="preview-title">Infertility</div>
+      <div class="preview-tone">Raw, but not hopeless. Honest.</div>
+    </div>
+    <div class="card-meta">
+      <div class="card-num">Concept 01</div>
+      <div class="card-name">Editorial</div>
+      <div class="card-tagline">Like a quiet magazine essay.</div>
+      <p class="card-desc">
+        Cream paper, refined serif typography, narrow centered column. The story reads top-to-bottom like a long-form piece in a literary magazine. Most restrained of the four — the work and the words carry it without help.
+      </p>
+      <span class="card-link">
+        Open Concept
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- 02 JOURNAL -->
+  <a href="02-journal/" class="card journal">
+    <div class="card-preview">
+      <div class="preview-kicker">a series</div>
+      <div class="preview-title">Infertility</div>
+      <div class="preview-tone">Raw, but not hopeless. Honest.</div>
+    </div>
+    <div class="card-meta">
+      <div class="card-num">Concept 02</div>
+      <div class="card-name">Journal</div>
+      <div class="card-tagline">Like a sketchbook left open on a table.</div>
+      <p class="card-desc">
+        Warm paper tone with a faint grain, italic serif headlines, handwritten accents and small ornaments. Pieces sit slightly tilted with margin-note captions. Most intimate and most hand-made of the four — feels personal, not produced.
+      </p>
+      <span class="card-link">
+        Open Concept
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- 03 SANCTUARY -->
+  <a href="03-sanctuary/" class="card sanctuary">
+    <div class="card-preview">
+      <div class="preview-kicker">A Series</div>
+      <div class="preview-title">Infertility</div>
+      <div class="preview-tone">Raw, but not hopeless. Honest.</div>
+    </div>
+    <div class="card-meta">
+      <div class="card-num">Concept 03</div>
+      <div class="card-name">Sanctuary</div>
+      <div class="card-tagline">Like a gallery room with the lights low.</div>
+      <p class="card-desc">
+        Warm umber background, art lit from above, museum-label captions. One piece per scroll-screen with generous breathing room. Reverent without being gothic — holds the weight of the work without performing pain.
+      </p>
+      <span class="card-link">
+        Open Concept
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- 04 WITNESS -->
+  <a href="04-witness/" class="card witness">
+    <div class="card-preview">
+      <div class="preview-left">
+        <div class="preview-art">I</div>
+      </div>
+      <div class="preview-right">
+        <div>
+          <div class="preview-kicker">Part One</div>
+          <div class="preview-title">Infertility</div>
+        </div>
+        <div class="preview-tone">Raw, but not hopeless. Honest.</div>
+      </div>
+    </div>
+    <div class="card-meta">
+      <div class="card-num">Concept 04</div>
+      <div class="card-name">Witness</div>
+      <div class="card-tagline">The art and the words speak together.</div>
+      <p class="card-desc">
+        Two-column layout — image on one side, story on the other, alternating per piece. On desktop the image stays in view while the story scrolls past it. The art and writing share equal weight. Stacks naturally on mobile.
+      </p>
+      <span class="card-link">
+        Open Concept
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </div>
+  </a>
+
+</section>
+
+<!-- HOW TO CHOOSE -->
+<section class="footer-note">
+  <h3>How to choose.</h3>
+  <p>
+    Open each one. Scroll all the way through. Don't read the placeholder text — feel the room. Notice which one feels most like the story you wrote when you read it back to yourself.
+  </p>
+  <p>
+    <b>Editorial</b> if you want the words to lead. <b>Journal</b> if you want it to feel hand-made and personal. <b>Sanctuary</b> if you want the art to be the cathedral. <b>Witness</b> if you want art and words to be equal partners on the page.
+  </p>
+  <p>
+    There's no wrong answer. Tell us which room feels like yours.
+  </p>
+</section>
+
+</body>
+</html>

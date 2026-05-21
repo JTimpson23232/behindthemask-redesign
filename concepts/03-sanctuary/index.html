@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infertility — A Series — Behind the Mask · Sanctuary Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --void:      #15110D;
+      --umber:     #1E1813;
+      --umber-up:  #2A211A;
+      --cream:     #F0E4CC;
+      --paper:     #E4D5B5;
+      --muted:     #8E7E66;
+      --gold:      #D9A85C;
+      --gold-dim:  #A07F4A;
+      --rule:      rgba(240,228,204,.10);
+      --rule-lt:   rgba(240,228,204,.06);
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--umber);
+      color: var(--cream);
+      overflow-x: hidden;
+      /* Subtle radial light from above */
+      background-image:
+        radial-gradient(ellipse 1200px 800px at 50% -200px, rgba(217,168,92,.06), transparent 70%),
+        radial-gradient(ellipse 1000px 600px at 50% 100%, rgba(217,168,92,.03), transparent 70%);
+      background-attachment: fixed;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    ::selection { background: var(--gold); color: var(--void); }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 64px;
+      height: 64px;
+      background: rgba(21,17,13,.78);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: .06em;
+    }
+    .logo b { color: var(--gold); font-weight: 500; }
+
+    .nav-right { display: flex; align-items: center; gap: 42px; }
+    .nav-right a {
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .3s;
+    }
+    .nav-right a:hover { color: var(--cream); }
+
+    /* ── SERIES HERO ──────────────────────────────── */
+    .series-hero {
+      min-height: 90vh;
+      padding: 200px 64px 100px;
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .series-kicker {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: .68rem;
+      font-weight: 400;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 56px;
+    }
+    .series-kicker-line {
+      width: 56px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .series-title {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 9vw, 8rem);
+      font-weight: 300;
+      line-height: .95;
+      letter-spacing: -.02em;
+      color: var(--cream);
+      margin-bottom: 60px;
+    }
+
+    .series-tone {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--paper);
+      max-width: 580px;
+      opacity: .85;
+    }
+
+    .series-meta {
+      margin-top: 80px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .series-meta .count b {
+      color: var(--gold);
+      font-weight: 400;
+      letter-spacing: .16em;
+    }
+
+    /* ── PIECES — one per screen ───────────────────── */
+    .pieces { padding: 0; }
+
+    .piece {
+      min-height: 100vh;
+      padding: 120px 64px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 80px;
+      align-items: center;
+      justify-items: center;
+      border-top: 1px solid var(--rule-lt);
+      position: relative;
+    }
+
+    /* Subtle gold marker at top of each piece */
+    .piece::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .piece-art-wrap {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+    }
+
+    .piece-art {
+      position: relative;
+      background: var(--umber-up);
+      overflow: hidden;
+      box-shadow:
+        0 60px 120px -40px rgba(0,0,0,.6),
+        0 0 0 1px var(--rule-lt);
+    }
+
+    .piece-art.placeholder {
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .placeholder-label { text-align: center; }
+    .placeholder-label .pl-num {
+      font-family: var(--serif);
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--gold-dim);
+      line-height: 1;
+      opacity: .5;
+      margin-bottom: 20px;
+    }
+    .placeholder-label .pl-kicker {
+      font-size: .65rem;
+      font-weight: 400;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .placeholder-label .pl-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--paper);
+      margin-bottom: 10px;
+    }
+    .placeholder-label .pl-note {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .piece-art img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Museum-label caption */
+    .piece-text {
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .piece-num {
+      font-size: .68rem;
+      font-weight: 400;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 18px;
+    }
+
+    .piece-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 36px;
+    }
+
+    .piece-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--gold-dim);
+      margin: 0 auto 36px;
+    }
+
+    .story {
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--paper);
+      text-align: left;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .story p + p { margin-top: 1.3em; }
+    .story em { font-style: italic; color: var(--cream); }
+
+    /* Slot */
+    .story-slot {
+      padding: 28px 32px;
+      border: 1px solid var(--rule);
+      background: rgba(217,168,92,.03);
+      font-family: var(--sans);
+      font-size: .92rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--paper);
+      text-align: left;
+    }
+    .story-slot .slot-label {
+      display: block;
+      font-size: .6rem;
+      font-weight: 400;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .story-slot .slot-body { color: rgba(228,213,181,.7); }
+    .story-slot .slot-body b {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    /* ── CLOSING ───────────────────────────────────── */
+    .closing {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 140px 64px 160px;
+      text-align: center;
+      border-top: 1px solid var(--rule-lt);
+      position: relative;
+    }
+    .closing::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .closing-line {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--paper);
+      margin-bottom: 56px;
+    }
+    .closing-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+    .btn-text {
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
+      transition: all .3s;
+    }
+    .btn-text:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer {
+      background: var(--void);
+      border-top: 1px solid var(--rule);
+      padding: 56px 64px 44px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: .06em;
+      margin-bottom: 10px;
+    }
+    .footer-logo b { color: var(--gold); font-weight: 500; }
+    .footer-line {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-style: normal;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 760px) {
+      nav { padding: 0 24px; }
+      .nav-right { gap: 20px; }
+      .nav-right a { font-size: .68rem; letter-spacing: .16em; }
+      .series-hero { padding: 140px 24px 80px; min-height: auto; }
+      .series-meta { font-size: .65rem; gap: 8px; }
+      .piece { padding: 80px 24px; gap: 56px; }
+      .closing { padding: 100px 24px 120px; }
+      footer { padding: 44px 24px 32px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../../" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="../../#gallery">Gallery</a>
+    <a href="../../#about">About</a>
+    <a href="../../#request">Request</a>
+  </div>
+</nav>
+
+<!-- SERIES HERO -->
+<section class="series-hero">
+  <div class="series-kicker"><span class="series-kicker-line"></span>A Series</div>
+  <h1 class="series-title">Infertility</h1>
+  <p class="series-tone">Raw, but not hopeless. Honest.</p>
+
+  <div class="series-meta">
+    <span class="count"><b>Three</b> pieces · viewed in sequence</span>
+    <span>Words and art by the artist</span>
+  </div>
+</section>
+
+<!-- PIECES -->
+<section class="pieces">
+
+  <!-- PIECE 1 -->
+  <article class="piece">
+    <div class="piece-art-wrap">
+      <div class="piece-art placeholder">
+        <div class="placeholder-label">
+          <div class="pl-num">I</div>
+          <div class="pl-kicker">Piece One</div>
+          <div class="pl-title">Pending</div>
+          <div class="pl-note">The first of the three will sit here once it arrives.</div>
+        </div>
+      </div>
+    </div>
+    <div class="piece-text">
+      <div class="piece-num">No. 01 / 03</div>
+      <h2 class="piece-title">[Title of Piece 1]</h2>
+      <div class="piece-divider"></div>
+      <div class="story">
+        <div class="story-slot">
+          <span class="slot-label">Story · Part 01</span>
+          <p><b>Priscilla's opening passage drops in here.</b> Body text is set in Cormorant Garamond against warm umber. The reading column is narrow and centered beneath the work — the way a museum label sits beneath a painting.</p>
+          <p style="margin-top:14px;">Hold back the <b>painful truth confession</b> portion — the closing piece isn't ready yet.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PIECE 2 -->
+  <article class="piece">
+    <div class="piece-art-wrap">
+      <div class="piece-art placeholder">
+        <div class="placeholder-label">
+          <div class="pl-num">II</div>
+          <div class="pl-kicker">Piece Two</div>
+          <div class="pl-title">Pending</div>
+          <div class="pl-note">The second piece sits here.</div>
+        </div>
+      </div>
+    </div>
+    <div class="piece-text">
+      <div class="piece-num">No. 02 / 03</div>
+      <h2 class="piece-title">[Title of Piece 2]</h2>
+      <div class="piece-divider"></div>
+      <div class="story">
+        <div class="story-slot">
+          <span class="slot-label">Story · Part 02</span>
+          <p><b>Continuation of the story, middle section.</b> The full story runs across all three pieces, broken at natural pauses — the viewer rests on each new image, then continues reading.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PIECE 3 -->
+  <article class="piece">
+    <div class="piece-art-wrap">
+      <div class="piece-art placeholder">
+        <div class="placeholder-label">
+          <div class="pl-num">III</div>
+          <div class="pl-kicker">Piece Three</div>
+          <div class="pl-title">Pending</div>
+          <div class="pl-note">The third piece sits here. The closing piece is held back until ready.</div>
+        </div>
+      </div>
+    </div>
+    <div class="piece-text">
+      <div class="piece-num">No. 03 / 03</div>
+      <h2 class="piece-title">[Title of Piece 3]</h2>
+      <div class="piece-divider"></div>
+      <div class="story">
+        <div class="story-slot">
+          <span class="slot-label">Story · Part 03 (closing)</span>
+          <p><b>Final published section.</b> Closes on a note that holds both the weight and the survival of the story — neither denying what happened nor performing the pain.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <p class="closing-line">
+    "If you've lived something like this, you are not alone in it. You may be the reason someone else makes it through."
+  </p>
+  <div class="closing-actions">
+    <a href="../../" class="btn-text">← Back to Gallery</a>
+    <a href="../../#request" class="btn-text">Share What You're Carrying →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Behind the <b>Mask</b></div>
+  <div class="footer-line">Someone survived something here</div>
+</footer>
+
+</body>
+</html>
