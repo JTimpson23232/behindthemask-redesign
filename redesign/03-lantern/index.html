@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Lantern Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --void:        #1A0E0A;
+      --bark:        #281814;
+      --bark-up:     #322019;
+      --bark-warm:   #3D2820;
+      --ember:       #8B3D24;
+      --amber:       #E8B45A;
+      --amber-soft:  #F2CB85;
+      --blush:       #E5A89B;
+      --candle:      #FDE7B5;
+      --cream:       #F5E5C5;
+      --paper:       #EDD6A8;
+      --muted:       #9D8467;
+      --rule:        rgba(245,229,197,.10);
+      --rule-st:     rgba(245,229,197,.18);
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--bark);
+      color: var(--cream);
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(ellipse 1000px 700px at 50% -150px, rgba(232,180,90,.12), transparent 65%),
+        radial-gradient(ellipse 800px 600px at 50% 50%, rgba(232,180,90,.04), transparent 70%);
+      background-attachment: fixed;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--amber); color: var(--void); }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      height: 68px;
+      background: rgba(26,14,10,.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo b { color: var(--amber); font-weight: 500; font-style: italic; }
+    .logo .flame {
+      width: 12px;
+      height: 16px;
+      background: radial-gradient(ellipse at 50% 70%, var(--amber), var(--ember) 50%, transparent 75%);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0 0 16px rgba(232,180,90,.6);
+      animation: flicker 3s ease-in-out infinite;
+    }
+    @keyframes flicker {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .85; transform: scale(.95); }
+    }
+    .nav-right { display: flex; align-items: center; gap: 38px; }
+    .nav-right a {
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .3s;
+    }
+    .nav-right a:hover { color: var(--candle); }
+    .nav-cta {
+      color: var(--void) !important;
+      background: var(--amber);
+      padding: 10px 22px;
+      border-radius: 100px;
+      letter-spacing: .14em !important;
+      transition: all .3s !important;
+    }
+    .nav-cta:hover { background: var(--candle); }
+
+    /* ── LANTERN HERO ─────────────────────────────── */
+    .lantern-hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 180px 56px 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* The lantern glow */
+    .lantern-hero::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 720px;
+      max-width: 90%;
+      height: 720px;
+      background:
+        radial-gradient(circle, rgba(232,180,90,.18), transparent 50%);
+      filter: blur(20px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-kicker {
+      position: relative;
+      z-index: 2;
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+    }
+    .hero-kicker::before,
+    .hero-kicker::after {
+      content: '';
+      width: 48px;
+      height: 1px;
+      background: var(--amber);
+      opacity: .5;
+    }
+
+    .hero-h1 {
+      position: relative;
+      z-index: 2;
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--candle);
+      letter-spacing: -.015em;
+      margin-bottom: 40px;
+    }
+    .hero-h1 i { font-style: italic; color: var(--amber-soft); }
+
+    .hero-lede {
+      position: relative;
+      z-index: 2;
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--paper);
+      max-width: 620px;
+      margin: 0 auto 48px;
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-light {
+      background: var(--amber);
+      color: var(--void);
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      transition: all .3s;
+      box-shadow: 0 0 32px rgba(232,180,90,.25);
+    }
+    .btn-light:hover {
+      background: var(--candle);
+      box-shadow: 0 0 48px rgba(253,231,181,.45);
+    }
+    .btn-dim {
+      background: transparent;
+      color: var(--candle);
+      padding: 16px 28px;
+      border: 1px solid var(--rule-st);
+      border-radius: 100px;
+      font-size: .76rem;
+      font-weight: 400;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      transition: all .3s;
+    }
+    .btn-dim:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* Small "footer" of the hero — the vigil quote */
+    .hero-foot {
+      position: relative;
+      z-index: 2;
+      margin-top: 100px;
+      padding-top: 36px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    /* ── A NOTE FROM THE ARTIST ────────────────── */
+    .vigil {
+      padding: 120px 56px;
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    .vigil::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--amber), transparent);
+      opacity: .5;
+    }
+    .vigil-kicker {
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 28px;
+    }
+    .vigil-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--candle);
+      margin-bottom: 32px;
+    }
+    .vigil-h2 i { font-style: italic; color: var(--amber-soft); }
+    .vigil-p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--paper);
+      margin-bottom: 20px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .vigil-sign {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--amber);
+      margin-top: 32px;
+      letter-spacing: .04em;
+    }
+
+    /* ── PIECES UNDER LANTERNS ─────────────────── */
+    .pieces {
+      padding: 100px 56px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .pieces-head {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
+    }
+    .pieces-kicker {
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+    .pieces-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--candle);
+      margin-bottom: 22px;
+    }
+    .pieces-h2 i { font-style: italic; color: var(--amber-soft); }
+    .pieces-lede {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--paper);
+      opacity: .8;
+      line-height: 1.6;
+    }
+
+    .lanterns-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .lantern-card {
+      background: var(--bark-up);
+      border-radius: 4px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .35s, box-shadow .35s;
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 380px;
+    }
+    .lantern-card::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50%;
+      height: 100px;
+      background: radial-gradient(ellipse at 50% 100%, rgba(232,180,90,.18), transparent 70%);
+      pointer-events: none;
+    }
+    .lantern-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 60px rgba(232,180,90,.15);
+      border-color: var(--rule-st);
+    }
+    .lantern-thumb {
+      aspect-ratio: 1 / 1;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(232,180,90,.15), transparent 60%),
+        var(--bark-warm);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--amber-soft);
+      opacity: .8;
+      border: 1px solid var(--rule);
+    }
+    .lantern-tag {
+      font-size: .66rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 400;
+    }
+    .lantern-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--candle);
+      line-height: 1.2;
+    }
+    .lantern-desc {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--paper);
+      line-height: 1.65;
+      opacity: .85;
+    }
+    .lantern-link {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-size: .68rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lantern-link::after { content: '→'; transition: transform .25s; }
+    .lantern-card:hover .lantern-link::after { transform: translateX(4px); }
+
+    /* ── SIT WITH ME — submit a story ──────────── */
+    .sit {
+      padding: 140px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sit::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 800px;
+      height: 800px;
+      background:
+        radial-gradient(circle, rgba(232,180,90,.08), transparent 60%);
+      pointer-events: none;
+    }
+    .sit-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .sit-kicker {
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 24px;
+    }
+    .sit-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--candle);
+      margin-bottom: 28px;
+    }
+    .sit-h2 i { font-style: italic; color: var(--amber-soft); }
+    .sit-p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--paper);
+      line-height: 1.65;
+      max-width: 540px;
+      margin: 0 auto 48px;
+      opacity: .85;
+    }
+    .sit-form {
+      background: rgba(245,229,197,.04);
+      border: 1px solid var(--rule);
+      backdrop-filter: blur(8px);
+      border-radius: 6px;
+      padding: 40px;
+      text-align: left;
+    }
+    .fg { margin-bottom: 22px; }
+    .fg label {
+      font-size: .66rem;
+      font-weight: 400;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .fg input,
+    .fg textarea {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--rule-st);
+      border-radius: 4px;
+      background: rgba(26,14,10,.4);
+      color: var(--cream);
+      resize: vertical;
+      transition: border-color .25s;
+    }
+    .fg input::placeholder,
+    .fg textarea::placeholder { color: rgba(245,229,197,.4); font-style: italic; }
+    .fg input:focus,
+    .fg textarea:focus { outline: none; border-color: var(--amber); }
+    .sit-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--amber);
+      color: var(--void);
+      border: none;
+      border-radius: 100px;
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .sit-submit:hover {
+      background: var(--candle);
+      box-shadow: 0 0 36px rgba(253,231,181,.4);
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      background: var(--void);
+      padding: 72px 56px 40px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-top {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--candle);
+      margin-bottom: 12px;
+      letter-spacing: .04em;
+    }
+    .footer-logo b { color: var(--amber); font-style: italic; }
+    .footer-line {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 260px;
+    }
+    .footer-col h5 {
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      color: var(--muted);
+      transition: color .25s;
+    }
+    .footer-col ul a:hover { color: var(--candle); }
+    .footer-bot {
+      max-width: 1100px;
+      margin: 26px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(245,229,197,.4);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 22px; height: 60px; }
+      .nav-right { gap: 12px; }
+      .nav-right a:not(.nav-cta) { display: none; }
+      .lantern-hero { padding: 140px 22px 80px; min-height: auto; }
+      .lantern-hero::before { width: 600px; height: 600px; }
+      .vigil { padding: 80px 22px; }
+      .pieces { padding: 70px 22px; }
+      .lanterns-grid { grid-template-columns: 1fr; }
+      .lantern-card { min-height: auto; }
+      .sit { padding: 90px 22px; }
+      .sit-form { padding: 28px; }
+      footer { padding: 56px 22px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="flame" aria-hidden="true"></span>
+    Behind the <b>Mask</b>
+  </a>
+  <div class="nav-right">
+    <a href="#pieces">Gallery</a>
+    <a href="#vigil">About</a>
+    <a href="#sit">Sit With Me</a>
+    <a href="#sit" class="nav-cta">Share</a>
+  </div>
+</nav>
+
+<!-- LANTERN HERO -->
+<section class="lantern-hero">
+  <div class="hero-kicker">a kept light</div>
+  <h1 class="hero-h1">
+    I left the lamp on.<br>
+    <i>Come sit with me.</i>
+  </h1>
+  <p class="hero-lede">
+    Some hurts don't want bright rooms and cheerful encouragement. They want a chair next to yours, and a light low enough to think under. This is that room.
+  </p>
+  <div class="hero-actions">
+    <a href="#pieces" class="btn-light">Walk the Gallery</a>
+    <a href="#vigil" class="btn-dim">Who Made This</a>
+  </div>
+  <div class="hero-foot">
+    "You don't have to be over it to be here. You only have to be here."
+  </div>
+</section>
+
+<!-- VIGIL — note from artist -->
+<section class="vigil" id="vigil">
+  <div class="vigil-kicker">A note kept beside the lamp</div>
+  <h2 class="vigil-h2">I keep this place because <i>someone kept one for me.</i></h2>
+  <p class="vigil-p">
+    There was a season I couldn't be cheered up. The forwarded inspirational quotes felt like being told to smile while drowning. What I needed was somebody who wouldn't flinch.
+  </p>
+  <p class="vigil-p">
+    So I started drawing the things people don't usually let us draw. Not to perform what I survived, but to mark that I did. And to leave the light on for whoever comes next.
+  </p>
+  <div class="vigil-sign">- the artist</div>
+</section>
+
+<!-- PIECES -->
+<section class="pieces" id="pieces">
+  <div class="pieces-head">
+    <div class="pieces-kicker">Lanterns in the gallery</div>
+    <h2 class="pieces-h2">Each piece is a small kept light <i>for a particular kind of dark.</i></h2>
+    <p class="pieces-lede">Open the one that meets you where you are. Skip the ones that don't. You're not obligated to walk the whole hall.</p>
+  </div>
+
+  <div class="lanterns-grid">
+    <a href="#" class="lantern-card">
+      <div class="lantern-thumb">A</div>
+      <div class="lantern-tag">9 pieces</div>
+      <div class="lantern-title">Anxiety &amp; the 3am hours</div>
+      <div class="lantern-desc">For the nights the mind won't let go and morning still hasn't shown up.</div>
+      <div class="lantern-link">Open the lantern</div>
+    </a>
+    <a href="#" class="lantern-card">
+      <div class="lantern-thumb">G</div>
+      <div class="lantern-tag">8 pieces</div>
+      <div class="lantern-title">Grief &amp; the after</div>
+      <div class="lantern-desc">For losses people stopped asking about long before you stopped feeling them.</div>
+      <div class="lantern-link">Open the lantern</div>
+    </a>
+    <a href="#" class="lantern-card">
+      <div class="lantern-thumb">I</div>
+      <div class="lantern-tag">12 pieces</div>
+      <div class="lantern-title">Identity &amp; the masks</div>
+      <div class="lantern-desc">For the face the world meets, and the one you carry when no one is looking.</div>
+      <div class="lantern-link">Open the lantern</div>
+    </a>
+    <a href="#" class="lantern-card">
+      <div class="lantern-thumb">C</div>
+      <div class="lantern-tag">6 pieces</div>
+      <div class="lantern-title">Chronic pain &amp; being believed</div>
+      <div class="lantern-desc">For everyone who has been quietly fighting a body nobody else can see fighting.</div>
+      <div class="lantern-link">Open the lantern</div>
+    </a>
+    <a href="#" class="lantern-card">
+      <div class="lantern-thumb">H</div>
+      <div class="lantern-tag">9 pieces</div>
+      <div class="lantern-title">Healing, the unmarketed kind</div>
+      <div class="lantern-desc">Not the inspirational arc. The actual one, with relapses and quiet steps.</div>
+      <div class="lantern-link">Open the lantern</div>
+    </a>
+    <a href="#" class="lantern-card">
+      <div class="lantern-thumb">S</div>
+      <div class="lantern-tag">7 pieces</div>
+      <div class="lantern-title">Shame &amp; the things done to us</div>
+      <div class="lantern-desc">A soft door. You choose if and when to open it. The light will still be on either way.</div>
+      <div class="lantern-link">Open the lantern</div>
+    </a>
+  </div>
+</section>
+
+<!-- SIT WITH ME -->
+<section class="sit" id="sit">
+  <div class="sit-wrap">
+    <div class="sit-kicker">Sit with me</div>
+    <h2 class="sit-h2">If a piece you needed isn't here, <i>tell me what it would have said.</i></h2>
+    <p class="sit-p">
+      You don't have to be ready. You don't have to be eloquent. You only have to begin.
+    </p>
+
+    <form class="sit-form" onsubmit="event.preventDefault();">
+      <div class="fg">
+        <label>Your name (a first name is plenty)</label>
+        <input type="text" placeholder="Anonymous is welcome here" />
+      </div>
+      <div class="fg">
+        <label>Where can I write back, quietly?</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="fg">
+        <label>What would the piece have said?</label>
+        <textarea rows="5" placeholder="Take your time. A few sentences is enough."></textarea>
+      </div>
+      <button class="sit-submit" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">A kept light for whoever needs to sit a while. The lamp will be on when you come back.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Gallery</h5>
+      <ul>
+        <li><a href="#pieces">All Lanterns</a></li>
+        <li><a href="#">Newest Pieces</a></li>
+        <li><a href="#">Recently Uncovered</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Stay a while</h5>
+      <ul>
+        <li><a href="#vigil">About</a></li>
+        <li><a href="#sit">Sit With Me</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>The lamp is on.</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Letter Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Caveat:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --paper:    #FAFAF6;
+      --paper-2:  #F4F1E8;
+      --paper-3:  #EDE7D5;
+      --ink:      #2A2218;
+      --pencil:   #5E4F3E;
+      --margin:   #978975;
+      --gold:     #B7873E;
+      --gold-lt:  #D0A766;
+      --rule:     rgba(42,34,24,.14);
+
+      --serif: 'Crimson Pro', Georgia, serif;
+      --hand:  'Caveat', cursive;
+      --sans:  'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 18px; }
+    body {
+      font-family: var(--serif);
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.32 0 0 0 0 0.18 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── MINIMAL NAV ─────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 44px;
+      background: rgba(250,250,246,.84);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: .02em;
+    }
+    .logo b { color: var(--gold); font-style: italic; font-weight: 500; }
+    .nav-right { display: flex; align-items: center; gap: 28px; }
+    .nav-right a {
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--margin);
+      transition: color .25s;
+    }
+    .nav-right a:hover { color: var(--ink); }
+
+    /* ── THE LETTER ──────────────────────────────── */
+    .letter {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 140px 56px 80px;
+      position: relative;
+    }
+
+    /* Date / location */
+    .letter-meta {
+      font-family: var(--sans);
+      font-size: .8rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--margin);
+      margin-bottom: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Salutation */
+    .salutation {
+      font-family: var(--hand);
+      font-size: 2.4rem;
+      color: var(--ink);
+      margin-bottom: 32px;
+      line-height: 1.1;
+      transform: rotate(-.5deg);
+      display: inline-block;
+    }
+    .salutation .underline { border-bottom: 2px solid var(--gold-lt); padding-bottom: 1px; }
+
+    .opening-h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--ink);
+      letter-spacing: -.01em;
+      margin-bottom: 48px;
+    }
+    .opening-h1 i { font-style: italic; color: var(--gold); }
+
+    /* Body paragraphs */
+    .letter-body {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--pencil);
+    }
+    .letter-body p { margin-bottom: 1.4em; }
+    .letter-body p:last-child { margin-bottom: 0; }
+    .letter-body em { font-style: italic; color: var(--ink); }
+    .letter-body strong { font-weight: 600; color: var(--ink); }
+
+    /* The "first thing I want you to know" */
+    .promise-box {
+      margin: 60px 0;
+      padding: 40px 44px;
+      background: var(--paper-2);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+    }
+    .promise-box .promise-label {
+      font-family: var(--sans);
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .promise-box .promise-text {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    /* Postcard — art pinned mid-letter */
+    .postcard {
+      position: relative;
+      margin: 80px 0;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      box-shadow:
+        0 1px 0 var(--rule),
+        0 30px 60px -30px rgba(42,34,24,.22);
+      transform: rotate(-1deg);
+      transition: transform .35s;
+    }
+    .postcard:hover { transform: rotate(-.2deg); }
+
+    .postcard-tape {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-3deg);
+      width: 120px;
+      height: 32px;
+      background: rgba(216,194,138,.55);
+      mix-blend-mode: multiply;
+      z-index: 2;
+    }
+    .postcard-inner {
+      padding: 50px 44px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .postcard-art {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(circle at 40% 35%, rgba(183,135,62,.18), transparent 60%),
+        var(--paper-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--rule);
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      opacity: .7;
+    }
+    .postcard-text .postcard-tag {
+      font-family: var(--hand);
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .postcard-text .postcard-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 18px;
+      line-height: 1.1;
+    }
+    .postcard-text .postcard-desc {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--pencil);
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+    .postcard-link {
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 4px;
+      display: inline-block;
+    }
+
+    /* In-line list — soft, hand-feel */
+    .if-list {
+      list-style: none;
+      padding: 0;
+      margin: 32px 0;
+    }
+    .if-list li {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--pencil);
+      line-height: 1.6;
+      padding: 12px 0 12px 38px;
+      position: relative;
+      border-bottom: 1px solid var(--rule);
+    }
+    .if-list li:last-child { border-bottom: none; }
+    .if-list li::before {
+      content: '·';
+      position: absolute;
+      left: 12px;
+      top: 6px;
+      font-family: var(--hand);
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .if-list li b {
+      font-weight: 500;
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    /* The signature */
+    .signature-block {
+      margin-top: 80px;
+      padding-top: 48px;
+      border-top: 1px solid var(--rule);
+    }
+    .signature-line {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--pencil);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .signature {
+      font-family: var(--hand);
+      font-size: 3rem;
+      color: var(--ink);
+      transform: rotate(-2deg);
+      display: inline-block;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .signature-name {
+      font-family: var(--serif);
+      font-size: .92rem;
+      font-style: italic;
+      color: var(--margin);
+      letter-spacing: .04em;
+    }
+
+    /* ── PS — gallery as a postscript ──────────── */
+    .ps {
+      max-width: 1100px;
+      margin: 60px auto 0;
+      padding: 80px 56px 100px;
+      border-top: 1px solid var(--rule);
+    }
+    .ps-mark {
+      font-family: var(--hand);
+      font-size: 2.4rem;
+      color: var(--gold);
+      margin-bottom: 14px;
+      transform: rotate(-1deg);
+      display: inline-block;
+    }
+    .ps-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 18px;
+      max-width: 640px;
+    }
+    .ps-h2 i { font-style: italic; color: var(--gold); }
+    .ps-lede {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--pencil);
+      line-height: 1.55;
+      margin-bottom: 56px;
+      max-width: 580px;
+    }
+
+    .pieces-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .piece-mini {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 14px;
+      transition: transform .3s, box-shadow .3s;
+      transform: rotate(-.4deg);
+    }
+    .piece-mini:nth-child(2n) { transform: rotate(.4deg); }
+    .piece-mini:hover {
+      transform: rotate(0) translateY(-3px);
+      box-shadow: 0 20px 40px -20px rgba(42,34,24,.2);
+    }
+    .piece-mini-thumb {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(183,135,62,.12), transparent 60%),
+        var(--paper-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--gold);
+      opacity: .6;
+      margin-bottom: 12px;
+      border: 1px solid var(--rule);
+    }
+    .piece-mini-caption {
+      font-family: var(--hand);
+      font-size: 1.15rem;
+      color: var(--pencil);
+      padding: 4px 4px 0;
+    }
+    .piece-mini-room {
+      font-family: var(--sans);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--margin);
+      padding: 0 4px 8px;
+    }
+    .ps-cta {
+      margin-top: 48px;
+      text-align: center;
+    }
+    .ps-cta a {
+      font-family: var(--sans);
+      font-size: .8rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 4px;
+    }
+
+    /* ── REPLY / WRITE ME ─────────────────────────── */
+    .reply {
+      background: var(--paper-2);
+      padding: 110px 56px;
+      border-top: 1px solid var(--rule);
+    }
+    .reply-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .reply-mark {
+      font-family: var(--hand);
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+      transform: rotate(-1deg);
+      display: inline-block;
+    }
+    .reply-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.8vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 22px;
+    }
+    .reply-h2 i { font-style: italic; color: var(--gold); }
+    .reply-p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--pencil);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+    .reply-form {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 36px;
+      box-shadow: 0 30px 60px -30px rgba(42,34,24,.18);
+    }
+    .fg { margin-bottom: 22px; }
+    .fg label {
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--margin);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .fg input,
+    .fg textarea {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      width: 100%;
+      padding: 14px 0;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      resize: vertical;
+      transition: border-color .25s;
+    }
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: var(--margin);
+      font-style: italic;
+    }
+    .fg input:focus,
+    .fg textarea:focus { outline: none; border-bottom-color: var(--gold); }
+    .reply-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      font-family: var(--sans);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s;
+      margin-top: 10px;
+    }
+    .reply-submit:hover { background: var(--pencil); }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      padding: 56px 56px 36px;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .footer-logo b { color: var(--gold); font-style: italic; }
+    .footer-line {
+      font-family: var(--hand);
+      font-size: 1.2rem;
+      color: var(--margin);
+      margin-bottom: 30px;
+    }
+    .footer-row {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      font-family: var(--sans);
+      font-size: .76rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--margin);
+    }
+    .footer-row a { transition: color .2s; }
+    .footer-row a:hover { color: var(--ink); }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 760px) {
+      nav { padding: 16px 20px; }
+      .nav-right { gap: 16px; }
+      .nav-right a { font-size: .7rem; letter-spacing: .1em; }
+      .letter { padding: 100px 24px 60px; }
+      .postcard-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 26px; }
+      .promise-box { padding: 28px 24px; }
+      .ps { padding: 70px 24px 80px; }
+      .pieces-row { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .reply { padding: 80px 24px; }
+      .reply-form { padding: 26px; }
+      footer { padding: 48px 24px 28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">behind the <b>mask</b></a>
+  <div class="nav-right">
+    <a href="#ps">The Gallery</a>
+    <a href="#reply">Write Me</a>
+  </div>
+</nav>
+
+<!-- THE LETTER -->
+<article class="letter">
+
+  <div class="letter-meta">
+    <span>An open letter</span>
+    <span>From the artist</span>
+  </div>
+
+  <div class="salutation">If you found this, <span class="underline">read first.</span></div>
+
+  <h1 class="opening-h1">
+    I made this whole place <i>so you wouldn't have to explain yourself</i> at the door.
+  </h1>
+
+  <div class="letter-body">
+    <p>
+      If you've arrived here, something in your life is asking to be witnessed. That's enough of a reason to be welcome. You do not have to be in crisis, and you do not have to be "over it." You can just be here.
+    </p>
+
+    <div class="promise-box">
+      <div class="promise-label">First, a few things I want you to know</div>
+      <div class="promise-text">
+        Nothing on this site exists to shock you. Heavy pieces are tucked behind soft doors, and you choose what you open. You can leave anytime. The hard work is the art; the meeting it should be quiet.
+      </div>
+    </div>
+
+    <p>
+      I started drawing the things I couldn't say out loud. Things I had been told to keep small, or that nobody around me wanted to look at directly. Over time, friends started writing in. They were asking for pieces about their own quiet hurts. So that's what this site is now. A place where the unmet experiences finally get drawn.
+    </p>
+
+    <ul class="if-list">
+      <li><b>If you arrived overwhelmed</b>, the gallery is below. Walk one piece at a time, then close the tab.</li>
+      <li><b>If you arrived curious</b>, browse by feeling, not by intensity. Nothing here is here to hurt you.</li>
+      <li><b>If you arrived carrying something</b>, write me at the end of this letter. I read every one.</li>
+    </ul>
+
+    <p>
+      Here's a piece I want you to see first. Not because it is the heaviest. Because it is the most honest about what this place is doing.
+    </p>
+  </div>
+
+  <!-- POSTCARD: featured piece pinned mid-letter -->
+  <div class="postcard">
+    <div class="postcard-tape" aria-hidden="true"></div>
+    <div class="postcard-inner">
+      <div class="postcard-art">A</div>
+      <div class="postcard-text">
+        <div class="postcard-tag">today's piece</div>
+        <div class="postcard-title">Authenticity</div>
+        <div class="postcard-desc">
+          The face you show the world and the face you carry alone are rarely the same. They are both you. They both belong here.
+        </div>
+        <a href="#" class="postcard-link">See the full piece →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="letter-body">
+    <p>
+      I'll be honest: I made this site because I needed it first. The version of healing that gets sold to people in pain is bright and noisy and constantly trying to cheer them up. That version did not work for me. What worked was someone refusing to flinch.
+    </p>
+
+    <p>
+      So this is the room I would have wanted. Low lights. Honest art. No pressure to be okay yet. The rest of the letter is short.
+    </p>
+  </div>
+
+  <!-- SIGNATURE -->
+  <div class="signature-block">
+    <div class="signature-line">
+      Stay as long as you need. I'm glad you're here.
+    </div>
+    <div class="signature">— the artist</div>
+    <div class="signature-name">Behind the Mask</div>
+  </div>
+
+</article>
+
+<!-- PS — the gallery -->
+<section class="ps" id="ps">
+  <div class="ps-mark">P.S.</div>
+  <h2 class="ps-h2">Below are the pieces, in case the letter was enough <i>and you'd like to keep walking.</i></h2>
+  <p class="ps-lede">
+    Hover over any piece to see its title. Click to read what it's about and the story under it.
+  </p>
+
+  <div class="pieces-row">
+    <a href="#" class="piece-mini">
+      <div class="piece-mini-thumb">A</div>
+      <div class="piece-mini-caption">Authenticity</div>
+      <div class="piece-mini-room">Identity</div>
+    </a>
+    <a href="#" class="piece-mini">
+      <div class="piece-mini-thumb">P</div>
+      <div class="piece-mini-caption">Process of Healing</div>
+      <div class="piece-mini-room">Healing</div>
+    </a>
+    <a href="#" class="piece-mini">
+      <div class="piece-mini-thumb">W</div>
+      <div class="piece-mini-caption">The Wolf Series</div>
+      <div class="piece-mini-room">Strength</div>
+    </a>
+    <a href="#" class="piece-mini">
+      <div class="piece-mini-thumb">S</div>
+      <div class="piece-mini-caption">Seasons</div>
+      <div class="piece-mini-room">Grief</div>
+    </a>
+    <a href="#" class="piece-mini">
+      <div class="piece-mini-thumb">U</div>
+      <div class="piece-mini-caption">Unable to Cry</div>
+      <div class="piece-mini-room">Emotional Pain</div>
+    </a>
+    <a href="#" class="piece-mini">
+      <div class="piece-mini-thumb">B</div>
+      <div class="piece-mini-caption">Blameless</div>
+      <div class="piece-mini-room">Shame</div>
+    </a>
+    <a href="#" class="piece-mini">
+      <div class="piece-mini-thumb">H</div>
+      <div class="piece-mini-caption">Hollow Humiliation</div>
+      <div class="piece-mini-room">Identity</div>
+    </a>
+    <a href="#" class="piece-mini">
+      <div class="piece-mini-thumb">A</div>
+      <div class="piece-mini-caption">Anonymous</div>
+      <div class="piece-mini-room">Identity</div>
+    </a>
+  </div>
+
+  <div class="ps-cta">
+    <a href="#">See all 25+ pieces →</a>
+  </div>
+</section>
+
+<!-- REPLY -->
+<section class="reply" id="reply">
+  <div class="reply-wrap">
+    <div class="reply-mark">write back</div>
+    <h2 class="reply-h2">If something you've lived deserves a piece, <i>tell me about it.</i></h2>
+    <p class="reply-p">
+      You can be anonymous. You can be brief. You don't need the right words. I read every one of these.
+    </p>
+
+    <form class="reply-form" onsubmit="event.preventDefault();">
+      <div class="fg">
+        <label>Name (or any name)</label>
+        <input type="text" placeholder="What should I call you?" />
+      </div>
+      <div class="fg">
+        <label>Email (for a quiet reply)</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="fg">
+        <label>What's the piece you needed and couldn't find?</label>
+        <textarea rows="6" placeholder="Take your time. A few sentences is enough."></textarea>
+      </div>
+      <button class="reply-submit" type="submit">Send the letter</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">behind the <b>mask</b></div>
+  <div class="footer-line">written for whoever needed it.</div>
+  <div class="footer-row">
+    <a href="#ps">Gallery</a>
+    <a href="#reply">Write Me</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
