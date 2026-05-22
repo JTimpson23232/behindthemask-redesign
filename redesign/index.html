@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Behind the Mask · Full Site Redesign Concepts</title>
+  <title>Behind the Mask · Six Redesign Concepts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Crimson+Pro:ital,wght@0,400;1,400&family=Caveat:wght@400;500&family=Outfit:wght@300;400;500&family=DM+Sans:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Crimson+Pro:ital,wght@0,400;1,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Instrument+Serif:ital@0;1&family=Tenor+Sans&family=Caveat:wght@400;500&family=Outfit:wght@300;400;500&family=Manrope:wght@300;400;500&family=DM+Sans:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
 
     :root {
@@ -28,7 +28,6 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ── INTRO ──────────────────────────────────────── */
     .intro {
       max-width: 920px;
       margin: 0 auto;
@@ -46,12 +45,7 @@
       align-items: center;
       gap: 12px;
     }
-    .intro-kicker::before {
-      content: '';
-      width: 32px;
-      height: 1px;
-      background: #BF8640;
-    }
+    .intro-kicker::before { content: ''; width: 32px; height: 1px; background: #BF8640; }
     .intro-h1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(2.6rem, 5vw, 4rem);
@@ -80,16 +74,14 @@
     }
     .intro-note b { color: var(--ink); font-weight: 500; }
 
-    /* ── CONCEPTS GRID ──────────────────────────────── */
     .grid {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 70px 56px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 28px;
     }
-
     .card {
       position: relative;
       display: flex;
@@ -100,11 +92,7 @@
       transition: transform .3s ease, box-shadow .3s ease;
       background: #fff;
     }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 30px 60px -30px rgba(28,22,18,.22);
-    }
-
+    .card:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(28,22,18,.22); }
     .preview {
       height: 380px;
       position: relative;
@@ -115,42 +103,12 @@
       justify-content: space-between;
     }
 
-    /* === 01 HEARTH — cream, peach, rounded === */
-    .card.hearth .preview {
-      background: #FDF6EE;
-      color: #2D2018;
-      background-image:
-        radial-gradient(ellipse 420px 280px at 80% 30%, rgba(229,162,131,.22), transparent 60%);
-    }
-    .card.hearth .greet {
-      font-family: 'Caveat', cursive;
-      font-size: 1.5rem;
-      color: #E5A283;
-      transform: rotate(-1deg);
-      display: inline-block;
-    }
-    .card.hearth .h-title {
-      font-family: 'Fraunces', serif;
-      font-size: 2.8rem;
-      font-weight: 400;
-      line-height: 1.05;
-      color: #2D2018;
-      font-variation-settings: "opsz" 80;
-      max-width: 360px;
-    }
+    .card.hearth .preview { background: #FDF6EE; color: #2D2018; background-image: radial-gradient(ellipse 420px 280px at 80% 30%, rgba(229,162,131,.22), transparent 60%); }
+    .card.hearth .greet { font-family: 'Caveat', cursive; font-size: 1.5rem; color: #E5A283; transform: rotate(-1deg); display: inline-block; }
+    .card.hearth .h-title { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 400; line-height: 1.05; color: #2D2018; font-variation-settings: "opsz" 80; max-width: 360px; }
     .card.hearth .h-title i { font-style: italic; color: #E5A283; }
-    .card.hearth .h-cta {
-      align-self: flex-start;
-      background: #2D2018;
-      color: #FDF6EE;
-      padding: 10px 20px;
-      border-radius: 100px;
-      font-family: 'Inter', sans-serif;
-      font-size: .76rem;
-      font-weight: 500;
-    }
+    .card.hearth .h-cta { align-self: flex-start; background: #2D2018; color: #FDF6EE; padding: 10px 20px; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: .76rem; font-weight: 500; }
 
-    /* === 02 GARDEN — sage, terracotta, organic === */
     .card.garden .preview {
       background: #FAF6EC;
       color: #2A3027;
@@ -158,179 +116,67 @@
         radial-gradient(circle at 80% 25%, rgba(157,178,145,.4), transparent 50%),
         radial-gradient(circle at 18% 80%, rgba(201,160,160,.35), transparent 50%);
     }
-    .card.garden .g-leaf {
-      position: absolute;
-      width: 80px;
-      opacity: .45;
-    }
+    .card.garden .g-leaf { position: absolute; width: 80px; opacity: .45; }
     .card.garden .g-leaf.l1 { top: 30px; right: 24px; transform: rotate(28deg); color: #B8654A; }
     .card.garden .g-leaf.l2 { bottom: 30px; left: 20px; transform: rotate(-20deg); color: #6E8265; width: 64px; }
-    .card.garden .g-kicker {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: #B8654A;
-      letter-spacing: .1em;
-      text-transform: lowercase;
-    }
-    .card.garden .g-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 400;
-      line-height: 1.05;
-      color: #2A3027;
-      max-width: 380px;
-    }
+    .card.garden .g-kicker { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: #B8654A; letter-spacing: .1em; text-transform: lowercase; }
+    .card.garden .g-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; line-height: 1.05; color: #2A3027; max-width: 380px; }
     .card.garden .g-title i { font-style: italic; color: #B8654A; }
-    .card.garden .g-meta {
-      font-family: 'Outfit', sans-serif;
-      font-size: .72rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: #6E8265;
-    }
+    .card.garden .g-meta { font-family: 'Outfit', sans-serif; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: #6E8265; }
 
-    /* === 03 LANTERN — warm-dark, amber glow === */
-    .card.lantern .preview {
-      background: #281814;
-      color: #F5E5C5;
-      background-image:
-        radial-gradient(ellipse 500px 320px at 50% 30%, rgba(232,180,90,.18), transparent 65%);
-    }
-    .card.lantern .flame {
-      width: 14px;
-      height: 18px;
-      background: radial-gradient(ellipse at 50% 70%, #E8B45A, #8B3D24 50%, transparent 75%);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      box-shadow: 0 0 20px rgba(232,180,90,.55);
-      align-self: flex-start;
-    }
-    .card.lantern .l-kicker {
-      font-family: 'DM Sans', sans-serif;
-      font-size: .68rem;
-      letter-spacing: .32em;
-      text-transform: uppercase;
-      color: #E8B45A;
-      margin-bottom: 14px;
-    }
-    .card.lantern .l-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      line-height: 1.05;
-      color: #FDE7B5;
-      max-width: 380px;
-    }
+    .card.lantern .preview { background: #281814; color: #F5E5C5; background-image: radial-gradient(ellipse 500px 320px at 50% 30%, rgba(232,180,90,.18), transparent 65%); }
+    .card.lantern .flame { width: 14px; height: 18px; background: radial-gradient(ellipse at 50% 70%, #E8B45A, #8B3D24 50%, transparent 75%); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; box-shadow: 0 0 20px rgba(232,180,90,.55); align-self: flex-start; }
+    .card.lantern .l-kicker { font-family: 'DM Sans', sans-serif; font-size: .68rem; letter-spacing: .32em; text-transform: uppercase; color: #E8B45A; margin-bottom: 14px; }
+    .card.lantern .l-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; line-height: 1.05; color: #FDE7B5; max-width: 380px; }
     .card.lantern .l-title i { font-style: italic; color: #F2CB85; }
-    .card.lantern .l-line {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: .98rem;
-      font-style: italic;
-      color: rgba(245,229,197,.65);
-      letter-spacing: .04em;
-    }
+    .card.lantern .l-line { font-family: 'Cormorant Garamond', serif; font-size: .98rem; font-style: italic; color: rgba(245,229,197,.65); letter-spacing: .04em; }
 
-    /* === 04 LETTER — paper, large serif, intimate === */
     .card.letter .preview {
       background: #FAFAF6;
       color: #2A2218;
-      background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.32 0 0 0 0 0.18 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.32 0 0 0 0 0.18 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
-    .card.letter .meta {
-      font-family: 'Inter', sans-serif;
-      font-size: .72rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: #978975;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(42,34,24,.14);
-      display: flex;
-      justify-content: space-between;
-    }
-    .card.letter .salutation {
-      font-family: 'Caveat', cursive;
-      font-size: 1.8rem;
-      color: #2A2218;
-      transform: rotate(-1deg);
-      display: inline-block;
-      margin-top: 18px;
-    }
+    .card.letter .meta { font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: #978975; padding-bottom: 14px; border-bottom: 1px solid rgba(42,34,24,.14); display: flex; justify-content: space-between; }
+    .card.letter .salutation { font-family: 'Caveat', cursive; font-size: 1.8rem; color: #2A2218; transform: rotate(-1deg); display: inline-block; margin-top: 18px; }
     .card.letter .salutation .ul { border-bottom: 2px solid #D0A766; padding-bottom: 1px; }
-    .card.letter .l-h {
-      font-family: 'Crimson Pro', serif;
-      font-size: 2rem;
-      font-weight: 400;
-      line-height: 1.15;
-      color: #2A2218;
-      letter-spacing: -.005em;
-    }
+    .card.letter .l-h { font-family: 'Crimson Pro', serif; font-size: 2rem; font-weight: 400; line-height: 1.15; color: #2A2218; letter-spacing: -.005em; }
     .card.letter .l-h i { font-style: italic; color: #B7873E; }
-    .card.letter .sig {
-      font-family: 'Caveat', cursive;
-      font-size: 1.6rem;
-      color: #2A2218;
-      transform: rotate(-2deg);
-      display: inline-block;
-    }
+    .card.letter .sig { font-family: 'Caveat', cursive; font-size: 1.6rem; color: #2A2218; transform: rotate(-2deg); display: inline-block; }
 
-    /* ── CARD META ──────────────────────────────────── */
+    .card.atelier .preview { background: #FAF7EE; color: #0E0A06; padding: 32px 36px; }
+    .card.atelier .colophon-mini { display: flex; flex-direction: column; gap: 6px; padding-bottom: 10px; border-bottom: 1px solid rgba(14,10,6,.28); }
+    .card.atelier .colo-key { font-family: 'Tenor Sans', sans-serif; font-size: .58rem; letter-spacing: .28em; text-transform: uppercase; color: #968873; }
+    .card.atelier .colo-val { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: #0E0A06; }
+    .card.atelier .at-title { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 400; line-height: .95; color: #0E0A06; letter-spacing: -.015em; }
+    .card.atelier .at-title i { font-style: italic; color: #8A6E2E; }
+    .card.atelier .at-foot { font-family: 'Tenor Sans', sans-serif; font-size: .58rem; letter-spacing: .32em; text-transform: uppercase; color: #8A6E2E; }
+
+    .card.threshold .preview {
+      color: #3A2C24;
+      background:
+        radial-gradient(ellipse 600px 400px at 18% 18%, #F8D4B8, transparent 55%),
+        radial-gradient(ellipse 600px 400px at 82% 38%, #C8B8DC, transparent 55%),
+        radial-gradient(ellipse 400px 300px at 50% 95%, #E5B8C2, transparent 50%),
+        radial-gradient(ellipse 350px 250px at 5% 95%, #E8C880, transparent 50%),
+        #FFF8EE;
+    }
+    .card.threshold .th-mark { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.1rem; color: #E89A85; }
+    .card.threshold .th-title { font-family: 'Instrument Serif', serif; font-size: 3rem; font-weight: 400; line-height: .98; color: #3A2C24; letter-spacing: -.015em; }
+    .card.threshold .th-title .accent { background: linear-gradient(120deg, #E89A85, #C8945A); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: italic; }
+    .card.threshold .th-orb { width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFF8EE, #F8D4B8 55%, #E89A85 100%); box-shadow: 0 18px 36px -16px rgba(58,44,36,.28); position: absolute; right: 36px; top: 36px; }
+
     .card-meta {
       padding: 32px 36px 36px;
       background: #FFFFFF;
       border-top: 1px solid var(--rule);
     }
-
-    .card-num {
-      font-size: .68rem;
-      font-weight: 500;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: #BF8640;
-      margin-bottom: 10px;
-    }
-
-    .card-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.9rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .card-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .card-desc {
-      font-size: .94rem;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--warm);
-      margin-bottom: 22px;
-    }
-
-    .card-feel-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-    .feel {
-      font-size: .68rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 5px 12px;
-      border: 1px solid var(--rule);
-      border-radius: 100px;
-    }
-
+    .card-num { font-size: .68rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: #BF8640; margin-bottom: 10px; }
+    .card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 400; color: var(--ink); margin-bottom: 4px; }
+    .card-tagline { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--muted); margin-bottom: 18px; }
+    .card-desc { font-size: .94rem; font-weight: 300; line-height: 1.7; color: var(--warm); margin-bottom: 22px; }
+    .card-feel-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+    .feel { font-size: .68rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 5px 12px; border: 1px solid var(--rule); border-radius: 100px; }
+    .card-links { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
     .card-link {
       display: inline-flex;
       align-items: center;
@@ -345,43 +191,25 @@
       transition: color .2s;
     }
     .card-link:hover { color: #BF8640; }
-    .card-link svg { transition: transform .2s; }
-    .card-link:hover svg { transform: translateX(3px); }
+    .card-link.alt { color: var(--muted); border-bottom-color: var(--rule); }
+    .card-link.alt:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
-    /* ── HOW TO CHOOSE ──────────────────────────────── */
     .footer-note {
       max-width: 820px;
       margin: 0 auto;
       padding: 60px 56px 110px;
       border-top: 1px solid var(--rule);
     }
-    .footer-note h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 18px;
-    }
+    .footer-note h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--ink); margin-bottom: 18px; }
     .footer-note h3 i { font-style: italic; color: #BF8640; }
-    .footer-note p {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: var(--warm);
-      font-weight: 300;
-      margin-bottom: 16px;
-    }
+    .footer-note p { font-size: 1rem; line-height: 1.75; color: var(--warm); font-weight: 300; margin-bottom: 16px; }
     .footer-note p b { color: var(--ink); font-weight: 500; }
 
-    /* ── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 960px) {
       .intro { padding: 84px 24px 56px; }
       .grid { padding: 56px 24px; grid-template-columns: 1fr; gap: 24px; }
       .preview { height: 320px; padding: 28px; }
       .card-meta { padding: 26px 28px 30px; }
-      .card.hearth .h-title,
-      .card.garden .g-title,
-      .card.lantern .l-title,
-      .card.letter .l-h { font-size: 2.2rem; }
       .footer-note { padding: 48px 24px 80px; }
     }
 
@@ -389,29 +217,22 @@
 </head>
 <body>
 
-<!-- INTRO -->
 <section class="intro">
-  <div class="intro-kicker">Behind the Mask · Full Redesign</div>
-  <h1 class="intro-h1">Four ways to make the site<br>feel <i>safe instead of evil.</i></h1>
-  <p class="intro-lede">
-    Same artist. Same work. Four completely different rooms for someone in pain to walk into.
-  </p>
+  <div class="intro-kicker">Behind the Mask · Six Concepts for the Redesign</div>
+  <h1 class="intro-h1">Six rooms for the work<br>to <i>live in.</i></h1>
+  <p class="intro-lede">Same artist. Same gallery. Six completely different doors to walk through.</p>
   <p class="intro-note">
-    Every concept is engineered around one rule: this place should feel like hospitality, not exhibition. None of them open with shock imagery. None of them make the visitor explain themselves at the door. Each one solves "safe" in a different way.
+    Every concept is engineered around one rule: the site should feel like hospitality, not exhibition. None opens with shock imagery. None asks the visitor to explain herself at the door. Each solves "safe" a different way.
     <br><br>
-    <b>The brief:</b> real, emotionally safe, but creative and artistic. Make people feel held when they get here, not approached with dread. Someone survived something here. Not "look how tortured I was."
+    <b>The brief:</b> real, emotionally safe, creative and artistic. Someone survived something here. Not "look how tortured I was." Each concept ships with a printable PDF you can share with Priscilla.
   </p>
 </section>
 
-<!-- CONCEPTS GRID -->
 <section class="grid">
 
-  <!-- 01 HEARTH -->
   <a href="01-hearth/" class="card hearth">
     <div class="preview">
-      <div>
-        <div class="greet">hello, friend.</div>
-      </div>
+      <div><div class="greet">hello, friend.</div></div>
       <div class="h-title">Come in. <i>Take your shoes off.</i></div>
       <div class="h-cta">Walk the Gallery →</div>
     </div>
@@ -419,23 +240,15 @@
       <div class="card-num">Concept 01</div>
       <div class="card-name">Hearth</div>
       <div class="card-tagline">Come inside, the kettle's on.</div>
-      <p class="card-desc">
-        Warm cream and soft peach. Rounded everything. The site opens by saying hello like a friend's living room. Artist is the host, not the survivor on display. Soft promise strip: "no pressure to share," "soft entries," "made with care."
-      </p>
-      <div class="card-feel-row">
-        <span class="feel">Warm</span>
-        <span class="feel">Hospitality</span>
-        <span class="feel">Rounded</span>
-        <span class="feel">Friendly</span>
+      <p class="card-desc">Warm cream and soft peach. Rounded everything. Opens by saying hello like a friend's living room. Artist is the host, not the survivor on display. Soft promise strip: no pressure, soft entries, made with care.</p>
+      <div class="card-feel-row"><span class="feel">Warm</span><span class="feel">Hospitality</span><span class="feel">Rounded</span><span class="feel">Friendly</span></div>
+      <div class="card-links">
+        <span class="card-link">Walk Into Hearth →</span>
+        <a href="../pdfs/BTM-Concept-01-hearth.pdf" class="card-link alt">Open PDF</a>
       </div>
-      <span class="card-link">
-        Walk Into Hearth
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
     </div>
   </a>
 
-  <!-- 02 GARDEN -->
   <a href="02-garden/" class="card garden">
     <div class="preview">
       <svg class="g-leaf l1" viewBox="0 0 120 200" fill="currentColor"><path d="M60 10 C 25 60 25 140 60 190 C 95 140 95 60 60 10 Z"/></svg>
@@ -448,23 +261,15 @@
       <div class="card-num">Concept 02</div>
       <div class="card-name">Garden</div>
       <div class="card-tagline">Healing grows here.</div>
-      <p class="card-desc">
-        Sage, terracotta, dusty rose, oat. Botanical accents. Gallery is reframed as garden beds, each one a small room of feeling. Submit page is "plant a seed." Growth metaphor stays earthy and unsaccharine. Anti-clinical.
-      </p>
-      <div class="card-feel-row">
-        <span class="feel">Earthy</span>
-        <span class="feel">Botanical</span>
-        <span class="feel">Cottage</span>
-        <span class="feel">Slow</span>
+      <p class="card-desc">Sage, terracotta, dusty rose, oat. Botanical SVG accents. Gallery reframed as garden beds (slow bed, quiet bed, tender bed). Submit page is "plant a seed." Cottage garden at dusk.</p>
+      <div class="card-feel-row"><span class="feel">Earthy</span><span class="feel">Botanical</span><span class="feel">Cottage</span><span class="feel">Slow</span></div>
+      <div class="card-links">
+        <span class="card-link">Walk Into Garden →</span>
+        <a href="../pdfs/BTM-Concept-02-garden.pdf" class="card-link alt">Open PDF</a>
       </div>
-      <span class="card-link">
-        Walk Into Garden
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
     </div>
   </a>
 
-  <!-- 03 LANTERN -->
   <a href="03-lantern/" class="card lantern">
     <div class="preview">
       <div>
@@ -478,23 +283,15 @@
       <div class="card-num">Concept 03</div>
       <div class="card-name">Lantern</div>
       <div class="card-tagline">I'll sit with you in the dark.</div>
-      <p class="card-desc">
-        Warm umber lit from within. Candle-glow amber accents. For visitors who find bright/cheerful sites invalidating in the middle of something hard. Anti-toxic-positivity. Dignified low light, not gothic. The site refuses to flinch.
-      </p>
-      <div class="card-feel-row">
-        <span class="feel">Warm-dark</span>
-        <span class="feel">Vigil</span>
-        <span class="feel">Held</span>
-        <span class="feel">Honest</span>
+      <p class="card-desc">Warm umber lit from within. Candle-glow amber. For visitors who find peppy bright sites invalidating mid-something-hard. Anti-toxic-positivity. Dignified low light, not gothic. The site refuses to flinch.</p>
+      <div class="card-feel-row"><span class="feel">Warm-dark</span><span class="feel">Vigil</span><span class="feel">Held</span><span class="feel">Honest</span></div>
+      <div class="card-links">
+        <span class="card-link">Walk Into Lantern →</span>
+        <a href="../pdfs/BTM-Concept-03-lantern.pdf" class="card-link alt">Open PDF</a>
       </div>
-      <span class="card-link">
-        Walk Into Lantern
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
     </div>
   </a>
 
-  <!-- 04 LETTER -->
   <a href="04-letter/" class="card letter">
     <div class="preview">
       <div class="meta"><span>An open letter</span><span>From the artist</span></div>
@@ -508,36 +305,66 @@
       <div class="card-num">Concept 04</div>
       <div class="card-name">Letter</div>
       <div class="card-tagline">I wrote this for you.</div>
-      <p class="card-desc">
-        Paper white, large serif body, handwriting accents. The homepage IS a letter from the artist to the reader. Almost no UI chrome. Art appears mid-letter pinned like a postcard. The most intimate of the four. Reading replaces browsing.
-      </p>
-      <div class="card-feel-row">
-        <span class="feel">Intimate</span>
-        <span class="feel">Direct</span>
-        <span class="feel">Paper</span>
-        <span class="feel">Slow read</span>
+      <p class="card-desc">Paper white, large serif body, handwriting accents. The homepage IS a letter to the reader. Almost no UI chrome. Art appears mid-letter pinned like a postcard. The most intimate of the six.</p>
+      <div class="card-feel-row"><span class="feel">Intimate</span><span class="feel">Direct</span><span class="feel">Paper</span><span class="feel">Slow read</span></div>
+      <div class="card-links">
+        <span class="card-link">Walk Into Letter →</span>
+        <a href="../pdfs/BTM-Concept-04-letter.pdf" class="card-link alt">Open PDF</a>
       </div>
-      <span class="card-link">
-        Walk Into Letter
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
+    </div>
+  </a>
+
+  <a href="05-atelier/" class="card atelier">
+    <div class="preview">
+      <div class="colophon-mini">
+        <span class="colo-key">A Collection By</span>
+        <span class="colo-val"><i>The Artist</i></span>
+      </div>
+      <div class="at-title">Behind<br>the <i>Mask.</i></div>
+      <div class="at-foot">I. · Foreword · II. · The Plates</div>
+    </div>
+    <div class="card-meta">
+      <div class="card-num">Concept 05</div>
+      <div class="card-name">Atelier</div>
+      <div class="card-tagline">Treated like the art it is.</div>
+      <p class="card-desc">Cream paper, ink black, oxidized brass. Fine-art monograph energy. Catalog raisonné. Numbered plates (Plate I, Plate II). Drop-cap foreword, museum-label captions. Phaidon book gravitas.</p>
+      <div class="card-feel-row"><span class="feel">Editorial</span><span class="feel">Museum</span><span class="feel">Refined</span><span class="feel">Considered</span></div>
+      <div class="card-links">
+        <span class="card-link">Walk Into Atelier →</span>
+        <a href="../pdfs/BTM-Concept-05-atelier.pdf" class="card-link alt">Open PDF</a>
+      </div>
+    </div>
+  </a>
+
+  <a href="06-threshold/" class="card threshold">
+    <div class="preview">
+      <div class="th-orb"></div>
+      <div>
+        <div class="th-mark">a soft place at the edge</div>
+        <div class="th-title" style="margin-top:14px;">Pull up a chair. Stay until the <span class="accent">light shifts.</span></div>
+      </div>
+      <div></div>
+    </div>
+    <div class="card-meta">
+      <div class="card-num">Concept 06</div>
+      <div class="card-name">Threshold</div>
+      <div class="card-tagline">A soft place at the edge.</div>
+      <p class="card-desc">Peach, lavender, dusty rose, gold. Dreamy sunset gradients. Pieces presented as glowing soft orbs. Surreal-sanctuary energy. Like a perfumery atelier but for grief. The most aesthetically unusual of the six.</p>
+      <div class="card-feel-row"><span class="feel">Dreamy</span><span class="feel">Gradient</span><span class="feel">Sanctuary</span><span class="feel">Surreal-soft</span></div>
+      <div class="card-links">
+        <span class="card-link">Walk Into Threshold →</span>
+        <a href="../pdfs/BTM-Concept-06-threshold.pdf" class="card-link alt">Open PDF</a>
+      </div>
     </div>
   </a>
 
 </section>
 
-<!-- HOW TO CHOOSE -->
 <section class="footer-note">
   <h3>How to choose, <i>without overthinking it.</i></h3>
-  <p>
-    Open each one. Scroll the whole thing. Don't read the placeholder copy too closely. Notice which room makes your shoulders drop.
-  </p>
-  <p>
-    <b>Hearth</b> if you want it to feel like a friend's living room. <b>Garden</b> if you want it to feel like healing has its own pace. <b>Lantern</b> if you want it to refuse to be peppy. <b>Letter</b> if you want it to feel like opening mail from someone who gets it.
-  </p>
-  <p>
-    All four refuse the "look how tortured I was" energy. They each get there a different way. Tell me which room feels like yours and we build it out fully.
-  </p>
+  <p>Open each one. Scroll the whole homepage. Don't read the placeholder copy too closely. Notice which room makes your shoulders drop.</p>
+  <p><b>Hearth</b> if you want a friend's living room. <b>Garden</b> if healing should have its own pace. <b>Lantern</b> if you want the site to refuse peppy. <b>Letter</b> if you want it intimate and direct. <b>Atelier</b> if the work should be treated like the art it is. <b>Threshold</b> if you want it dreamlike and soft.</p>
+  <p>All six refuse the "look how tortured I was" energy. Each gets there a different way. Tell us which room feels like yours and we build it out fully.</p>
 </section>
 
 </body>

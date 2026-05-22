@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Atelier Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --paper:    #FAF7EE;
+      --paper-2:  #F2EDDF;
+      --paper-3:  #E8E0CC;
+      --ink:      #0E0A06;
+      --ink-soft: #322820;
+      --pencil:   #6A5E4E;
+      --margin:   #968873;
+      --brass:    #8A6E2E;
+      --brass-lt: #B79555;
+      --rule:     rgba(14,10,6,.14);
+      --rule-st:  rgba(14,10,6,.28);
+
+      --display: 'Playfair Display', Georgia, serif;
+      --label:   'Tenor Sans', system-ui, sans-serif;
+      --body:    'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--body);
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 64px;
+      height: 76px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+    .logo {
+      font-family: var(--label);
+      font-size: .92rem;
+      font-weight: 400;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .logo b {
+      color: var(--brass);
+      font-weight: 400;
+      letter-spacing: .36em;
+    }
+    .nav-right { display: flex; align-items: center; gap: 44px; }
+    .nav-right a {
+      font-family: var(--label);
+      font-size: .72rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color .25s;
+    }
+    .nav-right a:hover { color: var(--brass); }
+    .nav-num {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: .9rem;
+      color: var(--margin);
+      letter-spacing: .04em;
+    }
+
+    /* ── COLOPHON / FRONT MATTER ─────────────────── */
+    .frontmatter {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 160px 64px 90px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: end;
+      border-bottom: 1px solid var(--rule-st);
+    }
+    .colophon {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .colophon-row {
+      padding: 14px 0;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .colophon-row:first-child { border-top: none; padding-top: 0; }
+    .colophon-key {
+      font-family: var(--label);
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--margin);
+    }
+    .colophon-val {
+      font-family: var(--display);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: .02em;
+    }
+    .colophon-val i { font-style: italic; color: var(--brass); }
+
+    .frontmatter-h1 {
+      font-family: var(--display);
+      font-size: clamp(3.2rem, 7vw, 6.4rem);
+      font-weight: 400;
+      line-height: .98;
+      color: var(--ink);
+      letter-spacing: -.015em;
+    }
+    .frontmatter-h1 i { font-style: italic; color: var(--brass); }
+    .frontmatter-sub {
+      margin-top: 28px;
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--pencil);
+      max-width: 520px;
+      line-height: 1.4;
+    }
+
+    /* ── FOREWORD ────────────────────────────────── */
+    .foreword {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 100px 64px;
+      border-bottom: 1px solid var(--rule-st);
+    }
+    .section-num {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--brass);
+      margin-bottom: 8px;
+      letter-spacing: .04em;
+    }
+    .section-kicker {
+      font-family: var(--label);
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-kicker::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule-st);
+    }
+    .foreword-body {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .foreword-body p { margin-bottom: 1.3em; }
+    .foreword-body p:first-of-type::first-letter {
+      font-family: var(--display);
+      font-size: 5.2rem;
+      font-weight: 400;
+      float: left;
+      line-height: .88;
+      margin: 6px 12px 0 0;
+      color: var(--brass);
+    }
+    .foreword-body em { font-style: italic; color: var(--ink); }
+    .foreword-attr {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--label);
+      font-size: .72rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--margin);
+    }
+
+    /* ── PLATES — the gallery as numbered plates ── */
+    .plates {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 110px 64px 70px;
+    }
+    .plates-head {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 64px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--rule-st);
+    }
+    .plates-h2 {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+    .plates-h2 i { font-style: italic; color: var(--brass); }
+    .plates-lede {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--pencil);
+      max-width: 460px;
+    }
+
+    .plates-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 56px 32px;
+    }
+    .plate {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      cursor: pointer;
+    }
+    .plate-image {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(ellipse 300px 200px at 50% 35%, rgba(138,110,46,.12), transparent 65%),
+        var(--paper-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 1px 0 var(--rule),
+        0 20px 40px -20px rgba(14,10,6,.16);
+      transition: transform .35s;
+    }
+    .plate-image::after {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(14,10,6,.14);
+      pointer-events: none;
+    }
+    .plate:hover .plate-image { transform: translateY(-3px); }
+    .plate-placeholder {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 2.2rem;
+      color: var(--brass-lt);
+      opacity: .7;
+    }
+    .plate-num {
+      font-family: var(--label);
+      font-size: .62rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+    .plate-title {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.15;
+      letter-spacing: .005em;
+    }
+    .plate-spec {
+      font-family: var(--body);
+      font-size: .76rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--margin);
+      line-height: 1.6;
+    }
+    .plate-spec b {
+      color: var(--ink-soft);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .68rem;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* ── ESSAY — letter from the artist as essay ── */
+    .essay {
+      background: var(--paper-2);
+      padding: 130px 64px;
+      border-top: 1px solid var(--rule-st);
+      border-bottom: 1px solid var(--rule-st);
+    }
+    .essay-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .essay-portrait {
+      aspect-ratio: 3 / 4;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(138,110,46,.16), transparent 60%),
+        var(--paper-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 1px 0 var(--rule),
+        0 30px 60px -30px rgba(14,10,6,.2);
+      position: relative;
+    }
+    .essay-portrait::after {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(14,10,6,.12);
+    }
+    .essay-portrait-text {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--brass-lt);
+      letter-spacing: .04em;
+    }
+
+    .essay-text { padding-top: 8px; }
+    .essay-h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -.005em;
+      margin: 6px 0 32px;
+    }
+    .essay-h2 i { font-style: italic; color: var(--brass); }
+    .essay-body {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .essay-body p { margin-bottom: 1em; }
+    .essay-body em { font-style: italic; color: var(--ink); }
+    .essay-sign {
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--label);
+      font-size: .72rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    /* ── INDEX / TOPICS ─────────────────────────── */
+    .index {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 130px 64px 80px;
+      border-bottom: 1px solid var(--rule-st);
+    }
+    .index-head { margin-bottom: 56px; max-width: 720px; }
+    .index-h2 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4.4vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--ink);
+      letter-spacing: -.005em;
+    }
+    .index-h2 i { font-style: italic; color: var(--brass); }
+    .index-lede {
+      margin-top: 18px;
+      font-family: var(--display);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--pencil);
+    }
+    .index-list {
+      list-style: none;
+      border-top: 1px solid var(--rule-st);
+    }
+    .index-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 200px 80px;
+      gap: 32px;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+      transition: background .25s;
+      cursor: pointer;
+    }
+    .index-row:hover { background: var(--paper-2); padding-left: 16px; padding-right: 16px; }
+    .index-row-num {
+      font-family: var(--label);
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+    .index-row-title {
+      font-family: var(--display);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .index-row-title i { font-style: italic; color: var(--brass); font-weight: 400; }
+    .index-row-count {
+      font-family: var(--label);
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--margin);
+    }
+    .index-row-arrow {
+      text-align: right;
+      font-family: var(--display);
+      font-style: italic;
+      color: var(--brass);
+      font-size: 1.2rem;
+    }
+
+    /* ── COMMISSION ─────────────────────────────── */
+    .commission {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 140px 64px;
+    }
+    .commission-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .commission-mark {
+      font-family: var(--label);
+      font-size: .68rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--brass-lt);
+      margin-bottom: 24px;
+    }
+    .commission-h2 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--paper);
+      letter-spacing: -.005em;
+      margin-bottom: 24px;
+    }
+    .commission-h2 i { font-style: italic; color: var(--brass-lt); }
+    .commission-p {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: rgba(250,247,238,.7);
+      max-width: 440px;
+    }
+    .commission-form {
+      background: transparent;
+    }
+    .fg { margin-bottom: 24px; }
+    .fg label {
+      font-family: var(--label);
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--brass-lt);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .fg input,
+    .fg textarea {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      width: 100%;
+      padding: 14px 0;
+      border: none;
+      border-bottom: 1px solid rgba(250,247,238,.2);
+      background: transparent;
+      color: var(--paper);
+      resize: vertical;
+      transition: border-color .25s;
+    }
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: rgba(250,247,238,.35);
+      font-style: italic;
+    }
+    .fg input:focus,
+    .fg textarea:focus { outline: none; border-bottom-color: var(--brass-lt); }
+    .commission-submit {
+      margin-top: 8px;
+      padding: 16px 36px;
+      background: transparent;
+      color: var(--paper);
+      border: 1px solid var(--brass-lt);
+      font-family: var(--label);
+      font-size: .72rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .commission-submit:hover {
+      background: var(--brass-lt);
+      color: var(--ink);
+    }
+
+    /* ── COLOPHON / FOOTER ──────────────────────── */
+    footer {
+      background: var(--paper);
+      padding: 80px 64px 50px;
+    }
+    .footer-top {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.6fr repeat(3, 1fr);
+      gap: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--rule-st);
+    }
+    .footer-logo {
+      font-family: var(--label);
+      font-size: .92rem;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .footer-logo b { color: var(--brass); }
+    .footer-line {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--pencil);
+      line-height: 1.55;
+      max-width: 280px;
+    }
+    .footer-col h5 {
+      font-family: var(--label);
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      font-family: var(--display);
+      font-size: 1rem;
+      color: var(--ink-soft);
+      transition: color .25s;
+    }
+    .footer-col ul a:hover { color: var(--brass); }
+    .footer-bot {
+      max-width: 1320px;
+      margin: 26px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: var(--label);
+      font-size: .62rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--margin);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 22px; height: 64px; }
+      .nav-right { gap: 16px; }
+      .nav-right a { font-size: .66rem; letter-spacing: .18em; }
+      .nav-num { display: none; }
+      .frontmatter {
+        padding: 130px 22px 60px;
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .foreword { padding: 72px 22px; }
+      .plates { padding: 80px 22px 50px; }
+      .plates-head { grid-template-columns: 1fr; gap: 28px; }
+      .plates-grid { grid-template-columns: 1fr; gap: 40px; }
+      .essay { padding: 80px 22px; }
+      .essay-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .index { padding: 80px 22px 50px; }
+      .index-row { grid-template-columns: 50px 1fr 80px 30px; gap: 16px; }
+      .index-row-title { font-size: 1.1rem; }
+      .commission { padding: 90px 22px; }
+      .commission-wrap { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 60px 22px 36px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="#plates">Plates</a>
+    <a href="#essay">Essay</a>
+    <a href="#index">Index</a>
+    <a href="#commission">Commission</a>
+  </div>
+  <span class="nav-num">I.</span>
+</nav>
+
+<!-- FRONTMATTER -->
+<section class="frontmatter">
+  <div class="colophon">
+    <div class="colophon-row">
+      <div class="colophon-key">A Collection By</div>
+      <div class="colophon-val"><i>The Artist</i></div>
+    </div>
+    <div class="colophon-row">
+      <div class="colophon-key">Edition</div>
+      <div class="colophon-val">Twenty&middot;Five Pieces &middot; Living Archive</div>
+    </div>
+    <div class="colophon-row">
+      <div class="colophon-key">Themes</div>
+      <div class="colophon-val">Identity &middot; Grief &middot; Healing</div>
+    </div>
+    <div class="colophon-row">
+      <div class="colophon-key">Made For</div>
+      <div class="colophon-val"><i>Whoever needed it.</i></div>
+    </div>
+  </div>
+  <div>
+    <h1 class="frontmatter-h1">Behind<br>the <i>Mask.</i></h1>
+    <div class="frontmatter-sub">
+      A living catalog of the experiences we were told to keep small, rendered with care and made public.
+    </div>
+  </div>
+</section>
+
+<!-- FOREWORD -->
+<section class="foreword">
+  <div class="section-num">i.</div>
+  <div class="section-kicker">Foreword</div>
+  <div class="foreword-body">
+    <p>
+      Each piece in this collection began as something that could not be said. Some of them my own. Many of them written in by readers who found this site and asked: would you give a form to <em>this</em>?
+    </p>
+    <p>
+      The work is honest. It is not, however, hostile to the viewer. Heavy pieces are tucked behind soft doors. You choose what you open and when. You are not asked to explain yourself at the entrance.
+    </p>
+    <p>
+      What you'll find here is not a record of suffering. It is a record of having been believed.
+    </p>
+  </div>
+  <div class="foreword-attr">— The Artist · Behind the Mask</div>
+</section>
+
+<!-- PLATES -->
+<section class="plates" id="plates">
+  <div class="plates-head">
+    <div>
+      <div class="section-num">ii.</div>
+      <div class="section-kicker">The Plates</div>
+      <h2 class="plates-h2">Selected works,<br><i>numbered for the catalog.</i></h2>
+    </div>
+    <p class="plates-lede">
+      Every plate is paired with the experience it was drawn from. Click any plate to read the work, see the full piece, and read what it was made to hold.
+    </p>
+  </div>
+
+  <div class="plates-grid">
+    <a href="#" class="plate">
+      <div class="plate-image"><div class="plate-placeholder">Authenticity</div></div>
+      <div class="plate-num">Plate I</div>
+      <div class="plate-title">Authenticity</div>
+      <div class="plate-spec"><b>Theme</b>Identity, the face we carry alone.</div>
+    </a>
+    <a href="#" class="plate">
+      <div class="plate-image"><div class="plate-placeholder">Anonymous</div></div>
+      <div class="plate-num">Plate II</div>
+      <div class="plate-title">Anonymous</div>
+      <div class="plate-spec"><b>Theme</b>Identity, the public mask.</div>
+    </a>
+    <a href="#" class="plate">
+      <div class="plate-image"><div class="plate-placeholder">Process</div></div>
+      <div class="plate-num">Plate III</div>
+      <div class="plate-title">Process of Healing</div>
+      <div class="plate-spec"><b>Theme</b>Healing, the unmarketed kind.</div>
+    </a>
+    <a href="#" class="plate">
+      <div class="plate-image"><div class="plate-placeholder">Wolf</div></div>
+      <div class="plate-num">Plate IV</div>
+      <div class="plate-title">The Wolf Series</div>
+      <div class="plate-spec"><b>Theme</b>Strength, learned to protect itself.</div>
+    </a>
+    <a href="#" class="plate">
+      <div class="plate-image"><div class="plate-placeholder">Seasons</div></div>
+      <div class="plate-num">Plate V</div>
+      <div class="plate-title">Seasons</div>
+      <div class="plate-spec"><b>Theme</b>Grief and change.</div>
+    </a>
+    <a href="#" class="plate">
+      <div class="plate-image"><div class="plate-placeholder">Unable to Cry</div></div>
+      <div class="plate-num">Plate VI</div>
+      <div class="plate-title">Unable to Cry</div>
+      <div class="plate-spec"><b>Theme</b>Pain past tears.</div>
+    </a>
+  </div>
+</section>
+
+<!-- ESSAY -->
+<section class="essay" id="essay">
+  <div class="essay-wrap">
+    <div class="essay-portrait">
+      <span class="essay-portrait-text">a portrait of the artist</span>
+    </div>
+    <div class="essay-text">
+      <div class="section-num">iii.</div>
+      <div class="section-kicker">Essay</div>
+      <h2 class="essay-h2">I started drawing the things <i>I couldn't say.</i></h2>
+      <div class="essay-body">
+        <p>
+          The project began as private. A handful of drawings made on nights I needed somewhere for an unspeakable thing to go. Then friends wrote in. They had things they had needed pictures for, and never found them.
+        </p>
+        <p>
+          So this archive is what we made together. Every piece begins with a real experience, given to me, and is returned to anyone else who needed to know they were not alone in it.
+        </p>
+        <p>
+          You are not strange for feeling what you feel. You are <em>human</em>. You are welcome here.
+        </p>
+      </div>
+      <div class="essay-sign">— The Artist</div>
+    </div>
+  </div>
+</section>
+
+<!-- INDEX / TOPICS -->
+<section class="index" id="index">
+  <div class="index-head">
+    <div class="section-num">iv.</div>
+    <div class="section-kicker">Index of Themes</div>
+    <h2 class="index-h2">Pieces grouped by <i>what they hold</i>, not by intensity.</h2>
+    <p class="index-lede">Browse by feeling. Skip what doesn't call to you. There is no order, and there is no graduation.</p>
+  </div>
+
+  <ul class="index-list">
+    <li class="index-row">
+      <span class="index-row-num">01</span>
+      <span class="index-row-title">Identity <i>&amp; the masks</i></span>
+      <span class="index-row-count">Twelve plates</span>
+      <span class="index-row-arrow">→</span>
+    </li>
+    <li class="index-row">
+      <span class="index-row-num">02</span>
+      <span class="index-row-title">Anxiety <i>&amp; the 3 a.m. hours</i></span>
+      <span class="index-row-count">Nine plates</span>
+      <span class="index-row-arrow">→</span>
+    </li>
+    <li class="index-row">
+      <span class="index-row-num">03</span>
+      <span class="index-row-title">Grief <i>&amp; the after</i></span>
+      <span class="index-row-count">Eight plates</span>
+      <span class="index-row-arrow">→</span>
+    </li>
+    <li class="index-row">
+      <span class="index-row-num">04</span>
+      <span class="index-row-title">Chronic Pain <i>&amp; being believed</i></span>
+      <span class="index-row-count">Six plates</span>
+      <span class="index-row-arrow">→</span>
+    </li>
+    <li class="index-row">
+      <span class="index-row-num">05</span>
+      <span class="index-row-title">Healing <i>&amp; honesty</i></span>
+      <span class="index-row-count">Nine plates</span>
+      <span class="index-row-arrow">→</span>
+    </li>
+    <li class="index-row">
+      <span class="index-row-num">06</span>
+      <span class="index-row-title">Shame <i>&amp; the things done to us</i></span>
+      <span class="index-row-count">Seven plates · soft door</span>
+      <span class="index-row-arrow">→</span>
+    </li>
+  </ul>
+</section>
+
+<!-- COMMISSION -->
+<section class="commission" id="commission">
+  <div class="commission-wrap">
+    <div>
+      <div class="commission-mark">v. · Commission a piece</div>
+      <h2 class="commission-h2">If something you've lived <i>doesn't have a plate yet,</i> tell me about it.</h2>
+      <p class="commission-p">
+        Not every commission becomes a piece. Every commission is read. A few sentences is enough. Anonymous is welcome.
+      </p>
+    </div>
+
+    <form class="commission-form" onsubmit="event.preventDefault();">
+      <div class="fg">
+        <label>Name (any name will do)</label>
+        <input type="text" placeholder="What should I call you" />
+      </div>
+      <div class="fg">
+        <label>Email (for a quiet reply)</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="fg">
+        <label>What would you have the piece say</label>
+        <textarea rows="5" placeholder="Take your time. A few sentences is enough."></textarea>
+      </div>
+      <button class="commission-submit" type="submit">Submit Commission</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">A living catalog of the experiences we were told to keep small.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Catalog</h5>
+      <ul>
+        <li><a href="#plates">The Plates</a></li>
+        <li><a href="#">Recent Additions</a></li>
+        <li><a href="#index">Index of Themes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="#essay">Essay</a></li>
+        <li><a href="#commission">Commission</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Colophon</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask · A Living Archive</span>
+    <span>Made with care</span>
+  </div>
+</footer>
+
+</body>
+</html>

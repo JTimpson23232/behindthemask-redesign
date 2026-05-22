@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Threshold Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --peach:      #F8D4B8;
+      --peach-2:    #F4BFA0;
+      --coral:      #E89A85;
+      --lavender:   #C8B8DC;
+      --lavender-2: #B8A4D0;
+      --rose:       #E5B8C2;
+      --gold:       #E8C880;
+      --honey:      #C8945A;
+      --sky:        #D4E2EA;
+      --cream:      #FAF3E8;
+      --milk:       #FFF8EE;
+      --ink:        #3A2C24;
+      --ink-soft:   #5A4639;
+      --muted:      #9A8472;
+      --rule:       rgba(58,44,36,.1);
+      --rule-st:    rgba(58,44,36,.18);
+
+      --display: 'Instrument Serif', Georgia, serif;
+      --body:    'Manrope', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--body);
+      background: var(--milk);
+      color: var(--ink);
+      overflow-x: hidden;
+      font-weight: 300;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 56px;
+      background: rgba(255,248,238,.7);
+      backdrop-filter: blur(20px);
+    }
+    .logo {
+      font-family: var(--display);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: .005em;
+    }
+    .logo b { font-style: italic; color: var(--coral); font-weight: 400; }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-right a {
+      font-size: .88rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      transition: color .25s;
+    }
+    .nav-right a:hover { color: var(--coral); }
+    .nav-cta {
+      background: var(--ink);
+      color: var(--milk) !important;
+      padding: 11px 22px;
+      border-radius: 100px;
+      font-size: .85rem !important;
+      font-weight: 400 !important;
+      transition: all .25s !important;
+    }
+    .nav-cta:hover { background: var(--coral); }
+
+    /* ── THRESHOLD HERO — soft sky ────────────── */
+    .threshold-hero {
+      position: relative;
+      min-height: 92vh;
+      padding: 160px 56px 100px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 1200px 700px at 18% 18%, var(--peach), transparent 55%),
+        radial-gradient(ellipse 1100px 700px at 82% 38%, var(--lavender), transparent 55%),
+        radial-gradient(ellipse 1000px 600px at 50% 95%, var(--rose), transparent 50%),
+        radial-gradient(ellipse 800px 500px at 5% 95%, var(--gold), transparent 50%),
+        linear-gradient(180deg, var(--milk), var(--cream));
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .hero-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-mark {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--coral);
+      margin-bottom: 28px;
+      letter-spacing: .02em;
+    }
+
+    .hero-h1 {
+      font-family: var(--display);
+      font-size: clamp(3.4rem, 7.5vw, 6.2rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -.02em;
+      margin-bottom: 36px;
+    }
+    .hero-h1 i { font-style: italic; }
+    .hero-h1 .accent {
+      background: linear-gradient(120deg, var(--coral), var(--honey));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-style: italic;
+    }
+
+    .hero-lede {
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: 460px;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .btn-glow {
+      background: var(--ink);
+      color: var(--milk);
+      padding: 16px 30px;
+      border-radius: 100px;
+      font-size: .92rem;
+      font-weight: 400;
+      transition: all .25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 18px 36px -16px rgba(58,44,36,.32);
+    }
+    .btn-glow:hover { background: var(--coral); transform: translateY(-2px); }
+    .btn-ghost {
+      padding: 16px 26px;
+      border-radius: 100px;
+      font-size: .92rem;
+      font-weight: 400;
+      color: var(--ink);
+      background: rgba(255,255,255,.4);
+      border: 1px solid rgba(255,255,255,.7);
+      backdrop-filter: blur(6px);
+      transition: all .25s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.7); }
+
+    /* Hero visual — a soft orb with the work inside */
+    .hero-orb {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-orb::before {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, var(--peach), transparent 60%),
+        radial-gradient(circle at 65% 65%, var(--lavender-2), transparent 60%);
+      filter: blur(40px);
+      opacity: .85;
+      z-index: 0;
+    }
+    .hero-orb-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 40% 35%, var(--milk), var(--peach) 55%, var(--coral) 100%);
+      box-shadow:
+        inset 0 0 60px rgba(255,255,255,.3),
+        0 30px 80px -30px rgba(58,44,36,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .orb-text {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.05;
+      max-width: 60%;
+    }
+    .orb-cap {
+      position: absolute;
+      bottom: -52px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      z-index: 2;
+      letter-spacing: .04em;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .orb-cap b { color: var(--coral); font-weight: 400; }
+
+    /* ── A SOFT BAND ─────────────────────────────── */
+    .ribbon {
+      padding: 70px 56px;
+      background: var(--milk);
+      border-bottom: 1px solid var(--rule);
+    }
+    .ribbon-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 56px;
+    }
+    .rib {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 32px;
+      border-right: 1px solid var(--rule);
+    }
+    .rib:last-child { border-right: none; }
+    .rib-mark {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.6rem;
+      color: var(--coral);
+      margin-bottom: 6px;
+    }
+    .rib-title {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .rib-text {
+      font-size: .92rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── ABOUT — soft cloud section ─────────────── */
+    .about-soft {
+      padding: 130px 56px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 900px 600px at 20% 90%, var(--lavender), transparent 60%),
+        radial-gradient(ellipse 1000px 500px at 80% 10%, var(--peach), transparent 60%),
+        var(--milk);
+    }
+    .about-soft::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .about-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .section-mark {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--coral);
+      margin-bottom: 18px;
+    }
+    .about-h2 {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -.01em;
+      margin-bottom: 32px;
+    }
+    .about-h2 i { font-style: italic; }
+    .about-p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      max-width: 660px;
+      margin: 0 auto 16px;
+    }
+
+    /* ── PIECES (soft orbs) ──────────────────────── */
+    .pieces {
+      padding: 130px 56px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .pieces-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 72px;
+    }
+    .pieces-h2 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 22px;
+      letter-spacing: -.01em;
+    }
+    .pieces-h2 i { font-style: italic; color: var(--coral); }
+    .pieces-lede {
+      font-size: 1.12rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .pieces-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 64px 40px;
+    }
+    .piece-orb {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .orb-img {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      max-width: 260px;
+      border-radius: 50%;
+      box-shadow: 0 30px 60px -30px rgba(58,44,36,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .35s;
+    }
+    .piece-orb:hover .orb-img { transform: scale(1.04); }
+    .orb-1 { background: radial-gradient(circle at 35% 30%, var(--milk), var(--peach) 55%, var(--coral) 100%); }
+    .orb-2 { background: radial-gradient(circle at 35% 30%, var(--milk), var(--lavender) 55%, var(--lavender-2) 100%); }
+    .orb-3 { background: radial-gradient(circle at 35% 30%, var(--milk), var(--gold) 55%, var(--honey) 100%); }
+    .orb-4 { background: radial-gradient(circle at 35% 30%, var(--milk), var(--rose) 55%, var(--coral) 100%); }
+    .orb-5 { background: radial-gradient(circle at 35% 30%, var(--milk), var(--sky) 55%, var(--lavender) 100%); }
+    .orb-6 { background: radial-gradient(circle at 35% 30%, var(--milk), var(--peach-2) 55%, var(--rose) 100%); }
+    .orb-letter {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 3.6rem;
+      color: var(--ink);
+      opacity: .35;
+    }
+    .piece-title {
+      font-family: var(--display);
+      font-size: 1.6rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .piece-tag {
+      font-size: .8rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── REQUEST — soft form ─────────────────────── */
+    .request {
+      padding: 130px 56px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 1000px 700px at 50% 0%, var(--peach), transparent 60%),
+        radial-gradient(ellipse 1000px 700px at 50% 100%, var(--lavender), transparent 60%),
+        var(--milk);
+    }
+    .request-wrap {
+      max-width: 660px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .request-h2 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 24px;
+      letter-spacing: -.01em;
+    }
+    .request-h2 i { font-style: italic; color: var(--coral); }
+    .request-p {
+      font-size: 1.12rem;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      max-width: 500px;
+      margin: 0 auto 44px;
+    }
+    .request-form {
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(20px);
+      border-radius: 28px;
+      padding: 36px;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,.8);
+      box-shadow: 0 30px 60px -30px rgba(58,44,36,.18);
+    }
+    .fg { margin-bottom: 18px; }
+    .fg label {
+      font-size: .82rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .fg input,
+    .fg textarea {
+      font-family: var(--body);
+      font-size: 1rem;
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 16px;
+      background: rgba(255,255,255,.6);
+      color: var(--ink);
+      resize: vertical;
+      transition: all .25s;
+    }
+    .fg input::placeholder,
+    .fg textarea::placeholder { color: var(--muted); }
+    .fg input:focus,
+    .fg textarea:focus {
+      outline: none;
+      background: rgba(255,255,255,.85);
+      border-color: var(--coral);
+    }
+    .request-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--ink);
+      color: var(--milk);
+      border: none;
+      border-radius: 100px;
+      font-family: var(--body);
+      font-size: .95rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all .25s;
+      box-shadow: 0 18px 36px -18px rgba(58,44,36,.32);
+    }
+    .request-submit:hover { background: var(--coral); transform: translateY(-1px); }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: var(--milk);
+      padding: 70px 56px 40px;
+    }
+    .footer-top {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,248,238,.12);
+    }
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 1.45rem;
+      color: var(--milk);
+      margin-bottom: 12px;
+    }
+    .footer-logo b { font-style: italic; color: var(--peach); }
+    .footer-line {
+      font-size: .92rem;
+      color: rgba(255,248,238,.7);
+      line-height: 1.6;
+      max-width: 280px;
+      font-weight: 300;
+    }
+    .footer-col h5 {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--peach);
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul a {
+      font-size: .92rem;
+      color: rgba(255,248,238,.7);
+      font-weight: 300;
+      transition: color .25s;
+    }
+    .footer-col ul a:hover { color: var(--peach); }
+    .footer-bot {
+      max-width: 1180px;
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .85rem;
+      color: rgba(255,248,238,.5);
+      font-weight: 300;
+    }
+    .footer-bot i { font-family: var(--display); font-style: italic; color: var(--peach); }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 22px; }
+      .nav-right { gap: 14px; }
+      .nav-right a:not(.nav-cta) { display: none; }
+      .threshold-hero { padding: 130px 22px 80px; min-height: auto; }
+      .hero-wrap { grid-template-columns: 1fr; gap: 56px; }
+      .orb-cap { white-space: normal; max-width: 280px; }
+      .ribbon { padding: 50px 22px; }
+      .ribbon-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .rib { border-right: none; border-bottom: 1px solid var(--rule); padding-right: 0; padding-bottom: 24px; }
+      .rib:last-child { border-bottom: none; padding-bottom: 0; }
+      .about-soft { padding: 80px 22px; }
+      .pieces { padding: 80px 22px 50px; }
+      .pieces-grid { grid-template-columns: 1fr 1fr; gap: 36px 20px; }
+      .request { padding: 80px 22px; }
+      .request-form { padding: 28px; }
+      footer { padding: 56px 22px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">behind the <b>mask</b></a>
+  <div class="nav-right">
+    <a href="#pieces">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#request">Request</a>
+    <a href="#request" class="nav-cta">Share</a>
+  </div>
+</nav>
+
+<!-- THRESHOLD HERO -->
+<section class="threshold-hero">
+  <div class="hero-grain"></div>
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-mark">a soft place at the edge</div>
+      <h1 class="hero-h1">
+        Pull up a chair.<br>
+        Stay until the <span class="accent">light shifts.</span>
+      </h1>
+      <p class="hero-lede">
+        Art for the experiences we were told to keep small. Tended like a slow morning. Walked at your own pace. The door is always open.
+      </p>
+      <div class="hero-actions">
+        <a href="#pieces" class="btn-glow">
+          Walk the Gallery
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#about" class="btn-ghost">Why this exists</a>
+      </div>
+    </div>
+
+    <div class="hero-orb">
+      <div class="hero-orb-inner">
+        <div class="orb-text">Authenticity</div>
+      </div>
+      <div class="orb-cap"><b>today's piece</b> &middot; the face we carry alone</div>
+    </div>
+  </div>
+</section>
+
+<!-- RIBBON -->
+<section class="ribbon">
+  <div class="ribbon-wrap">
+    <div class="rib">
+      <div class="rib-mark">i.</div>
+      <div class="rib-title">No pressure</div>
+      <div class="rib-text">Browse silently. Sit with a piece. Leave whenever. This site is not asking anything of you.</div>
+    </div>
+    <div class="rib">
+      <div class="rib-mark">ii.</div>
+      <div class="rib-title">Soft entries</div>
+      <div class="rib-text">Heavy pieces are tucked behind gentle doors. You choose what you open. Nothing here is here to shock you.</div>
+    </div>
+    <div class="rib">
+      <div class="rib-mark">iii.</div>
+      <div class="rib-title">Real, not performed</div>
+      <div class="rib-text">Every piece is drawn from real experience. None of them are made to perform the pain.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-soft" id="about">
+  <div class="about-wrap">
+    <div class="section-mark">a note from the artist</div>
+    <h2 class="about-h2">I made this to be the kind of room <i>I needed first.</i></h2>
+    <p class="about-p">
+      Soft enough to enter without performing anything. Honest enough to name the hard things by their right names. Quiet enough that you can hear yourself.
+    </p>
+    <p class="about-p">
+      If a piece finds you here, that means another person has lived something close to it. You are in good company at the edge of this thing.
+    </p>
+  </div>
+</section>
+
+<!-- PIECES -->
+<section class="pieces" id="pieces">
+  <div class="pieces-head">
+    <div class="section-mark">the gallery</div>
+    <h2 class="pieces-h2">Walk slow. <i>Take what calls. Leave what doesn't.</i></h2>
+    <p class="pieces-lede">Every piece is paired with the experience it was drawn from. You can hover, you can click, you can also just look.</p>
+  </div>
+
+  <div class="pieces-grid">
+    <a href="#" class="piece-orb">
+      <div class="orb-img orb-1"><span class="orb-letter">A</span></div>
+      <div class="piece-title">Authenticity</div>
+      <div class="piece-tag">Identity</div>
+    </a>
+    <a href="#" class="piece-orb">
+      <div class="orb-img orb-2"><span class="orb-letter">P</span></div>
+      <div class="piece-title">Process of Healing</div>
+      <div class="piece-tag">Healing</div>
+    </a>
+    <a href="#" class="piece-orb">
+      <div class="orb-img orb-3"><span class="orb-letter">W</span></div>
+      <div class="piece-title">The Wolf Series</div>
+      <div class="piece-tag">Strength</div>
+    </a>
+    <a href="#" class="piece-orb">
+      <div class="orb-img orb-4"><span class="orb-letter">S</span></div>
+      <div class="piece-title">Seasons</div>
+      <div class="piece-tag">Grief &amp; Change</div>
+    </a>
+    <a href="#" class="piece-orb">
+      <div class="orb-img orb-5"><span class="orb-letter">U</span></div>
+      <div class="piece-title">Unable to Cry</div>
+      <div class="piece-tag">Emotional Pain</div>
+    </a>
+    <a href="#" class="piece-orb">
+      <div class="orb-img orb-6"><span class="orb-letter">A</span></div>
+      <div class="piece-title">Anonymous</div>
+      <div class="piece-tag">Identity</div>
+    </a>
+  </div>
+</section>
+
+<!-- REQUEST -->
+<section class="request" id="request">
+  <div class="request-wrap">
+    <div class="section-mark">a request</div>
+    <h2 class="request-h2">If something you've lived doesn't have a piece yet, <i>tell me about it.</i></h2>
+    <p class="request-p">
+      Anonymous is welcome. A few sentences is enough. I read every one.
+    </p>
+
+    <form class="request-form" onsubmit="event.preventDefault();">
+      <div class="fg">
+        <label>Your name (or any name)</label>
+        <input type="text" placeholder="What should I call you?" />
+      </div>
+      <div class="fg">
+        <label>Where can I write back, quietly?</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="fg">
+        <label>What would you have the piece say?</label>
+        <textarea rows="5" placeholder="Take your time. A few sentences is enough."></textarea>
+      </div>
+      <button class="request-submit" type="submit">Send With Care</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">behind the <b>mask</b></div>
+      <p class="footer-line">A soft place at the edge. Tended like a slow morning. The door is always open.</p>
+    </div>
+    <div class="footer-col">
+      <h5>walk</h5>
+      <ul>
+        <li><a href="#pieces">The Gallery</a></li>
+        <li><a href="#">Recently Added</a></li>
+        <li><a href="#">All Pieces</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>sit</h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#request">Request</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask · <i>made with care</i></span>
+    <span>you are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>
