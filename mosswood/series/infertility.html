@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infertility — A Series · Behind the Mask</title>
+  <meta name="description" content="A series of pieces with the stories underneath them. Raw, but not hopeless. Honest." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+
+    /* ── SERIES HERO ─────────────────────────────── */
+    .series-hero {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 160px 60px 80px;
+      position: relative;
+    }
+
+    .series-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 40px;
+    }
+    .series-kicker::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--rust-lt);
+    }
+
+    .series-title {
+      font-family: var(--serif);
+      font-size: clamp(3.4rem, 8vw, 6.2rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -.02em;
+      color: var(--birch);
+      margin-bottom: 40px;
+    }
+    .series-title i { font-style: italic; color: var(--lichen); }
+
+    .series-tone {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--cream);
+      max-width: 580px;
+      padding: 22px 28px;
+      border-left: 3px solid var(--rust-lt);
+      background: rgba(166,85,46,.06);
+      margin-bottom: 56px;
+    }
+
+    .series-meta {
+      padding-top: 28px;
+      border-top: 1px solid var(--rule-st);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: .8rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .series-meta .count { color: var(--lichen); }
+    .series-meta .count b { color: var(--rust-lt); font-weight: 500; }
+
+    /* ── A SOFT NOTE ABOVE THE PIECES ──────────── */
+    .pre-note {
+      max-width: 760px;
+      margin: 0 auto 30px;
+      padding: 30px 60px 0;
+    }
+
+    /* ── PIECE BLOCKS ──────────────────────────── */
+    .pieces-series { padding: 30px 0 60px; }
+
+    .piece-s {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 64px 60px 80px;
+    }
+    .piece-s + .piece-s {
+      border-top: 1px solid var(--rule-st);
+    }
+
+    .piece-s-art {
+      position: relative;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .piece-s-art.placeholder {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 35%, var(--mushroom) 0%, transparent 60%),
+        linear-gradient(160deg, var(--moss), var(--forest));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      border: 1px solid var(--rule-st);
+    }
+    .placeholder-label { text-align: center; }
+    .placeholder-label .pl-kicker {
+      font-size: .68rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .placeholder-label .pl-title {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--birch);
+      margin-bottom: 10px;
+    }
+    .placeholder-label .pl-note {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--lichen);
+      max-width: 280px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    .piece-s-caption {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--rule-st);
+      margin-bottom: 36px;
+    }
+    .piece-s-title {
+      font-family: var(--serif);
+      font-size: 1.9rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--birch);
+    }
+    .piece-s-num {
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+    }
+
+    /* Story */
+    .story-s {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      line-height: 1.75;
+      color: var(--lichen);
+    }
+    .story-s p + p { margin-top: 1.35em; }
+    .story-s em { font-style: italic; color: var(--cream); }
+    .story-s strong { color: var(--cream); font-weight: 500; }
+
+    .story-slot-s {
+      padding: 28px 32px;
+      background: rgba(166,85,46,.06);
+      border-left: 3px solid var(--rust-lt);
+      font-family: var(--sans);
+      font-size: .96rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--lichen);
+    }
+    .story-slot-s .slot-label {
+      display: block;
+      font-size: .66rem;
+      font-weight: 500;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 12px;
+    }
+    .story-slot-s .slot-body b { color: var(--cream); font-weight: 500; }
+
+    /* ── CLOSING ──────────────────────────────── */
+    .closing-s {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 100px 60px 130px;
+      text-align: center;
+      border-top: 1px solid var(--rule-st);
+    }
+    .closing-s-line {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--birch);
+      margin-bottom: 48px;
+    }
+    .closing-s-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 760px) {
+      .series-hero { padding: 130px 22px 60px; }
+      .pre-note { padding: 24px 22px 0; }
+      .piece-s { padding: 56px 22px 64px; }
+      .closing-s { padding: 80px 22px 100px; }
+      .piece-s-caption { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="../gallery.html">Collection</a>
+    <a href="../series/infertility.html" class="active">Series</a>
+    <a href="../about.html">About</a>
+    <a href="../request.html">Request</a>
+    <a href="../request.html" class="nav-cta">Share a Story</a>
+  </div>
+</nav>
+
+<section class="series-hero">
+  <div class="series-kicker">A Series</div>
+  <h1 class="series-title"><i>Infertility</i></h1>
+  <p class="series-tone">Raw, but not hopeless. Honest.</p>
+
+  <div class="series-meta">
+    <span class="count"><b>Three</b> pieces &middot; read top to bottom</span>
+    <span>Words and art by the artist</span>
+  </div>
+</section>
+
+<div class="pre-note">
+  <div class="soft-door">
+    <div class="soft-door-mark">◆</div>
+    <div class="soft-door-text">
+      <b>A note before you start.</b>
+      This series holds pregnancy loss, the long wait, and the parts of infertility most people are told to keep quiet about. Read slowly. Leave when you need to. The page will be here when you come back.
+    </div>
+  </div>
+</div>
+
+<section class="pieces-series">
+
+  <!-- PIECE 1 -->
+  <article class="piece-s">
+    <div class="piece-s-art placeholder">
+      <div class="placeholder-label">
+        <div class="pl-kicker">Piece 01 &middot; pending</div>
+        <div class="pl-title">The First Piece</div>
+        <div class="pl-note">The first of the three sits here once Priscilla sends it in.</div>
+      </div>
+    </div>
+    <div class="piece-s-caption">
+      <div class="piece-s-title">[Title of Piece 1]</div>
+      <div class="piece-s-num">No. 01 / 03</div>
+    </div>
+    <div class="story-s">
+      <div class="story-slot-s">
+        <span class="slot-label">Story &middot; Part 01</span>
+        <p>
+          <b>Priscilla's opening passage drops in here.</b>
+          Set in EB Garamond at 1.25rem with generous line-height. Reads as a survivor's letter against the deep moss background.
+        </p>
+        <p style="margin-top: 14px;">
+          Hold back the <b>painful truth confession</b> portion — the closing piece isn't ready yet, so that closing passage stays unpublished for now.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- PIECE 2 -->
+  <article class="piece-s">
+    <div class="piece-s-art placeholder">
+      <div class="placeholder-label">
+        <div class="pl-kicker">Piece 02 &middot; pending</div>
+        <div class="pl-title">The Second Piece</div>
+        <div class="pl-note">The second piece sits here.</div>
+      </div>
+    </div>
+    <div class="piece-s-caption">
+      <div class="piece-s-title">[Title of Piece 2]</div>
+      <div class="piece-s-num">No. 02 / 03</div>
+    </div>
+    <div class="story-s">
+      <div class="story-slot-s">
+        <span class="slot-label">Story &middot; Part 02</span>
+        <p>
+          <b>Continuation of the story, middle section.</b>
+          The full story runs across all three pieces as one continuous piece of writing, broken at natural pauses where each new image begins.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- PIECE 3 -->
+  <article class="piece-s">
+    <div class="piece-s-art placeholder">
+      <div class="placeholder-label">
+        <div class="pl-kicker">Piece 03 &middot; pending</div>
+        <div class="pl-title">The Third Piece</div>
+        <div class="pl-note">The third piece sits here. The fourth (the closing piece with the unfinished ending) is held back per Priscilla's note.</div>
+      </div>
+    </div>
+    <div class="piece-s-caption">
+      <div class="piece-s-title">[Title of Piece 3]</div>
+      <div class="piece-s-num">No. 03 / 03</div>
+    </div>
+    <div class="story-s">
+      <div class="story-slot-s">
+        <span class="slot-label">Story &middot; Part 03 (closing)</span>
+        <p>
+          <b>Final published section.</b>
+          Closes on a note that holds both the weight and the survival of the story. The "painful truth confession" lines stay unpublished until the closing piece is finished.
+        </p>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<section class="closing-s">
+  <p class="closing-s-line">
+    "If you've lived a version of this, you are not alone in it. You may be the reason someone else makes it through."
+  </p>
+  <div class="closing-s-actions">
+    <a href="../gallery.html" class="btn-wood">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="transform: rotate(180deg);"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to the Collection
+    </a>
+    <a href="../request.html" class="btn-rust">
+      Share What You're Carrying
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">An archive for the experiences that always belonged outside the bright rooms.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Walk</h5>
+      <ul>
+        <li><a href="../gallery.html">The Collection</a></li>
+        <li><a href="../series/infertility.html">Infertility Series</a></li>
+        <li><a href="../gallery.html#recent">Recently Added</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sit</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../request.html">Make a Request</a></li>
+        <li><a href="mailto:hello@behindthemask.art">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>

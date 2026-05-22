@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Collection · Behind the Mask</title>
+  <meta name="description" content="Every piece in the Behind the Mask collection. Browse by theme. Open what calls to you, skip what doesn't." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+
+    .gallery-head {
+      padding: 160px 60px 60px;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      border-bottom: 1px solid var(--rule);
+    }
+    .gallery-head h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.02;
+      color: var(--birch);
+      letter-spacing: -.015em;
+    }
+    .gallery-head h1 i { font-style: italic; color: var(--lichen); }
+
+    /* Topic filter row */
+    .topics {
+      padding: 36px 60px;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--rule);
+    }
+    .topic {
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      border: 1px solid var(--rule-st);
+      border-radius: 100px;
+      color: var(--lichen);
+      transition: all .25s;
+      cursor: pointer;
+    }
+    .topic:hover { color: var(--cream); border-color: var(--sage); }
+    .topic.active {
+      background: var(--rust);
+      color: var(--cream);
+      border-color: var(--rust);
+    }
+    .topic.soft {
+      border-color: var(--rust-lt);
+      color: var(--rust-lt);
+    }
+    .topic.soft::before {
+      content: '◆';
+      margin-right: 6px;
+      font-size: .6rem;
+    }
+
+    .gallery-grid {
+      padding: 70px 60px 100px;
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .g-card {
+      background: var(--moss-up);
+      border: 1px solid var(--rule);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform .35s, border-color .35s, background .35s;
+    }
+    .g-card:hover {
+      transform: translateY(-3px);
+      background: var(--moss);
+      border-color: var(--sage);
+    }
+    .g-thumb {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      position: relative;
+    }
+    .g-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+    .g-card:hover .g-thumb img { transform: scale(1.04); }
+    .g-thumb-placeholder {
+      width: 100%; height: 100%;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 35%, var(--mushroom) 0%, transparent 60%),
+        linear-gradient(160deg, var(--moss), var(--forest));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 2.4rem;
+      color: var(--birch);
+      opacity: .35;
+    }
+
+    /* Soft door overlay (content warning) */
+    .g-thumb-soft {
+      position: absolute;
+      inset: 0;
+      background: rgba(20,32,26,.92);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      gap: 10px;
+    }
+    .soft-mark {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--rust-lt);
+    }
+    .soft-line {
+      font-size: .82rem;
+      line-height: 1.5;
+      color: var(--lichen);
+      max-width: 220px;
+    }
+    .soft-action {
+      margin-top: 6px;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--rust-lt);
+    }
+
+    .g-tag {
+      font-size: .64rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+    }
+    .g-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--birch);
+      line-height: 1.15;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-head { padding: 120px 22px 40px; grid-template-columns: 1fr; gap: 24px; }
+      .topics { padding: 24px 22px; }
+      .gallery-grid { padding: 50px 22px 80px; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .g-title { font-size: 1.1rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="gallery.html" class="active">Collection</a>
+    <a href="series/infertility.html">Series</a>
+    <a href="about.html">About</a>
+    <a href="request.html">Request</a>
+    <a href="request.html" class="nav-cta">Share a Story</a>
+  </div>
+</nav>
+
+<section class="gallery-head">
+  <div>
+    <div class="section-mark">The Collection</div>
+    <h1>Pieces, grouped by <i>what they hold.</i></h1>
+  </div>
+  <p class="section-p" style="margin: 0;">
+    Each piece is paired with the experience it was drawn from. Tap any piece to open it. Topics marked with a soft mark sit behind a quieter door. You choose what you open.
+  </p>
+</section>
+
+<section class="topics">
+  <span class="topic active">All Pieces</span>
+  <span class="topic">Identity</span>
+  <span class="topic">Healing</span>
+  <span class="topic">Anxiety</span>
+  <span class="topic">Grief</span>
+  <span class="topic">Chronic Pain</span>
+  <span class="topic">Strength</span>
+  <span class="topic soft">Self-harm</span>
+  <span class="topic soft">Sexual Abuse</span>
+  <span class="topic soft">Verbal Abuse</span>
+</section>
+
+<section class="gallery-grid">
+  <a href="pieces/authenticity.html" class="g-card">
+    <div class="g-thumb">
+      <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Authenticity-scaled.jpg.webp" alt="Authenticity" />
+    </div>
+    <div class="g-tag">Identity</div>
+    <div class="g-title">Authenticity</div>
+  </a>
+  <a href="pieces/anonymous.html" class="g-card">
+    <div class="g-thumb">
+      <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Anonymous_1-scaled.jpg.webp" alt="Anonymous" />
+    </div>
+    <div class="g-tag">Identity</div>
+    <div class="g-title">Anonymous</div>
+  </a>
+  <a href="pieces/process-of-healing.html" class="g-card">
+    <div class="g-thumb">
+      <img src="https://behindthemask.art/wp-content/smush-webp/2025/11/Process-of-Healing-2_1-scaled.jpg.webp" alt="Process of Healing" />
+    </div>
+    <div class="g-tag">Healing</div>
+    <div class="g-title">Process of Healing</div>
+  </a>
+  <a href="pieces/wolf-series.html" class="g-card">
+    <div class="g-thumb">
+      <img src="https://behindthemask.art/wp-content/smush-webp/2025/10/The-Wolf-Series_1-min-scaled.jpg.webp" alt="The Wolf Series" />
+    </div>
+    <div class="g-tag">Strength</div>
+    <div class="g-title">The Wolf Series</div>
+  </a>
+  <a href="pieces/seasons.html" class="g-card">
+    <div class="g-thumb">
+      <img src="https://behindthemask.art/wp-content/smush-webp/2025/10/Seasons_1-min-scaled.jpg.webp" alt="Seasons" />
+    </div>
+    <div class="g-tag">Grief &amp; Change</div>
+    <div class="g-title">Seasons</div>
+  </a>
+  <a href="pieces/unable-to-cry.html" class="g-card">
+    <div class="g-thumb">
+      <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Unable-to-Cry_1-scaled.jpg.webp" alt="Unable to Cry" />
+    </div>
+    <div class="g-tag">Emotional Pain</div>
+    <div class="g-title">Unable to Cry</div>
+  </a>
+  <a href="#" class="g-card">
+    <div class="g-thumb">
+      <div class="g-thumb-placeholder">B</div>
+      <div class="g-thumb-soft">
+        <div class="soft-mark">◆ Soft door</div>
+        <div class="soft-line">This piece holds difficult content. Open only when you are ready.</div>
+        <div class="soft-action">Open Anyway →</div>
+      </div>
+    </div>
+    <div class="g-tag">Sexual Abuse</div>
+    <div class="g-title">Blameless</div>
+  </a>
+  <a href="#" class="g-card">
+    <div class="g-thumb">
+      <div class="g-thumb-placeholder">H</div>
+      <div class="g-thumb-soft">
+        <div class="soft-mark">◆ Soft door</div>
+        <div class="soft-line">This piece holds difficult content. Open only when you are ready.</div>
+        <div class="soft-action">Open Anyway →</div>
+      </div>
+    </div>
+    <div class="g-tag">Sexual Abuse</div>
+    <div class="g-title">Hollow Humiliation</div>
+  </a>
+  <a href="#" class="g-card">
+    <div class="g-thumb">
+      <div class="g-thumb-placeholder">F</div>
+    </div>
+    <div class="g-tag">Identity</div>
+    <div class="g-title">Forcefully Quieted</div>
+  </a>
+  <a href="#" class="g-card">
+    <div class="g-thumb">
+      <div class="g-thumb-placeholder">D</div>
+    </div>
+    <div class="g-tag">Anxiety</div>
+    <div class="g-title">Drowning</div>
+  </a>
+  <a href="#" class="g-card">
+    <div class="g-thumb">
+      <div class="g-thumb-placeholder">B</div>
+    </div>
+    <div class="g-tag">Burden</div>
+    <div class="g-title">Burden</div>
+  </a>
+  <a href="#" class="g-card">
+    <div class="g-thumb">
+      <div class="g-thumb-placeholder">D</div>
+    </div>
+    <div class="g-tag">Healing</div>
+    <div class="g-title">Dragonfly</div>
+  </a>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">An archive for the experiences that always belonged outside the bright rooms.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Walk</h5>
+      <ul>
+        <li><a href="gallery.html">The Collection</a></li>
+        <li><a href="series/infertility.html">Infertility Series</a></li>
+        <li><a href="gallery.html#recent">Recently Added</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sit</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="request.html">Make a Request</a></li>
+        <li><a href="mailto:hello@behindthemask.art">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>

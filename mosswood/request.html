@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make a Request · Behind the Mask</title>
+  <meta name="description" content="If something you've lived doesn't have a piece yet, tell me about it. Anonymous is welcome. A few sentences is enough." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+
+    .request-head {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 160px 60px 60px;
+      text-align: center;
+    }
+    .request-head h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--birch);
+      letter-spacing: -.015em;
+      margin-bottom: 28px;
+    }
+    .request-head h1 i { font-style: italic; color: var(--lichen); }
+    .request-head-p {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--lichen);
+      line-height: 1.65;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Promise list before form */
+    .promise-list {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .promise-card {
+      padding: 22px 24px;
+      background: var(--moss);
+      border: 1px solid var(--rule-st);
+      border-radius: 2px;
+    }
+    .promise-mark {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--rust-lt);
+      margin-bottom: 8px;
+    }
+    .promise-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--birch);
+      margin-bottom: 6px;
+    }
+    .promise-text {
+      font-size: .9rem;
+      color: var(--lichen);
+      line-height: 1.55;
+    }
+
+    /* The form */
+    .request-form-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 60px 120px;
+    }
+    .request-form {
+      background: var(--moss);
+      border: 1px solid var(--rule-st);
+      border-radius: 2px;
+      padding: 52px 48px;
+    }
+
+    .fg { margin-bottom: 26px; }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .fg label {
+      font-size: .68rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 10px;
+      display: block;
+      font-weight: 500;
+    }
+    .fg input,
+    .fg textarea,
+    .fg select {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--rule-st);
+      border-radius: 2px;
+      background: rgba(20,32,26,.5);
+      color: var(--birch);
+      resize: vertical;
+      transition: border-color .25s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(157,174,147,.5); font-style: italic; }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { outline: none; border-color: var(--lichen); }
+    .fg-help {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .request-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--rust);
+      color: var(--cream);
+      border: none;
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s;
+      margin-top: 8px;
+      border-radius: 2px;
+    }
+    .request-submit:hover { background: var(--rust-lt); }
+
+    .form-aftermath {
+      margin-top: 26px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule-st);
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--lichen);
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .request-head { padding: 120px 22px 40px; }
+      .promise-list { padding: 30px 22px; grid-template-columns: 1fr; gap: 14px; }
+      .request-form-wrap { padding: 50px 22px 80px; }
+      .request-form { padding: 36px 26px; }
+      .fg-row { grid-template-columns: 1fr; gap: 22px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="gallery.html">Collection</a>
+    <a href="series/infertility.html">Series</a>
+    <a href="about.html">About</a>
+    <a href="request.html" class="active">Request</a>
+    <a href="request.html" class="nav-cta">Share a Story</a>
+  </div>
+</nav>
+
+<section class="request-head">
+  <div class="section-mark centered">On Your Request</div>
+  <h1>Tell me what you've <i>been carrying.</i></h1>
+  <p class="request-head-p">
+    Your experience may become the piece that helps someone else find their way back. You don't need the right words. The feeling is enough.
+  </p>
+</section>
+
+<section class="promise-list">
+  <div class="promise-card">
+    <div class="promise-mark">◆</div>
+    <div class="promise-title">Anonymous is welcome</div>
+    <div class="promise-text">You can sign your full name, a first name, or nothing at all. Your privacy is yours to keep.</div>
+  </div>
+  <div class="promise-card">
+    <div class="promise-mark">◆</div>
+    <div class="promise-title">A few sentences is enough</div>
+    <div class="promise-text">You don't need to write an essay. A handful of true sentences is plenty for me to begin.</div>
+  </div>
+  <div class="promise-card">
+    <div class="promise-mark">◆</div>
+    <div class="promise-title">I read every one</div>
+    <div class="promise-text">Not every request becomes a public piece. Every request is read with care.</div>
+  </div>
+</section>
+
+<section class="request-form-wrap">
+  <form class="request-form" onsubmit="event.preventDefault(); alert('Thank you. Your request has been received with care.');">
+    <div class="fg-row">
+      <div class="fg">
+        <label>Your name</label>
+        <input type="text" placeholder="A first name is plenty" />
+        <div class="fg-help">Or leave blank to stay anonymous.</div>
+      </div>
+      <div class="fg">
+        <label>Email (for a quiet reply)</label>
+        <input type="email" placeholder="your@email.com" />
+        <div class="fg-help">Only if you'd like a note back.</div>
+      </div>
+    </div>
+
+    <div class="fg">
+      <label>Topic or experience</label>
+      <select>
+        <option value="">Select a theme...</option>
+        <option>Anxiety</option>
+        <option>Burden</option>
+        <option>Chronic Pain</option>
+        <option>Depression</option>
+        <option>Eating Disorders / Body Dysmorphia</option>
+        <option>Emotional Burnout</option>
+        <option>Grief &amp; Loss</option>
+        <option>Guilt</option>
+        <option>Identity</option>
+        <option>Infertility</option>
+        <option>Self-harm</option>
+        <option>Sexual Abuse</option>
+        <option>Shame</option>
+        <option>Trauma Recovery</option>
+        <option>Verbal Abuse</option>
+        <option>Something not listed</option>
+      </select>
+    </div>
+
+    <div class="fg">
+      <label>What would you have the piece say</label>
+      <textarea rows="8" placeholder="Describe the feeling, the experience, the thing that doesn't have words yet. Take your time."></textarea>
+      <div class="fg-help">A few sentences is enough. Specific is more helpful than polished.</div>
+    </div>
+
+    <button class="request-submit" type="submit">Send With Care</button>
+
+    <div class="form-aftermath">
+      Your request goes to a private inbox. Nothing is shared unless you give permission.<br>
+      You will hear back within a week, if you asked for a reply.
+    </div>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">An archive for the experiences that always belonged outside the bright rooms.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Walk</h5>
+      <ul>
+        <li><a href="gallery.html">The Collection</a></li>
+        <li><a href="series/infertility.html">Infertility Series</a></li>
+        <li><a href="gallery.html#recent">Recently Added</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sit</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="request.html">Make a Request</a></li>
+        <li><a href="mailto:hello@behindthemask.art">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>

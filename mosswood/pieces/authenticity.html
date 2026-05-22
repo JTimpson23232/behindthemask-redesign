@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Authenticity · Behind the Mask</title>
+  <meta name="description" content="The face we wear in public and the one we carry alone are rarely the same. Both are real. Both belong here." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+
+    /* ── BREADCRUMB ─────────────────────────── */
+    .crumb {
+      padding: 110px 60px 0;
+      max-width: 1240px;
+      margin: 0 auto;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .crumb a { color: var(--lichen); transition: color .25s; }
+    .crumb a:hover { color: var(--cream); }
+    .crumb-sep { margin: 0 12px; color: var(--rust-lt); }
+
+    /* ── PIECE HEAD ─────────────────────────── */
+    .piece-head {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 32px 60px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .piece-image {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 60px rgba(0,0,0,.25),
+        0 60px 100px -30px rgba(0,0,0,.5);
+      border: 1px solid var(--rule-st);
+    }
+    .piece-image::before {
+      content: '';
+      position: absolute;
+      inset: -24px;
+      background: radial-gradient(ellipse at 50% 40%, rgba(184,153,118,.15), transparent 60%);
+      filter: blur(20px);
+      z-index: -1;
+    }
+    .piece-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .piece-info { padding: 20px 0; }
+    .piece-info .piece-tag {
+      font-size: .7rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+      margin-bottom: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .piece-info .piece-tag::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--rust-lt);
+    }
+    .piece-title {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--birch);
+      letter-spacing: -.02em;
+      margin-bottom: 24px;
+    }
+    .piece-title i { font-style: italic; color: var(--lichen); }
+
+    .piece-meta-row {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule-st);
+      margin-top: 32px;
+    }
+    .piece-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .piece-meta .pm-label {
+      font-size: .62rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+    }
+    .piece-meta .pm-val {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--birch);
+    }
+
+    /* ── STORY / DESCRIPTION ────────────────── */
+    .piece-story {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 110px 60px 80px;
+    }
+    .piece-story .section-mark { justify-content: flex-start; }
+    .piece-story-body {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--lichen);
+    }
+    .piece-story-body p { margin-bottom: 1.3em; }
+    .piece-story-body p:first-of-type::first-letter {
+      font-family: var(--serif);
+      font-size: 4.6rem;
+      font-weight: 500;
+      float: left;
+      line-height: .88;
+      margin: 6px 12px 0 0;
+      color: var(--rust-lt);
+    }
+    .piece-story-body em { font-style: italic; color: var(--cream); }
+    .piece-story-body strong { font-weight: 500; color: var(--cream); }
+
+    .piece-pullquote {
+      margin: 48px 0;
+      padding: 28px 32px;
+      border-left: 3px solid var(--rust-lt);
+      background: rgba(166,85,46,.06);
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--birch);
+    }
+
+    /* ── ACTIONS BELOW STORY ────────────────── */
+    .piece-actions {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* ── RELATED PIECES ─────────────────────── */
+    .related {
+      padding: 110px 60px 90px;
+      max-width: 1240px;
+      margin: 0 auto;
+      border-top: 1px solid var(--rule);
+      margin-top: 80px;
+    }
+    .related-head {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .rel-card {
+      background: var(--moss-up);
+      border: 1px solid var(--rule);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform .35s, border-color .35s;
+    }
+    .rel-card:hover { transform: translateY(-3px); border-color: var(--sage); }
+    .rel-thumb { aspect-ratio: 4 / 5; overflow: hidden; }
+    .rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .rel-tag {
+      font-size: .64rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+    }
+    .rel-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--birch);
+    }
+
+    @media (max-width: 900px) {
+      .crumb { padding: 90px 22px 0; }
+      .piece-head { padding: 28px 22px 0; grid-template-columns: 1fr; gap: 40px; }
+      .piece-story { padding: 60px 22px 40px; }
+      .piece-actions { padding: 0 22px; }
+      .related { padding: 70px 22px 50px; }
+      .related-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="../gallery.html">Collection</a>
+    <a href="../series/infertility.html">Series</a>
+    <a href="../about.html">About</a>
+    <a href="../request.html">Request</a>
+    <a href="../request.html" class="nav-cta">Share a Story</a>
+  </div>
+</nav>
+
+<div class="crumb">
+  <a href="../index.html">Home</a>
+  <span class="crumb-sep">/</span>
+  <a href="../gallery.html">Collection</a>
+  <span class="crumb-sep">/</span>
+  <span>Authenticity</span>
+</div>
+
+<section class="piece-head">
+  <div class="piece-image">
+    <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Authenticity-scaled.jpg.webp" alt="Authenticity, a piece by Behind the Mask" />
+  </div>
+  <div class="piece-info">
+    <div class="piece-tag">Identity</div>
+    <h1 class="piece-title"><i>Authenticity</i></h1>
+    <p class="section-p" style="font-size: 1.25rem;">
+      A reminder that the face you carry alone is just as real as the one you show the world. Both are you. Both belong here.
+    </p>
+    <div class="piece-meta-row">
+      <div class="piece-meta">
+        <span class="pm-label">Theme</span>
+        <span class="pm-val">Identity, the inner face</span>
+      </div>
+      <div class="piece-meta">
+        <span class="pm-label">Medium</span>
+        <span class="pm-val">Original drawing</span>
+      </div>
+      <div class="piece-meta">
+        <span class="pm-label">Year</span>
+        <span class="pm-val">2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="piece-story">
+  <div class="section-mark">A note on this piece</div>
+  <div class="piece-story-body">
+    <p>
+      This piece was drawn for the people who spend a lifetime alternating between two faces and have started to feel like neither one belongs to them. The public face, the one we hand out at the door of every relationship. And the quieter one, the face nobody asks about, the one we carry alone in a room with no audience.
+    </p>
+    <div class="piece-pullquote">
+      "You are not the public face you've learned to keep up. You are also not only the quiet, harder face you carry alone. <em>Both belong to you. Both are real. Both are welcome here.</em>"
+    </div>
+    <p>
+      Most of us never get to put both faces on the same page in front of someone and have them say: yes, both. I made this piece because I needed someone to say that to me, and nobody did. So if you found it, you found it for a reason.
+    </p>
+    <p>
+      You don't have to choose between them. You don't have to perform the public face to be lovable, and you don't have to hide the quieter face to be welcome. <strong>This is the kind of place where both can rest.</strong>
+    </p>
+  </div>
+</section>
+
+<section class="piece-actions">
+  <a href="../gallery.html" class="btn-wood">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="transform: rotate(180deg);"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to the Collection
+  </a>
+  <a href="../request.html" class="btn-rust">
+    Request a Piece Like This
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<section class="related">
+  <div class="related-head">
+    <div class="section-mark centered">Related pieces</div>
+    <h2 class="section-h2">Other pieces in this <i>part of the woods.</i></h2>
+  </div>
+
+  <div class="related-grid">
+    <a href="anonymous.html" class="rel-card">
+      <div class="rel-thumb"><img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Anonymous_1-scaled.jpg.webp" alt="Anonymous" /></div>
+      <div class="rel-tag">Identity</div>
+      <div class="rel-title">Anonymous</div>
+    </a>
+    <a href="unable-to-cry.html" class="rel-card">
+      <div class="rel-thumb"><img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Unable-to-Cry_1-scaled.jpg.webp" alt="Unable to Cry" /></div>
+      <div class="rel-tag">Emotional Pain</div>
+      <div class="rel-title">Unable to Cry</div>
+    </a>
+    <a href="process-of-healing.html" class="rel-card">
+      <div class="rel-thumb"><img src="https://behindthemask.art/wp-content/smush-webp/2025/11/Process-of-Healing-2_1-scaled.jpg.webp" alt="Process of Healing" /></div>
+      <div class="rel-tag">Healing</div>
+      <div class="rel-title">Process of Healing</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">An archive for the experiences that always belonged outside the bright rooms.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Walk</h5>
+      <ul>
+        <li><a href="../gallery.html">The Collection</a></li>
+        <li><a href="../series/infertility.html">Infertility Series</a></li>
+        <li><a href="../gallery.html#recent">Recently Added</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sit</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../request.html">Make a Request</a></li>
+        <li><a href="mailto:hello@behindthemask.art">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>

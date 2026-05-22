@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Art for the experiences we were told to keep small</title>
+  <meta name="description" content="A quiet archive of original art for grief, anxiety, identity, healing, and the experiences that don't always have language. You are welcome here." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 200px 60px 120px;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      overflow: hidden;
+    }
+    .leaf-sprig {
+      position: absolute;
+      pointer-events: none;
+      opacity: .25;
+      z-index: 0;
+    }
+    .leaf-1 { top: 100px; right: -40px; width: 220px; color: var(--sage); transform: rotate(15deg); }
+    .leaf-2 { bottom: 60px; left: -20px; width: 140px; color: var(--lichen); transform: rotate(-25deg); opacity: .15; }
+
+    .hero-mark {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 38px;
+    }
+    .hero-mark::before { content: ''; width: 36px; height: 1px; background: var(--rust-lt); }
+
+    .hero-h1 {
+      position: relative;
+      z-index: 2;
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1.02;
+      color: var(--birch);
+      letter-spacing: -.015em;
+      margin-bottom: 36px;
+    }
+    .hero-h1 i { font-style: italic; color: var(--lichen); }
+
+    .hero-lede {
+      position: relative;
+      z-index: 2;
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--lichen);
+      max-width: 480px;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions { position: relative; z-index: 2; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+    /* Featured piece — real image instead of placeholder */
+    .hero-feature {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 460px;
+      width: 100%;
+      margin: 0 auto;
+      z-index: 2;
+    }
+    .hero-feature::before {
+      content: '';
+      position: absolute;
+      inset: -24px;
+      background: radial-gradient(ellipse at 50% 40%, rgba(184,153,118,.15), transparent 60%);
+      filter: blur(20px);
+    }
+    .hero-feature-frame {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 60px rgba(0,0,0,.25),
+        0 60px 100px -30px rgba(0,0,0,.5);
+      border: 1px solid var(--rule-st);
+    }
+    .hero-feature-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-feature-cap {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(20,32,26,.85);
+      backdrop-filter: blur(10px);
+      padding: 16px 20px;
+      border-left: 2px solid var(--rust-lt);
+      z-index: 2;
+    }
+    .hero-feature-cap .cap-mark {
+      font-size: .62rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .hero-feature-cap .cap-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--birch);
+    }
+
+    /* ── GLADE / PROMISE STRIP ──────────────── */
+    .glade {
+      background: var(--moss);
+      padding: 90px 60px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .glade-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .glade-item { display: flex; flex-direction: column; gap: 8px; padding-right: 28px; border-right: 1px solid var(--rule-st); }
+    .glade-item:last-child { border-right: none; }
+    .glade-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--rust-lt);
+    }
+    .glade-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--cream);
+    }
+    .glade-text {
+      font-size: .88rem;
+      line-height: 1.6;
+      color: var(--lichen);
+      font-weight: 300;
+    }
+
+    /* ── ABOUT / GROVE ──────────────────────── */
+    .grove {
+      padding: 130px 60px;
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .grove-portrait {
+      aspect-ratio: 3 / 4;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(184,153,118,.4) 0%, transparent 55%),
+        linear-gradient(180deg, var(--bark), var(--moss) 60%, var(--forest));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--mushroom);
+      padding: 40px;
+      text-align: center;
+      font-size: 1.15rem;
+      box-shadow: 0 60px 100px -40px rgba(0,0,0,.5);
+      border: 1px solid var(--rule-st);
+    }
+
+    /* ── PIECES / COLLECTION ────────────────── */
+    .pieces-mw {
+      padding: 110px 60px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .pieces-mw-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 56px;
+    }
+
+    .grid-mw {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .pm-card {
+      background: var(--moss-up);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: transform .35s, border-color .35s, background .35s;
+    }
+    .pm-card:hover {
+      transform: translateY(-3px);
+      background: var(--moss);
+      border-color: var(--sage);
+    }
+    .pm-thumb {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 2px;
+      position: relative;
+    }
+    .pm-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s;
+    }
+    .pm-card:hover .pm-thumb img { transform: scale(1.04); }
+    .pm-tag {
+      font-size: .66rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+    }
+    .pm-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--birch);
+      line-height: 1.15;
+    }
+    .pm-desc {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--lichen);
+      line-height: 1.55;
+    }
+    .pm-link {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule-st);
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .pm-link::after { content: '→'; transition: transform .25s; }
+    .pm-card:hover .pm-link::after { transform: translateX(4px); }
+
+    .view-all-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 48px;
+    }
+
+    /* ── SERIES SPOTLIGHT — Infertility ─────── */
+    .series-spotlight {
+      background: var(--deep);
+      padding: 130px 60px;
+      border-top: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .series-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .series-cover {
+      aspect-ratio: 4 / 5;
+      max-width: 440px;
+      width: 100%;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 35%, var(--mushroom) 0%, transparent 60%),
+        linear-gradient(160deg, var(--bark), var(--moss));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--cream);
+      padding: 40px;
+      text-align: center;
+      font-size: 1.6rem;
+      box-shadow: 0 60px 100px -40px rgba(0,0,0,.6);
+      border: 1px solid var(--rule-st);
+    }
+    .series-text .series-mark {
+      font-size: .7rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+    .series-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--birch);
+      letter-spacing: -.01em;
+      margin-bottom: 24px;
+    }
+    .series-text h2 i { font-style: italic; color: var(--lichen); }
+    .series-text p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      line-height: 1.65;
+      color: var(--lichen);
+      max-width: 460px;
+      margin-bottom: 32px;
+    }
+    .series-text p em { font-style: italic; color: var(--cream); }
+
+    /* ── CLEARING / REQUEST CTA ─────────────── */
+    .clearing-cta {
+      padding: 130px 60px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .clearing-cta-p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--lichen);
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto 44px;
+    }
+
+    @media (max-width: 900px) {
+      .hero { padding: 150px 22px 80px; grid-template-columns: 1fr; gap: 56px; min-height: auto; }
+      .leaf-sprig { display: none; }
+      .glade { padding: 50px 22px; }
+      .glade-wrap { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .glade-item { border-right: none; padding-right: 0; }
+      .grove { padding: 80px 22px; grid-template-columns: 1fr; gap: 40px; }
+      .pieces-mw { padding: 70px 22px 50px; }
+      .grid-mw { grid-template-columns: 1fr; }
+      .series-spotlight { padding: 80px 22px; }
+      .series-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .clearing-cta { padding: 80px 22px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="gallery.html">Collection</a>
+    <a href="series/infertility.html">Series</a>
+    <a href="about.html">About</a>
+    <a href="request.html">Request</a>
+    <a href="request.html" class="nav-cta">Share a Story</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="leaf-sprig leaf-1" viewBox="0 0 240 380" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M120 20 Q 60 100 60 200 Q 60 300 120 370 Q 180 300 180 200 Q 180 100 120 20 Z" opacity=".5"/>
+    <path d="M120 40 L 120 360" stroke="currentColor" stroke-width="2" fill="none"/>
+    <path d="M120 100 L 80 110 M120 130 L 80 140 M120 160 L 80 170 M120 190 L 80 200 M120 220 L 80 230 M120 250 L 80 260 M120 280 L 80 290 M120 100 L 160 110 M120 130 L 160 140 M120 160 L 160 170 M120 190 L 160 200 M120 220 L 160 230 M120 250 L 160 260 M120 280 L 160 290" stroke="currentColor" stroke-width="1.5" opacity=".7"/>
+  </svg>
+  <svg class="leaf-sprig leaf-2" viewBox="0 0 120 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M60 10 C 25 60 25 140 60 190 C 95 140 95 60 60 10 Z"/>
+  </svg>
+
+  <div>
+    <div class="hero-mark">A quiet place under cover</div>
+    <h1 class="hero-h1">The woods knew <i>before we did.</i></h1>
+    <p class="hero-lede">
+      An archive for the experiences that always belonged outside the bright rooms. Where the moss grows slow, the light comes in sideways, and nobody tells you to hurry up.
+    </p>
+    <div class="hero-actions">
+      <a href="gallery.html" class="btn-rust">
+        Walk the Collection
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="about.html" class="btn-wood">Why this exists</a>
+    </div>
+  </div>
+
+  <div class="hero-feature">
+    <a href="pieces/authenticity.html" class="hero-feature-frame">
+      <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Authenticity-scaled.jpg.webp" alt="Authenticity, a piece from Behind the Mask" />
+    </a>
+    <div class="hero-feature-cap">
+      <div class="cap-mark">Today's piece</div>
+      <div class="cap-title">Authenticity</div>
+    </div>
+  </div>
+</section>
+
+<section class="glade">
+  <div class="glade-wrap">
+    <div class="glade-item">
+      <div class="glade-num">i.</div>
+      <div class="glade-title">No hurry</div>
+      <div class="glade-text">Browse slowly. Leave whenever. This place keeps its own time.</div>
+    </div>
+    <div class="glade-item">
+      <div class="glade-num">ii.</div>
+      <div class="glade-title">Soft entries</div>
+      <div class="glade-text">Heavier pieces sit behind quieter doors. You choose what you open.</div>
+    </div>
+    <div class="glade-item">
+      <div class="glade-num">iii.</div>
+      <div class="glade-title">Honest, not hostile</div>
+      <div class="glade-text">The work names hard things. It is never made to shock you.</div>
+    </div>
+    <div class="glade-item">
+      <div class="glade-num">iv.</div>
+      <div class="glade-title">You are welcome</div>
+      <div class="glade-text">Whether you arrived in pain or just walked by. The path is open either way.</div>
+    </div>
+  </div>
+</section>
+
+<section class="grove">
+  <div class="grove-portrait">a portrait of the artist</div>
+  <div>
+    <div class="section-mark">A note from the artist</div>
+    <h2 class="section-h2">I made this in the kind of quiet <i>the woods give back.</i></h2>
+    <p class="section-p">
+      The project began on nights when nothing in the bright rooms made sense. The work is honest. It is also old. The kind of old that says: this has been carried before, and you are not the first to set it down.
+    </p>
+    <p class="section-p">
+      You are not strange for feeling what you feel. You are <em>human</em>. You are welcome here.
+    </p>
+    <a href="about.html" class="btn-wood" style="margin-top: 24px;">Read More
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="pieces-mw">
+  <div class="pieces-mw-head">
+    <div class="section-mark centered">Recent Pieces</div>
+    <h2 class="section-h2">Pieces, grouped by <i>what they hold.</i></h2>
+    <p class="section-p" style="margin: 0 auto; text-align: center;">
+      Each piece is paired with the experience it was drawn from. Open one. Skip the ones that don't call.
+    </p>
+  </div>
+
+  <div class="grid-mw">
+    <a href="pieces/authenticity.html" class="pm-card">
+      <div class="pm-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Authenticity-scaled.jpg.webp" alt="Authenticity" />
+      </div>
+      <div class="pm-tag">Identity</div>
+      <div class="pm-title">Authenticity</div>
+      <div class="pm-desc">The face you carry alone is just as real as the one you show the world.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="pieces/process-of-healing.html" class="pm-card">
+      <div class="pm-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/11/Process-of-Healing-2_1-scaled.jpg.webp" alt="Process of Healing" />
+      </div>
+      <div class="pm-tag">Healing</div>
+      <div class="pm-title">Process of Healing</div>
+      <div class="pm-desc">Not linear. Layered, slow, and still worth every step.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="pieces/wolf-series.html" class="pm-card">
+      <div class="pm-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/10/The-Wolf-Series_1-min-scaled.jpg.webp" alt="The Wolf Series" />
+      </div>
+      <div class="pm-tag">Strength</div>
+      <div class="pm-title">The Wolf Series</div>
+      <div class="pm-desc">What looks dangerous from outside often just learned to protect itself.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="pieces/seasons.html" class="pm-card">
+      <div class="pm-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/10/Seasons_1-min-scaled.jpg.webp" alt="Seasons" />
+      </div>
+      <div class="pm-tag">Grief &amp; Change</div>
+      <div class="pm-title">Seasons</div>
+      <div class="pm-desc">Every season of suffering carries the seed of the next season of growth.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="pieces/unable-to-cry.html" class="pm-card">
+      <div class="pm-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Unable-to-Cry_1-scaled.jpg.webp" alt="Unable to Cry" />
+      </div>
+      <div class="pm-tag">Emotional Pain</div>
+      <div class="pm-title">Unable to Cry</div>
+      <div class="pm-desc">Sometimes the pain moves past tears into something heavier and harder to name.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="pieces/anonymous.html" class="pm-card">
+      <div class="pm-thumb">
+        <img src="https://behindthemask.art/wp-content/smush-webp/2025/09/Anonymous_1-scaled.jpg.webp" alt="Anonymous" />
+      </div>
+      <div class="pm-tag">Identity</div>
+      <div class="pm-title">Anonymous</div>
+      <div class="pm-desc">The face we show the world and the face we carry alone are rarely the same.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+  </div>
+
+  <div class="view-all-row">
+    <a href="gallery.html" class="btn-wood">
+      View All Pieces
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="series-spotlight">
+  <div class="series-wrap">
+    <div class="series-cover">"raw, but not<br>hopeless. honest."</div>
+    <div class="series-text">
+      <div class="series-mark">A new series</div>
+      <h2>Infertility <i>— raw, but not hopeless. Honest.</i></h2>
+      <p>
+        A series of pieces with the stories underneath them. Written by the artist over the nights it took to put words to a thing most people never get to read about. Hold back the painful truth confession until the closing piece is ready.
+      </p>
+      <p>
+        <em>Not for shock. For company.</em> If you've lived a version of this, you may find a few pieces here that knew before you did.
+      </p>
+      <a href="series/infertility.html" class="btn-rust">
+        Read the Series
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="clearing-cta">
+  <div class="section-mark centered">A Request</div>
+  <h2 class="section-h2">If something you've lived doesn't have a piece yet, <i>tell me about it.</i></h2>
+  <p class="clearing-cta-p">
+    Anonymous is welcome. A few sentences is enough. I read every one.
+  </p>
+  <a href="request.html" class="btn-rust">
+    Send With Care
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">An archive for the experiences that always belonged outside the bright rooms.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Walk</h5>
+      <ul>
+        <li><a href="gallery.html">The Collection</a></li>
+        <li><a href="series/infertility.html">Infertility Series</a></li>
+        <li><a href="gallery.html#recent">Recently Added</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sit</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="request.html">Make a Request</a></li>
+        <li><a href="mailto:hello@behindthemask.art">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>

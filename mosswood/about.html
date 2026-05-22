@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About · Behind the Mask</title>
+  <meta name="description" content="A personal art project that combines drawing and words to express experiences that are often hidden. Made for whoever needs to feel less alone in what they're carrying." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+
+    .about-hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 160px 60px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-portrait {
+      aspect-ratio: 3 / 4;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(184,153,118,.4) 0%, transparent 55%),
+        linear-gradient(180deg, var(--bark), var(--moss) 60%, var(--forest));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--mushroom);
+      padding: 40px;
+      text-align: center;
+      font-size: 1.15rem;
+      box-shadow: 0 60px 100px -40px rgba(0,0,0,.5);
+      border: 1px solid var(--rule-st);
+    }
+    .about-hero-text h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--birch);
+      letter-spacing: -.015em;
+      margin-bottom: 28px;
+    }
+    .about-hero-text h1 i { font-style: italic; color: var(--lichen); }
+
+    .about-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 60px 100px;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: var(--lichen);
+    }
+    .about-body p { margin-bottom: 1.4em; }
+    .about-body p:first-of-type::first-letter {
+      font-family: var(--serif);
+      font-size: 4.6rem;
+      font-weight: 500;
+      float: left;
+      line-height: .88;
+      margin: 6px 12px 0 0;
+      color: var(--rust-lt);
+    }
+    .about-body em { font-style: italic; color: var(--cream); }
+    .about-body strong { font-weight: 500; color: var(--cream); }
+
+    .about-pullquote {
+      margin: 56px 0;
+      padding: 32px 36px;
+      border-left: 3px solid var(--rust-lt);
+      background: rgba(166,85,46,.06);
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--birch);
+    }
+
+    /* Process / how requests work */
+    .process {
+      background: var(--moss);
+      padding: 110px 60px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .process-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .process-head {
+      text-align: center;
+      max-width: 660px;
+      margin: 0 auto 64px;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .ps-card {
+      padding: 28px 32px;
+      background: var(--moss-up);
+      border: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ps-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 2.2rem;
+      color: var(--rust-lt);
+      line-height: 1;
+    }
+    .ps-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--birch);
+    }
+    .ps-text {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--lichen);
+      line-height: 1.6;
+    }
+
+    /* CTA block */
+    .cta-block {
+      padding: 130px 60px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta-block .section-h2 { margin-bottom: 20px; }
+    .cta-p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--lichen);
+      line-height: 1.65;
+      margin-bottom: 44px;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero { padding: 120px 22px 60px; grid-template-columns: 1fr; gap: 40px; }
+      .about-body { padding: 60px 22px 80px; }
+      .process { padding: 80px 22px; }
+      .process-steps { grid-template-columns: 1fr; gap: 18px; }
+      .cta-block { padding: 80px 22px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="gallery.html">Collection</a>
+    <a href="series/infertility.html">Series</a>
+    <a href="about.html" class="active">About</a>
+    <a href="request.html">Request</a>
+    <a href="request.html" class="nav-cta">Share a Story</a>
+  </div>
+</nav>
+
+<section class="about-hero">
+  <div class="about-portrait">a portrait of the artist</div>
+  <div class="about-hero-text">
+    <div class="section-mark">About the artist</div>
+    <h1>I made this in the kind of quiet <i>the woods give back.</i></h1>
+    <p class="section-p" style="font-size: 1.25rem;">
+      Behind the Mask is a personal art project that combines drawing and words to express experiences that are often hidden. It exists for whoever needs to feel less isolated in what they are carrying, and to show that healing is possible without rushing anyone through it.
+    </p>
+  </div>
+</section>
+
+<section class="about-body">
+  <p>
+    The project began as private. A handful of drawings made on nights when nothing in the bright rooms made sense, when the usual advice felt like being told to smile while drowning. I needed somewhere for an unspeakable thing to go, so I drew it. The work was honest in a way the conversation around me wasn't.
+  </p>
+
+  <p>
+    Then friends started writing in. They had experiences they'd needed pictures for and had never found. So the project opened. People send in what they have been carrying. I draw it. The piece becomes a record that someone was here, that something happened, that the experience was real enough to take up space on a wall.
+  </p>
+
+  <div class="about-pullquote">
+    "I am not trying to make beautiful images of suffering. I am trying to make true ones, so the people living them feel a little less alone in the room."
+  </div>
+
+  <p>
+    The work is honest. It is also <em>old</em>. The kind of old that says: this has been carried before, and you are not the first to set it down. That is the part that matters most. Whatever you're holding, somebody before you held a version of it. They lived. So can you.
+  </p>
+
+  <p>
+    There are rules I have for this place that I won't break:
+  </p>
+
+  <p>
+    <strong>Nothing here is here to shock you.</strong> Heavy pieces sit behind soft doors. You choose what you open and when. Content warnings are gentle, not theatrical. The site does not perform pain at the visitor.
+  </p>
+
+  <p>
+    <strong>Nothing here is fake.</strong> Every piece begins with a real experience, either mine or someone who sent theirs in. No invented testimonials, no fabricated stats, no manufactured emotion. The honesty is the whole point.
+  </p>
+
+  <p>
+    <strong>You are welcome in any condition you arrived in.</strong> Mid-grief. Mid-healing. Mid-survival. Three years out and still struggling on a random Tuesday. Just looking around. Carrying something you have not named yet. The door is open either way.
+  </p>
+
+  <p>
+    <em>You are not strange for feeling what you feel. You are human. You are welcome here.</em>
+  </p>
+
+  <p style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule-st); font-size: 1.05rem; color: var(--rust-lt); letter-spacing: .04em;">
+    — The Artist
+  </p>
+</section>
+
+<section class="process">
+  <div class="process-wrap">
+    <div class="process-head">
+      <div class="section-mark centered">On Your Request</div>
+      <h2 class="section-h2">How a request becomes <i>a piece.</i></h2>
+      <p class="section-p" style="margin: 0 auto; text-align: center;">
+        If something you've lived doesn't have a piece yet, you can ask for one. Here is what happens after you do.
+      </p>
+    </div>
+
+    <div class="process-steps">
+      <div class="ps-card">
+        <div class="ps-num">i.</div>
+        <div class="ps-title">You send the seed</div>
+        <div class="ps-text">A few sentences. Anonymous is welcome. You don't need the right words. The feeling is enough.</div>
+      </div>
+      <div class="ps-card">
+        <div class="ps-num">ii.</div>
+        <div class="ps-title">It becomes art</div>
+        <div class="ps-text">Your experience is turned into a drawing that names the thing language was failing on. I write back if you'd like a reply.</div>
+      </div>
+      <div class="ps-card">
+        <div class="ps-num">iii.</div>
+        <div class="ps-title">It goes into the world</div>
+        <div class="ps-text">Someone else finds it. Feels a little less alone. That's the whole point. Your story stays anonymous unless you say otherwise.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-block">
+  <div class="section-mark centered">A Request</div>
+  <h2 class="section-h2">Tell me what you've been carrying. <i>I read every one.</i></h2>
+  <p class="cta-p">
+    A few sentences is enough. Anonymous is welcome. You are welcome.
+  </p>
+  <a href="request.html" class="btn-rust">
+    Send With Care
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">An archive for the experiences that always belonged outside the bright rooms.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Walk</h5>
+      <ul>
+        <li><a href="gallery.html">The Collection</a></li>
+        <li><a href="series/infertility.html">Infertility Series</a></li>
+        <li><a href="gallery.html#recent">Recently Added</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sit</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="request.html">Make a Request</a></li>
+        <li><a href="mailto:hello@behindthemask.art">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>
