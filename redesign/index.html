@@ -6,7 +6,7 @@
   <title>Behind the Mask · Six Redesign Concepts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Crimson+Pro:ital,wght@0,400;1,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Instrument+Serif:ital@0;1&family=Tenor+Sans&family=Caveat:wght@400;500&family=Outfit:wght@300;400;500&family=Manrope:wght@300;400;500&family=DM+Sans:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Serif+Display:ital@0;1&family=Newsreader:ital,wght@0,300;0,400;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Caveat:wght@400;500&family=DM+Sans:wght@300;400;500&family=Inter:wght@300;400;500&family=Karla:wght@300;400&display=swap" rel="stylesheet" />
   <style>
 
     :root {
@@ -103,68 +103,127 @@
       justify-content: space-between;
     }
 
+    /* 01 HEARTH — warm cream + peach */
     .card.hearth .preview { background: #FDF6EE; color: #2D2018; background-image: radial-gradient(ellipse 420px 280px at 80% 30%, rgba(229,162,131,.22), transparent 60%); }
     .card.hearth .greet { font-family: 'Caveat', cursive; font-size: 1.5rem; color: #E5A283; transform: rotate(-1deg); display: inline-block; }
-    .card.hearth .h-title { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 400; line-height: 1.05; color: #2D2018; font-variation-settings: "opsz" 80; max-width: 360px; }
-    .card.hearth .h-title i { font-style: italic; color: #E5A283; }
-    .card.hearth .h-cta { align-self: flex-start; background: #2D2018; color: #FDF6EE; padding: 10px 20px; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: .76rem; font-weight: 500; }
+    .card.hearth .title { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 400; line-height: 1.05; color: #2D2018; font-variation-settings: "opsz" 80; max-width: 360px; }
+    .card.hearth .title i { font-style: italic; color: #E5A283; }
+    .card.hearth .pill { align-self: flex-start; background: #2D2018; color: #FDF6EE; padding: 10px 20px; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: .76rem; font-weight: 500; }
 
-    .card.garden .preview {
-      background: #FAF6EC;
-      color: #2A3027;
+    /* 02 TIDEWATER — cool fog + slate + coral */
+    .card.tidewater .preview {
+      background: #F9FAFB;
+      color: #1F2A33;
       background-image:
-        radial-gradient(circle at 80% 25%, rgba(157,178,145,.4), transparent 50%),
-        radial-gradient(circle at 18% 80%, rgba(201,160,160,.35), transparent 50%);
+        linear-gradient(180deg, #F9FAFB 0%, #EEF1F2 50%, #DAE3E9 100%);
     }
-    .card.garden .g-leaf { position: absolute; width: 80px; opacity: .45; }
-    .card.garden .g-leaf.l1 { top: 30px; right: 24px; transform: rotate(28deg); color: #B8654A; }
-    .card.garden .g-leaf.l2 { bottom: 30px; left: 20px; transform: rotate(-20deg); color: #6E8265; width: 64px; }
-    .card.garden .g-kicker { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: #B8654A; letter-spacing: .1em; text-transform: lowercase; }
-    .card.garden .g-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; line-height: 1.05; color: #2A3027; max-width: 380px; }
-    .card.garden .g-title i { font-style: italic; color: #B8654A; }
-    .card.garden .g-meta { font-family: 'Outfit', sans-serif; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: #6E8265; }
+    .card.tidewater .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -45%);
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,181,166,.65), rgba(240,181,166,.25) 60%, transparent 75%);
+      filter: blur(6px);
+    }
+    .card.tidewater .horizon {
+      position: absolute;
+      left: 0; right: 0;
+      top: 62%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #5C7388 30%, #5C7388 70%, transparent);
+      opacity: .35;
+    }
+    .card.tidewater .kicker { position: relative; z-index: 2; font-size: .68rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: #E0907F; }
+    .card.tidewater .title { position: relative; z-index: 2; font-family: 'Lora', serif; font-size: 2.5rem; font-weight: 400; line-height: 1.05; color: #1F2A33; letter-spacing: -.015em; max-width: 360px; }
+    .card.tidewater .title i { font-style: italic; color: #5C7388; }
+    .card.tidewater .meta { position: relative; z-index: 2; font-family: 'Lora', serif; font-style: italic; color: #56656F; font-size: 1rem; }
 
+    /* 03 LANTERN — warm umber + amber */
     .card.lantern .preview { background: #281814; color: #F5E5C5; background-image: radial-gradient(ellipse 500px 320px at 50% 30%, rgba(232,180,90,.18), transparent 65%); }
     .card.lantern .flame { width: 14px; height: 18px; background: radial-gradient(ellipse at 50% 70%, #E8B45A, #8B3D24 50%, transparent 75%); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; box-shadow: 0 0 20px rgba(232,180,90,.55); align-self: flex-start; }
-    .card.lantern .l-kicker { font-family: 'DM Sans', sans-serif; font-size: .68rem; letter-spacing: .32em; text-transform: uppercase; color: #E8B45A; margin-bottom: 14px; }
-    .card.lantern .l-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; line-height: 1.05; color: #FDE7B5; max-width: 380px; }
-    .card.lantern .l-title i { font-style: italic; color: #F2CB85; }
-    .card.lantern .l-line { font-family: 'Cormorant Garamond', serif; font-size: .98rem; font-style: italic; color: rgba(245,229,197,.65); letter-spacing: .04em; }
+    .card.lantern .kicker { font-family: 'DM Sans', sans-serif; font-size: .68rem; letter-spacing: .32em; text-transform: uppercase; color: #E8B45A; margin-bottom: 14px; }
+    .card.lantern .title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; line-height: 1.05; color: #FDE7B5; max-width: 380px; }
+    .card.lantern .title i { font-style: italic; color: #F2CB85; }
+    .card.lantern .line { font-family: 'Cormorant Garamond', serif; font-size: .98rem; font-style: italic; color: rgba(245,229,197,.65); }
 
-    .card.letter .preview {
-      background: #FAFAF6;
-      color: #2A2218;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.32 0 0 0 0 0.18 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    /* 04 IRIS — cool plum + lilac */
+    .card.iris .preview {
+      color: #F5F2EE;
+      background: #2B1B3E;
+      background-image:
+        radial-gradient(ellipse 500px 320px at 80% 20%, rgba(199,182,214,.22), transparent 65%),
+        radial-gradient(ellipse 400px 280px at 20% 80%, rgba(216,160,181,.15), transparent 65%);
     }
-    .card.letter .meta { font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: #978975; padding-bottom: 14px; border-bottom: 1px solid rgba(42,34,24,.14); display: flex; justify-content: space-between; }
-    .card.letter .salutation { font-family: 'Caveat', cursive; font-size: 1.8rem; color: #2A2218; transform: rotate(-1deg); display: inline-block; margin-top: 18px; }
-    .card.letter .salutation .ul { border-bottom: 2px solid #D0A766; padding-bottom: 1px; }
-    .card.letter .l-h { font-family: 'Crimson Pro', serif; font-size: 2rem; font-weight: 400; line-height: 1.15; color: #2A2218; letter-spacing: -.005em; }
-    .card.letter .l-h i { font-style: italic; color: #B7873E; }
-    .card.letter .sig { font-family: 'Caveat', cursive; font-size: 1.6rem; color: #2A2218; transform: rotate(-2deg); display: inline-block; }
-
-    .card.atelier .preview { background: #FAF7EE; color: #0E0A06; padding: 32px 36px; }
-    .card.atelier .colophon-mini { display: flex; flex-direction: column; gap: 6px; padding-bottom: 10px; border-bottom: 1px solid rgba(14,10,6,.28); }
-    .card.atelier .colo-key { font-family: 'Tenor Sans', sans-serif; font-size: .58rem; letter-spacing: .28em; text-transform: uppercase; color: #968873; }
-    .card.atelier .colo-val { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: #0E0A06; }
-    .card.atelier .at-title { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 400; line-height: .95; color: #0E0A06; letter-spacing: -.015em; }
-    .card.atelier .at-title i { font-style: italic; color: #8A6E2E; }
-    .card.atelier .at-foot { font-family: 'Tenor Sans', sans-serif; font-size: .58rem; letter-spacing: .32em; text-transform: uppercase; color: #8A6E2E; }
-
-    .card.threshold .preview {
-      color: #3A2C24;
-      background:
-        radial-gradient(ellipse 600px 400px at 18% 18%, #F8D4B8, transparent 55%),
-        radial-gradient(ellipse 600px 400px at 82% 38%, #C8B8DC, transparent 55%),
-        radial-gradient(ellipse 400px 300px at 50% 95%, #E5B8C2, transparent 50%),
-        radial-gradient(ellipse 350px 250px at 5% 95%, #E8C880, transparent 50%),
-        #FFF8EE;
+    .card.iris .iris-glow {
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(199,182,214,.4), transparent 60%);
+      filter: blur(20px);
     }
-    .card.threshold .th-mark { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.1rem; color: #E89A85; }
-    .card.threshold .th-title { font-family: 'Instrument Serif', serif; font-size: 3rem; font-weight: 400; line-height: .98; color: #3A2C24; letter-spacing: -.015em; }
-    .card.threshold .th-title .accent { background: linear-gradient(120deg, #E89A85, #C8945A); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: italic; }
-    .card.threshold .th-orb { width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFF8EE, #F8D4B8 55%, #E89A85 100%); box-shadow: 0 18px 36px -16px rgba(58,44,36,.28); position: absolute; right: 36px; top: 36px; }
+    .card.iris .pill {
+      position: relative; z-index: 2;
+      font-size: .66rem; letter-spacing: .32em; text-transform: uppercase; color: #C7B6D6;
+      padding: 7px 16px; border: 1px solid #6E5184; border-radius: 100px; align-self: flex-start;
+    }
+    .card.iris .title { position: relative; z-index: 2; font-family: 'DM Serif Display', serif; font-size: 3rem; font-weight: 400; line-height: 1; color: #F5F2EE; letter-spacing: -.02em; max-width: 380px; }
+    .card.iris .title i { font-style: italic; color: #C7B6D6; }
+    .card.iris .lede { position: relative; z-index: 2; font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.05rem; color: #E0D5EB; opacity: .85; }
 
+    /* 05 ATRIUM — white + slate + ochre */
+    .card.atrium .preview {
+      background: #FFFFFF;
+      color: #15181A;
+      position: relative;
+    }
+    .card.atrium .bar {
+      position: absolute;
+      top: 0; left: 0;
+      width: 6px; height: 56px;
+      background: #B8722E;
+    }
+    .card.atrium .num {
+      font-family: 'Newsreader', serif;
+      font-style: italic;
+      font-size: .9rem;
+      color: #8C99A2;
+      align-self: flex-end;
+    }
+    .card.atrium .kicker { font-size: .66rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: #B8722E; }
+    .card.atrium .title { font-family: 'Newsreader', serif; font-size: 2.6rem; font-weight: 300; line-height: 1.05; color: #15181A; letter-spacing: -.015em; max-width: 360px; }
+    .card.atrium .title i { font-style: italic; color: #B8722E; font-weight: 400; }
+    .card.atrium .meta-row { padding-top: 14px; border-top: 1px solid rgba(21,24,26,.1); display: flex; gap: 14px; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: #56656F; }
+
+    /* 06 MOSSWOOD — deep forest + birch + rust */
+    .card.mosswood .preview {
+      background: #1F2E25;
+      color: #F2EBDA;
+      background-image:
+        radial-gradient(ellipse 500px 320px at 80% 10%, rgba(157,174,147,.16), transparent 60%),
+        radial-gradient(ellipse 400px 300px at 10% 90%, rgba(166,85,46,.1), transparent 60%);
+    }
+    .card.mosswood .leaf {
+      position: absolute;
+      top: 28px;
+      right: -24px;
+      width: 120px;
+      color: #6E8770;
+      opacity: .32;
+      transform: rotate(18deg);
+    }
+    .card.mosswood .kicker { position: relative; z-index: 2; font-size: .68rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: #C77D52; display: inline-flex; align-items: center; gap: 12px; }
+    .card.mosswood .kicker::before { content: ''; width: 28px; height: 1px; background: #C77D52; }
+    .card.mosswood .title { position: relative; z-index: 2; font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 400; line-height: 1.02; color: #F2EBDA; letter-spacing: -.015em; max-width: 360px; }
+    .card.mosswood .title i { font-style: italic; color: #9DAE93; }
+    .card.mosswood .line { position: relative; z-index: 2; font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.05rem; color: #9DAE93; }
+
+    /* ── CARD META ──────────────────────────────────── */
     .card-meta {
       padding: 32px 36px 36px;
       background: #FFFFFF;
@@ -194,6 +253,19 @@
     .card-link.alt { color: var(--muted); border-bottom-color: var(--rule); }
     .card-link.alt:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
+    /* Palette dots row */
+    .palette-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .palette-row .dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+
     .footer-note {
       max-width: 820px;
       margin: 0 auto;
@@ -218,13 +290,13 @@
 <body>
 
 <section class="intro">
-  <div class="intro-kicker">Behind the Mask · Six Concepts for the Redesign</div>
+  <div class="intro-kicker">Behind the Mask · Six Redesign Concepts</div>
   <h1 class="intro-h1">Six rooms for the work<br>to <i>live in.</i></h1>
-  <p class="intro-lede">Same artist. Same gallery. Six completely different doors to walk through.</p>
+  <p class="intro-lede">Same artist. Same gallery. Six genuinely different palettes and feels.</p>
   <p class="intro-note">
-    Every concept is engineered around one rule: the site should feel like hospitality, not exhibition. None opens with shock imagery. None asks the visitor to explain herself at the door. Each solves "safe" a different way.
+    The first round of concepts was too similar (cream, beige, paper-warm). This round breaks the palette entirely. Each concept now sits in a different temperature, brightness, and emotional register. The brief still holds: hospitality, not exhibition. Real, emotionally safe, creative and artistic.
     <br><br>
-    <b>The brief:</b> real, emotionally safe, creative and artistic. Someone survived something here. Not "look how tortured I was." Each concept ships with a printable PDF you can share with Priscilla.
+    <b>The new palette spread:</b> warm-light (Hearth), cool-light (Tidewater), warm-dark (Lantern), cool-dark (Iris), modern-bright (Atrium), deep-earth (Mosswood). No two share DNA.
   </p>
 </section>
 
@@ -233,15 +305,24 @@
   <a href="01-hearth/" class="card hearth">
     <div class="preview">
       <div><div class="greet">hello, friend.</div></div>
-      <div class="h-title">Come in. <i>Take your shoes off.</i></div>
-      <div class="h-cta">Walk the Gallery →</div>
+      <div class="title">Come in. <i>Take your shoes off.</i></div>
+      <div class="pill">Walk the Gallery →</div>
     </div>
     <div class="card-meta">
-      <div class="card-num">Concept 01</div>
+      <div class="card-num">Concept 01 · Warm-light</div>
       <div class="card-name">Hearth</div>
       <div class="card-tagline">Come inside, the kettle's on.</div>
-      <p class="card-desc">Warm cream and soft peach. Rounded everything. Opens by saying hello like a friend's living room. Artist is the host, not the survivor on display. Soft promise strip: no pressure, soft entries, made with care.</p>
-      <div class="card-feel-row"><span class="feel">Warm</span><span class="feel">Hospitality</span><span class="feel">Rounded</span><span class="feel">Friendly</span></div>
+      <div class="palette-row">
+        <span class="dot" style="background:#FDF6EE"></span>
+        <span class="dot" style="background:#F5C8B0"></span>
+        <span class="dot" style="background:#E5A283"></span>
+        <span class="dot" style="background:#8FA98B"></span>
+        <span class="dot" style="background:#2D2018"></span>
+      </div>
+      <p class="card-desc">Warm cream + peach + sage. Rounded everything. Friendly humanist serif (Fraunces). Opens by saying hello like a friend's living room. Artist is the host.</p>
+      <div class="card-feel-row">
+        <span class="feel">Warm</span><span class="feel">Hospitality</span><span class="feel">Rounded</span><span class="feel">Friendly</span>
+      </div>
       <div class="card-links">
         <span class="card-link">Walk Into Hearth →</span>
         <a href="../pdfs/BTM-Concept-01-hearth.pdf" class="card-link alt">Open PDF</a>
@@ -249,23 +330,32 @@
     </div>
   </a>
 
-  <a href="02-garden/" class="card garden">
+  <a href="02-tidewater/" class="card tidewater">
     <div class="preview">
-      <svg class="g-leaf l1" viewBox="0 0 120 200" fill="currentColor"><path d="M60 10 C 25 60 25 140 60 190 C 95 140 95 60 60 10 Z"/></svg>
-      <svg class="g-leaf l2" viewBox="0 0 120 120" fill="currentColor"><circle cx="60" cy="40" r="14"/><circle cx="40" cy="60" r="10"/><circle cx="80" cy="60" r="10"/><circle cx="60" cy="78" r="14"/></svg>
-      <div class="g-kicker">a garden of feelings, given form</div>
-      <div class="g-title">Some things grow <i>only in the quiet.</i></div>
-      <div class="g-meta">12 beds · walk slowly</div>
+      <div class="sun"></div>
+      <div class="horizon"></div>
+      <div class="kicker">The fog will lift</div>
+      <div class="title">A quiet place at the <i>edge of the water.</i></div>
+      <div class="meta">Today's piece &middot; Authenticity</div>
     </div>
     <div class="card-meta">
-      <div class="card-num">Concept 02</div>
-      <div class="card-name">Garden</div>
-      <div class="card-tagline">Healing grows here.</div>
-      <p class="card-desc">Sage, terracotta, dusty rose, oat. Botanical SVG accents. Gallery reframed as garden beds (slow bed, quiet bed, tender bed). Submit page is "plant a seed." Cottage garden at dusk.</p>
-      <div class="card-feel-row"><span class="feel">Earthy</span><span class="feel">Botanical</span><span class="feel">Cottage</span><span class="feel">Slow</span></div>
+      <div class="card-num">Concept 02 · Cool-light</div>
+      <div class="card-name">Tidewater</div>
+      <div class="card-tagline">The fog will lift.</div>
+      <div class="palette-row">
+        <span class="dot" style="background:#F9FAFB"></span>
+        <span class="dot" style="background:#DAE3E9"></span>
+        <span class="dot" style="background:#A8C3B6"></span>
+        <span class="dot" style="background:#E0907F"></span>
+        <span class="dot" style="background:#1F2A33"></span>
+      </div>
+      <p class="card-desc">Cool fog + slate + sea-glass + pale coral. Classical serif (Lora). Coastal dawn energy. Calming by way of water, not warmth. Anchored by a deep navy ink.</p>
+      <div class="card-feel-row">
+        <span class="feel">Cool</span><span class="feel">Coastal</span><span class="feel">Spacious</span><span class="feel">Foggy</span>
+      </div>
       <div class="card-links">
-        <span class="card-link">Walk Into Garden →</span>
-        <a href="../pdfs/BTM-Concept-02-garden.pdf" class="card-link alt">Open PDF</a>
+        <span class="card-link">Walk Into Tidewater →</span>
+        <a href="../pdfs/BTM-Concept-02-tidewater.pdf" class="card-link alt">Open PDF</a>
       </div>
     </div>
   </a>
@@ -274,17 +364,26 @@
     <div class="preview">
       <div>
         <div class="flame"></div>
-        <div class="l-kicker" style="margin-top:18px;">A kept light</div>
-        <div class="l-title">I left the lamp on. <i>Come sit with me.</i></div>
+        <div class="kicker" style="margin-top:18px;">A kept light</div>
+        <div class="title">I left the lamp on. <i>Come sit with me.</i></div>
       </div>
-      <div class="l-line">"You don't have to be over it to be here."</div>
+      <div class="line">"You don't have to be over it to be here."</div>
     </div>
     <div class="card-meta">
-      <div class="card-num">Concept 03</div>
+      <div class="card-num">Concept 03 · Warm-dark</div>
       <div class="card-name">Lantern</div>
       <div class="card-tagline">I'll sit with you in the dark.</div>
-      <p class="card-desc">Warm umber lit from within. Candle-glow amber. For visitors who find peppy bright sites invalidating mid-something-hard. Anti-toxic-positivity. Dignified low light, not gothic. The site refuses to flinch.</p>
-      <div class="card-feel-row"><span class="feel">Warm-dark</span><span class="feel">Vigil</span><span class="feel">Held</span><span class="feel">Honest</span></div>
+      <div class="palette-row">
+        <span class="dot" style="background:#1A0E0A"></span>
+        <span class="dot" style="background:#281814"></span>
+        <span class="dot" style="background:#8B3D24"></span>
+        <span class="dot" style="background:#E8B45A"></span>
+        <span class="dot" style="background:#F5E5C5"></span>
+      </div>
+      <p class="card-desc">Warm umber lit from within. Candle-glow amber. For visitors who find bright peppy sites invalidating mid-something-hard. Anti-toxic-positivity. Dignified low light.</p>
+      <div class="card-feel-row">
+        <span class="feel">Warm-dark</span><span class="feel">Vigil</span><span class="feel">Held</span><span class="feel">Honest</span>
+      </div>
       <div class="card-links">
         <span class="card-link">Walk Into Lantern →</span>
         <a href="../pdfs/BTM-Concept-03-lantern.pdf" class="card-link alt">Open PDF</a>
@@ -292,68 +391,103 @@
     </div>
   </a>
 
-  <a href="04-letter/" class="card letter">
+  <a href="04-iris/" class="card iris">
     <div class="preview">
-      <div class="meta"><span>An open letter</span><span>From the artist</span></div>
-      <div>
-        <div class="salutation">If you found this, <span class="ul">read first.</span></div>
-        <div class="l-h" style="margin-top:14px;">I made this so you <i>wouldn't have to explain yourself</i> at the door.</div>
-      </div>
-      <div class="sig">— the artist</div>
+      <div class="iris-glow"></div>
+      <div class="pill">A held room</div>
+      <div class="title">Stay as long as <i>you need to.</i></div>
+      <div class="lede">"A room with the lights set low on purpose."</div>
     </div>
     <div class="card-meta">
-      <div class="card-num">Concept 04</div>
-      <div class="card-name">Letter</div>
-      <div class="card-tagline">I wrote this for you.</div>
-      <p class="card-desc">Paper white, large serif body, handwriting accents. The homepage IS a letter to the reader. Almost no UI chrome. Art appears mid-letter pinned like a postcard. The most intimate of the six.</p>
-      <div class="card-feel-row"><span class="feel">Intimate</span><span class="feel">Direct</span><span class="feel">Paper</span><span class="feel">Slow read</span></div>
+      <div class="card-num">Concept 04 · Cool-dark</div>
+      <div class="card-name">Iris</div>
+      <div class="card-tagline">The cool side of held.</div>
+      <div class="palette-row">
+        <span class="dot" style="background:#1A1226"></span>
+        <span class="dot" style="background:#2B1B3E"></span>
+        <span class="dot" style="background:#6E5184"></span>
+        <span class="dot" style="background:#C7B6D6"></span>
+        <span class="dot" style="background:#D8A0B5"></span>
+      </div>
+      <p class="card-desc">Deep plum + lilac + cool silver. The cool-dark counterpart to Lantern's warm-dark. For people who find warm-orange home tones too "homey." Elegant DM Serif Display.</p>
+      <div class="card-feel-row">
+        <span class="feel">Cool-dark</span><span class="feel">Sanctuary</span><span class="feel">Elegant</span><span class="feel">Held</span>
+      </div>
       <div class="card-links">
-        <span class="card-link">Walk Into Letter →</span>
-        <a href="../pdfs/BTM-Concept-04-letter.pdf" class="card-link alt">Open PDF</a>
+        <span class="card-link">Walk Into Iris →</span>
+        <a href="../pdfs/BTM-Concept-04-iris.pdf" class="card-link alt">Open PDF</a>
       </div>
     </div>
   </a>
 
-  <a href="05-atelier/" class="card atelier">
+  <a href="05-atrium/" class="card atrium">
     <div class="preview">
-      <div class="colophon-mini">
-        <span class="colo-key">A Collection By</span>
-        <span class="colo-val"><i>The Artist</i></span>
+      <div class="bar"></div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div></div>
+        <div class="num">No. 01</div>
       </div>
-      <div class="at-title">Behind<br>the <i>Mask.</i></div>
-      <div class="at-foot">I. · Foreword · II. · The Plates</div>
+      <div>
+        <div class="kicker">A current collection</div>
+        <div class="title" style="margin-top:14px;">Art for the experiences <i>we don't have language for</i> yet.</div>
+      </div>
+      <div class="meta-row">
+        <span>25+ pieces</span>
+        <span>·</span>
+        <span>Living archive</span>
+      </div>
     </div>
     <div class="card-meta">
-      <div class="card-num">Concept 05</div>
-      <div class="card-name">Atelier</div>
-      <div class="card-tagline">Treated like the art it is.</div>
-      <p class="card-desc">Cream paper, ink black, oxidized brass. Fine-art monograph energy. Catalog raisonné. Numbered plates (Plate I, Plate II). Drop-cap foreword, museum-label captions. Phaidon book gravitas.</p>
-      <div class="card-feel-row"><span class="feel">Editorial</span><span class="feel">Museum</span><span class="feel">Refined</span><span class="feel">Considered</span></div>
+      <div class="card-num">Concept 05 · Modern-bright</div>
+      <div class="card-name">Atrium</div>
+      <div class="card-tagline">Honest by being clean.</div>
+      <div class="palette-row">
+        <span class="dot" style="background:#FFFFFF"></span>
+        <span class="dot" style="background:#ECECE6"></span>
+        <span class="dot" style="background:#56656F"></span>
+        <span class="dot" style="background:#B8722E"></span>
+        <span class="dot" style="background:#15181A"></span>
+      </div>
+      <p class="card-desc">Bright gallery white + slate + single warm ochre accent. Editorial-modern. Sans-serif primary (Inter) with restrained serif (Newsreader). Aesop store / Frieze magazine energy. Refuses both melodrama and saccharine.</p>
+      <div class="card-feel-row">
+        <span class="feel">Modern</span><span class="feel">Bright</span><span class="feel">Considered</span><span class="feel">Confident</span>
+      </div>
       <div class="card-links">
-        <span class="card-link">Walk Into Atelier →</span>
-        <a href="../pdfs/BTM-Concept-05-atelier.pdf" class="card-link alt">Open PDF</a>
+        <span class="card-link">Walk Into Atrium →</span>
+        <a href="../pdfs/BTM-Concept-05-atrium.pdf" class="card-link alt">Open PDF</a>
       </div>
     </div>
   </a>
 
-  <a href="06-threshold/" class="card threshold">
+  <a href="06-mosswood/" class="card mosswood">
     <div class="preview">
-      <div class="th-orb"></div>
-      <div>
-        <div class="th-mark">a soft place at the edge</div>
-        <div class="th-title" style="margin-top:14px;">Pull up a chair. Stay until the <span class="accent">light shifts.</span></div>
-      </div>
-      <div></div>
+      <svg class="leaf" viewBox="0 0 240 380" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M120 20 Q 60 100 60 200 Q 60 300 120 370 Q 180 300 180 200 Q 180 100 120 20 Z" opacity=".7"/>
+        <path d="M120 40 L 120 360" stroke="rgba(0,0,0,.2)" stroke-width="2" fill="none"/>
+        <path d="M120 100 L 80 110 M120 140 L 80 150 M120 180 L 80 190 M120 220 L 80 230 M120 260 L 80 270 M120 100 L 160 110 M120 140 L 160 150 M120 180 L 160 190 M120 220 L 160 230 M120 260 L 160 270" stroke="rgba(0,0,0,.2)" stroke-width="1.5"/>
+      </svg>
+      <div class="kicker">A quiet place under cover</div>
+      <div class="title">The woods knew <i>before we did.</i></div>
+      <div class="line">"The kind of old that says: this has been carried before."</div>
     </div>
     <div class="card-meta">
-      <div class="card-num">Concept 06</div>
-      <div class="card-name">Threshold</div>
-      <div class="card-tagline">A soft place at the edge.</div>
-      <p class="card-desc">Peach, lavender, dusty rose, gold. Dreamy sunset gradients. Pieces presented as glowing soft orbs. Surreal-sanctuary energy. Like a perfumery atelier but for grief. The most aesthetically unusual of the six.</p>
-      <div class="card-feel-row"><span class="feel">Dreamy</span><span class="feel">Gradient</span><span class="feel">Sanctuary</span><span class="feel">Surreal-soft</span></div>
+      <div class="card-num">Concept 06 · Deep-earth</div>
+      <div class="card-name">Mosswood</div>
+      <div class="card-tagline">The woods knew first.</div>
+      <div class="palette-row">
+        <span class="dot" style="background:#14201A"></span>
+        <span class="dot" style="background:#2F4537"></span>
+        <span class="dot" style="background:#6E8770"></span>
+        <span class="dot" style="background:#A6552E"></span>
+        <span class="dot" style="background:#F2EBDA"></span>
+      </div>
+      <p class="card-desc">Deep forest green + birch + rust + mushroom. EB Garamond serif. Primordial, mossy, the kind of old that holds without needing to speak. Anti-trendy. Earthy companion energy.</p>
+      <div class="card-feel-row">
+        <span class="feel">Deep</span><span class="feel">Earthy</span><span class="feel">Woodland</span><span class="feel">Ancient</span>
+      </div>
       <div class="card-links">
-        <span class="card-link">Walk Into Threshold →</span>
-        <a href="../pdfs/BTM-Concept-06-threshold.pdf" class="card-link alt">Open PDF</a>
+        <span class="card-link">Walk Into Mosswood →</span>
+        <a href="../pdfs/BTM-Concept-06-mosswood.pdf" class="card-link alt">Open PDF</a>
       </div>
     </div>
   </a>
@@ -363,8 +497,10 @@
 <section class="footer-note">
   <h3>How to choose, <i>without overthinking it.</i></h3>
   <p>Open each one. Scroll the whole homepage. Don't read the placeholder copy too closely. Notice which room makes your shoulders drop.</p>
-  <p><b>Hearth</b> if you want a friend's living room. <b>Garden</b> if healing should have its own pace. <b>Lantern</b> if you want the site to refuse peppy. <b>Letter</b> if you want it intimate and direct. <b>Atelier</b> if the work should be treated like the art it is. <b>Threshold</b> if you want it dreamlike and soft.</p>
-  <p>All six refuse the "look how tortured I was" energy. Each gets there a different way. Tell us which room feels like yours and we build it out fully.</p>
+  <p>
+    <b>Hearth</b> if you want it warm and hospitable. <b>Tidewater</b> if you want calm by way of water and fog. <b>Lantern</b> if you want held in warm dark. <b>Iris</b> if you want held in cool dark. <b>Atrium</b> if you want it modern and unsentimental. <b>Mosswood</b> if you want it deep and primordial.
+  </p>
+  <p>Six genuinely different temperatures, brightness levels, and emotional registers. No two share DNA. Tell us which room feels like yours and we build it out fully.</p>
 </section>
 
 </body>

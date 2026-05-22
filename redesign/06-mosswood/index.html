@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Mosswood Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --deep:      #14201A;
+      --forest:    #1F2E25;
+      --moss:      #2F4537;
+      --moss-up:   #3D5645;
+      --sage:      #6E8770;
+      --lichen:    #9DAE93;
+      --birch:     #F2EBDA;
+      --birch-2:   #E8E0C8;
+      --bark:      #6D533D;
+      --mushroom:  #B89976;
+      --rust:      #A6552E;
+      --rust-lt:   #C77D52;
+      --cream:     #FAF5E6;
+      --muted:     #8E9C8A;
+      --rule:      rgba(242,235,218,.10);
+      --rule-st:   rgba(242,235,218,.18);
+
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans:  'Karla', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--forest);
+      color: var(--birch);
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(ellipse 1100px 700px at 80% 5%, rgba(157,174,147,.10), transparent 60%),
+        radial-gradient(ellipse 800px 600px at 5% 95%, rgba(166,85,46,.06), transparent 60%);
+      background-attachment: fixed;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--lichen); color: var(--deep); }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 72px;
+      background: rgba(20,32,26,.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--birch);
+      letter-spacing: .005em;
+    }
+    .logo b { color: var(--rust-lt); font-style: italic; font-weight: 500; }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
+    .nav-right a {
+      font-size: .8rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      color: var(--lichen);
+      transition: color .25s;
+    }
+    .nav-right a:hover { color: var(--cream); }
+    .nav-cta {
+      background: var(--rust);
+      color: var(--cream) !important;
+      padding: 10px 22px;
+      border-radius: 2px;
+      letter-spacing: .12em !important;
+      transition: background .25s !important;
+    }
+    .nav-cta:hover { background: var(--rust-lt) !important; }
+
+    /* Botanical accents */
+    .leaf-sprig {
+      position: absolute;
+      pointer-events: none;
+      opacity: .25;
+      z-index: 0;
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 200px 60px 120px;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .leaf-1 { top: 100px; right: -40px; width: 220px; color: var(--sage); transform: rotate(15deg); }
+    .leaf-2 { bottom: 60px; left: -20px; width: 140px; color: var(--lichen); transform: rotate(-25deg); opacity: .15; }
+
+    .hero-mark {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 38px;
+    }
+    .hero-mark::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--rust-lt);
+    }
+
+    .hero-h1 {
+      position: relative;
+      z-index: 2;
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1.02;
+      color: var(--birch);
+      letter-spacing: -.015em;
+      margin-bottom: 36px;
+    }
+    .hero-h1 i { font-style: italic; color: var(--lichen); }
+
+    .hero-lede {
+      position: relative;
+      z-index: 2;
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--lichen);
+      max-width: 480px;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions { position: relative; z-index: 2; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .btn-rust {
+      background: var(--rust);
+      color: var(--cream);
+      padding: 16px 30px;
+      border-radius: 2px;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: background .25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-rust:hover { background: var(--rust-lt); }
+    .btn-wood {
+      padding: 15px 26px;
+      border: 1px solid var(--sage);
+      background: transparent;
+      color: var(--cream);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: all .25s;
+    }
+    .btn-wood:hover { background: rgba(157,174,147,.08); border-color: var(--lichen); }
+
+    /* Featured piece — like a stone in a clearing */
+    .hero-stone {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 460px;
+      width: 100%;
+      margin: 0 auto;
+      z-index: 2;
+    }
+    .hero-stone::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse at 50% 40%, rgba(184,153,118,.15), transparent 60%);
+      filter: blur(20px);
+    }
+    .hero-stone-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 35%, var(--mushroom) 0%, transparent 60%),
+        linear-gradient(160deg, var(--bark), var(--moss) 70%, var(--deep));
+      border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%;
+      box-shadow:
+        inset 0 0 60px rgba(0,0,0,.3),
+        0 60px 100px -30px rgba(0,0,0,.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 36px;
+      text-align: center;
+    }
+    .stone-mark {
+      font-size: .68rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--mushroom);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .stone-title {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+    .stone-desc {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--birch);
+      opacity: .85;
+      line-height: 1.55;
+      max-width: 240px;
+    }
+
+    /* ── FOREST PROMISE ──────────────────────── */
+    .glade {
+      background: var(--moss);
+      padding: 90px 60px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .glade-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .glade-item { display: flex; flex-direction: column; gap: 8px; padding-right: 28px; border-right: 1px solid var(--rule-st); }
+    .glade-item:last-child { border-right: none; }
+    .glade-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--rust-lt);
+    }
+    .glade-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--cream);
+    }
+    .glade-text {
+      font-size: .88rem;
+      line-height: 1.6;
+      color: var(--lichen);
+      font-weight: 300;
+    }
+
+    /* ── ABOUT — slow grove ──────────────────── */
+    .grove {
+      padding: 130px 60px;
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .grove-portrait {
+      aspect-ratio: 3 / 4;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(184,153,118,.4) 0%, transparent 55%),
+        linear-gradient(180deg, var(--bark), var(--moss) 60%, var(--forest));
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--mushroom);
+      padding: 40px;
+      text-align: center;
+      font-size: 1.15rem;
+      box-shadow: 0 60px 100px -40px rgba(0,0,0,.5);
+      border: 1px solid var(--rule-st);
+    }
+
+    .section-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 24px;
+    }
+    .section-mark::before { content: ''; width: 36px; height: 1px; background: var(--rust-lt); }
+    .section-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--birch);
+      letter-spacing: -.005em;
+      margin-bottom: 28px;
+    }
+    .section-h2 i { font-style: italic; color: var(--lichen); }
+    .grove-p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--lichen);
+      margin-bottom: 16px;
+      max-width: 540px;
+    }
+    .grove-sign {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule-st);
+      font-size: .7rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+    }
+
+    /* ── PIECES — forest cards ──────────────── */
+    .pieces-mw {
+      padding: 110px 60px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .pieces-mw-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 56px;
+    }
+    .pieces-mw-head .section-mark { justify-content: center; display: inline-flex; }
+
+    .grid-mw {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .pm-card {
+      background: var(--moss-up);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: transform .35s, border-color .35s, background .35s;
+    }
+    .pm-card:hover {
+      transform: translateY(-3px);
+      background: var(--moss);
+      border-color: var(--sage);
+    }
+    .pm-thumb {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 35%, var(--mushroom) 0%, transparent 60%),
+        linear-gradient(160deg, var(--moss), var(--forest));
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pm-thumb.rust {
+      background: radial-gradient(ellipse 70% 60% at 50% 35%, var(--rust-lt) 0%, transparent 60%), linear-gradient(160deg, var(--bark), var(--forest));
+    }
+    .pm-thumb.lichen {
+      background: radial-gradient(ellipse 70% 60% at 50% 35%, var(--lichen) 0%, transparent 60%), linear-gradient(160deg, var(--moss), var(--deep));
+    }
+    .pm-thumb.bark {
+      background: radial-gradient(ellipse 70% 60% at 50% 35%, var(--mushroom) 0%, transparent 60%), linear-gradient(160deg, var(--bark), var(--moss));
+    }
+    .pm-letter {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 3rem;
+      color: var(--birch);
+      opacity: .35;
+    }
+    .pm-tag {
+      font-size: .66rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+    }
+    .pm-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--birch);
+      line-height: 1.15;
+    }
+    .pm-desc {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--lichen);
+      line-height: 1.55;
+    }
+    .pm-link {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule-st);
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .pm-link::after { content: '→'; transition: transform .25s; }
+    .pm-card:hover .pm-link::after { transform: translateX(4px); }
+
+    /* ── REQUEST — clearing ────────────────── */
+    .clearing {
+      background: var(--deep);
+      padding: 130px 60px;
+      border-top: 1px solid var(--rule);
+    }
+    .clearing-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .clearing-p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--lichen);
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto 44px;
+    }
+    .clearing-form {
+      background: var(--moss);
+      border: 1px solid var(--rule-st);
+      border-radius: 2px;
+      padding: 40px;
+      text-align: left;
+    }
+    .fg-mw { margin-bottom: 20px; }
+    .fg-mw label {
+      font-size: .66rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 10px;
+      display: block;
+      font-weight: 500;
+    }
+    .fg-mw input, .fg-mw textarea {
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--rule-st);
+      border-radius: 2px;
+      background: rgba(20,32,26,.4);
+      color: var(--birch);
+      resize: vertical;
+      transition: border-color .25s;
+    }
+    .fg-mw input::placeholder, .fg-mw textarea::placeholder { color: rgba(157,174,147,.5); font-style: italic; }
+    .fg-mw input:focus, .fg-mw textarea:focus { outline: none; border-color: var(--lichen); }
+    .clearing-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--rust);
+      color: var(--cream);
+      border: none;
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s;
+    }
+    .clearing-submit:hover { background: var(--rust-lt); }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--deep);
+      padding: 64px 60px 40px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-top {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--birch);
+      margin-bottom: 12px;
+    }
+    .footer-logo b { color: var(--rust-lt); font-style: italic; }
+    .footer-line {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--lichen);
+      line-height: 1.55;
+      max-width: 280px;
+    }
+    .footer-col h5 {
+      font-size: .66rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--lichen);
+      transition: color .25s;
+    }
+    .footer-col ul a:hover { color: var(--cream); }
+    .footer-bot {
+      max-width: 1240px;
+      margin: 26px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 22px; height: 64px; }
+      .nav-right { gap: 14px; }
+      .nav-right a:not(.nav-cta) { display: none; }
+      .hero { padding: 150px 22px 80px; grid-template-columns: 1fr; gap: 56px; min-height: auto; }
+      .leaf-sprig { display: none; }
+      .glade { padding: 50px 22px; }
+      .glade-wrap { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .glade-item { border-right: none; padding-right: 0; }
+      .grove { padding: 80px 22px; grid-template-columns: 1fr; gap: 40px; }
+      .pieces-mw { padding: 70px 22px 50px; }
+      .grid-mw { grid-template-columns: 1fr; }
+      .clearing { padding: 80px 22px; }
+      .clearing-form { padding: 28px; }
+      footer { padding: 56px 22px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="#pieces">Collection</a>
+    <a href="#about">About</a>
+    <a href="#request">Request</a>
+    <a href="#request" class="nav-cta">Share a Story</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="leaf-sprig leaf-1" viewBox="0 0 240 380" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M120 20 Q 60 100 60 200 Q 60 300 120 370 Q 180 300 180 200 Q 180 100 120 20 Z" opacity=".5"/>
+    <path d="M120 40 L 120 360" stroke="currentColor" stroke-width="2" fill="none"/>
+    <path d="M120 100 L 80 110 M120 130 L 80 140 M120 160 L 80 170 M120 190 L 80 200 M120 220 L 80 230 M120 250 L 80 260 M120 280 L 80 290" stroke="currentColor" stroke-width="1.5" opacity=".7"/>
+    <path d="M120 100 L 160 110 M120 130 L 160 140 M120 160 L 160 170 M120 190 L 160 200 M120 220 L 160 230 M120 250 L 160 260 M120 280 L 160 290" stroke="currentColor" stroke-width="1.5" opacity=".7"/>
+  </svg>
+  <svg class="leaf-sprig leaf-2" viewBox="0 0 120 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M60 10 C 25 60 25 140 60 190 C 95 140 95 60 60 10 Z"/>
+  </svg>
+
+  <div>
+    <div class="hero-mark">A quiet place under cover</div>
+    <h1 class="hero-h1">The woods knew <i>before we did.</i></h1>
+    <p class="hero-lede">
+      An archive for the experiences that always belonged outside the bright rooms. Where the moss grows slow, the light comes in sideways, and nobody tells you to hurry up.
+    </p>
+    <div class="hero-actions">
+      <a href="#pieces" class="btn-rust">Walk the Collection
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#about" class="btn-wood">Why this exists</a>
+    </div>
+  </div>
+
+  <div class="hero-stone">
+    <div class="hero-stone-inner">
+      <div class="stone-mark">Today's piece</div>
+      <div class="stone-title">Authenticity</div>
+      <div class="stone-desc">The face we wear in public and the one we carry alone. Both are real. Both belong here.</div>
+    </div>
+  </div>
+</section>
+
+<section class="glade">
+  <div class="glade-wrap">
+    <div class="glade-item">
+      <div class="glade-num">i.</div>
+      <div class="glade-title">No hurry</div>
+      <div class="glade-text">Browse slowly. Leave whenever. This place keeps its own time.</div>
+    </div>
+    <div class="glade-item">
+      <div class="glade-num">ii.</div>
+      <div class="glade-title">Soft entries</div>
+      <div class="glade-text">Heavier pieces sit behind quieter doors. You choose what you open.</div>
+    </div>
+    <div class="glade-item">
+      <div class="glade-num">iii.</div>
+      <div class="glade-title">Honest, not hostile</div>
+      <div class="glade-text">The work names hard things. It is never made to shock you.</div>
+    </div>
+    <div class="glade-item">
+      <div class="glade-num">iv.</div>
+      <div class="glade-title">You are welcome</div>
+      <div class="glade-text">Whether you arrived in pain or just walked by. The path is open either way.</div>
+    </div>
+  </div>
+</section>
+
+<section class="grove" id="about">
+  <div class="grove-portrait">a portrait of the artist</div>
+  <div>
+    <div class="section-mark">A note from the artist</div>
+    <h2 class="section-h2">I made this in the kind of quiet <i>the woods give back.</i></h2>
+    <p class="grove-p">
+      The project began on nights when nothing in the bright rooms made sense. The work is honest. It is also old. The kind of old that says: this has been carried before, and you are not the first to set it down.
+    </p>
+    <p class="grove-p">
+      You are not strange for feeling what you feel. You are welcome here, in any condition you arrived in.
+    </p>
+    <div class="grove-sign">— The Artist</div>
+  </div>
+</section>
+
+<section class="pieces-mw" id="pieces">
+  <div class="pieces-mw-head">
+    <div class="section-mark">The Collection</div>
+    <h2 class="section-h2">Pieces, grouped by <i>what they hold.</i></h2>
+    <p class="grove-p" style="margin: 0 auto; text-align: center;">
+      No graduation. No required order. Open the one that calls. Skip the ones that don't.
+    </p>
+  </div>
+
+  <div class="grid-mw">
+    <a href="#" class="pm-card">
+      <div class="pm-thumb"><span class="pm-letter">A</span></div>
+      <div class="pm-tag">Identity</div>
+      <div class="pm-title">Authenticity</div>
+      <div class="pm-desc">The face you carry alone is just as real as the one you show the world.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="#" class="pm-card">
+      <div class="pm-thumb rust"><span class="pm-letter">P</span></div>
+      <div class="pm-tag">Healing</div>
+      <div class="pm-title">Process of Healing</div>
+      <div class="pm-desc">Not linear. Layered, slow, and still worth every step.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="#" class="pm-card">
+      <div class="pm-thumb lichen"><span class="pm-letter">W</span></div>
+      <div class="pm-tag">Strength</div>
+      <div class="pm-title">The Wolf Series</div>
+      <div class="pm-desc">What looks dangerous from outside often just learned to protect itself.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="#" class="pm-card">
+      <div class="pm-thumb bark"><span class="pm-letter">S</span></div>
+      <div class="pm-tag">Grief &amp; Change</div>
+      <div class="pm-title">Seasons</div>
+      <div class="pm-desc">Every season of suffering carries the seed of the next season of growth.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="#" class="pm-card">
+      <div class="pm-thumb"><span class="pm-letter">U</span></div>
+      <div class="pm-tag">Emotional Pain</div>
+      <div class="pm-title">Unable to Cry</div>
+      <div class="pm-desc">Sometimes the pain moves past tears into something heavier and harder to name.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+    <a href="#" class="pm-card">
+      <div class="pm-thumb rust"><span class="pm-letter">A</span></div>
+      <div class="pm-tag">Identity</div>
+      <div class="pm-title">Anonymous</div>
+      <div class="pm-desc">The face we show the world and the face we carry alone are rarely the same.</div>
+      <div class="pm-link">Open Piece</div>
+    </a>
+  </div>
+</section>
+
+<section class="clearing" id="request">
+  <div class="clearing-wrap">
+    <div class="section-mark" style="display: inline-flex;">A Request</div>
+    <h2 class="section-h2">If something you've lived doesn't have a piece yet, <i>tell me about it.</i></h2>
+    <p class="clearing-p">
+      Anonymous is welcome. A few sentences is enough. I read every one.
+    </p>
+
+    <form class="clearing-form" onsubmit="event.preventDefault();">
+      <div class="fg-mw">
+        <label>Your name (or any name)</label>
+        <input type="text" placeholder="What should I call you?" />
+      </div>
+      <div class="fg-mw">
+        <label>Email (for a quiet reply)</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="fg-mw">
+        <label>What would you have the piece say?</label>
+        <textarea rows="5" placeholder="Take your time. A few sentences is enough."></textarea>
+      </div>
+      <button class="clearing-submit" type="submit">Send With Care</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">An archive for the experiences that always belonged outside the bright rooms.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Walk</h5>
+      <ul>
+        <li><a href="#pieces">The Collection</a></li>
+        <li><a href="#">Recent</a></li>
+        <li><a href="#">Themes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sit</h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#request">Request</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>

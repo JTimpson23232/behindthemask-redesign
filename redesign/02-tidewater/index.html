@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Tidewater Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --abyss:     #1F2A33;
+      --deep:      #2D3D4A;
+      --slate:     #5C7388;
+      --slate-lt:  #8AA0B3;
+      --fog:       #DAE3E9;
+      --bone:      #EEF1F2;
+      --white:     #F9FAFB;
+      --seaglass:  #A8C3B6;
+      --seaglass-2:#82A491;
+      --coral:     #E0907F;
+      --coral-lt:  #F0B5A6;
+      --rope:      #BFA887;
+      --muted:     #7B8B98;
+      --rule:      rgba(31,42,51,.12);
+      --rule-st:   rgba(31,42,51,.2);
+
+      --serif: 'Lora', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--abyss);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 56px;
+      background: rgba(249,250,251,.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--abyss);
+      letter-spacing: .02em;
+    }
+    .logo b { color: var(--coral); font-style: italic; font-weight: 500; }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-right a {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--slate);
+      transition: color .25s;
+    }
+    .nav-right a:hover { color: var(--abyss); }
+    .nav-cta {
+      background: var(--abyss);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 2px;
+      letter-spacing: .14em !important;
+      transition: background .25s !important;
+    }
+    .nav-cta:hover { background: var(--coral); }
+
+    /* ── HORIZON HERO ─────────────────────────────── */
+    .horizon {
+      position: relative;
+      min-height: 100vh;
+      padding: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, var(--white) 0%, var(--bone) 35%, var(--fog) 100%);
+    }
+
+    /* Soft horizon line + sun */
+    .horizon::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      top: 62%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--slate-lt) 30%, var(--slate-lt) 70%, transparent);
+      opacity: .4;
+    }
+    .horizon::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 56%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--coral-lt) 0%, var(--coral-lt) 35%, transparent 70%);
+      opacity: .45;
+      filter: blur(8px);
+    }
+
+    .horizon-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 200px 56px 120px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 36px;
+    }
+    .hero-kicker::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--coral);
+    }
+
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5.4vw, 4.6rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--abyss);
+      letter-spacing: -.015em;
+      margin-bottom: 32px;
+    }
+    .hero-h1 i { font-style: italic; color: var(--slate); }
+
+    .hero-lede {
+      font-family: var(--serif);
+      font-size: 1.18rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--deep);
+      max-width: 460px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .btn-deep {
+      background: var(--abyss);
+      color: var(--white);
+      padding: 15px 28px;
+      border-radius: 2px;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: all .25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-deep:hover { background: var(--coral); transform: translateY(-1px); }
+    .btn-ghost-tw {
+      padding: 14px 26px;
+      border: 1px solid var(--slate-lt);
+      background: transparent;
+      color: var(--abyss);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: all .25s;
+    }
+    .btn-ghost-tw:hover { border-color: var(--abyss); background: var(--bone); }
+
+    /* Featured piece — like a small port window */
+    .hero-port {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 460px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .hero-port::before {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      background: radial-gradient(ellipse at 50% 40%, rgba(224,144,127,.18), transparent 65%);
+      filter: blur(16px);
+      z-index: 0;
+    }
+    .hero-port-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(180deg, var(--fog) 0%, var(--seaglass) 60%, var(--seaglass-2) 100%);
+      border: 8px solid var(--white);
+      box-shadow:
+        0 1px 0 var(--rule),
+        0 40px 80px -30px rgba(31,42,51,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px;
+      text-align: center;
+      gap: 8px;
+    }
+    .port-mark {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--abyss);
+      opacity: .55;
+    }
+    .port-title {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--abyss);
+      margin: 8px 0 16px;
+      line-height: 1.05;
+    }
+    .port-desc {
+      font-family: var(--serif);
+      font-size: .98rem;
+      color: var(--deep);
+      line-height: 1.5;
+      max-width: 240px;
+    }
+
+    /* ── PROMISE STRIP ─────────────────────────── */
+    .strip {
+      background: var(--abyss);
+      color: var(--bone);
+      padding: 60px 56px;
+    }
+    .strip-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .strip-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 32px;
+      border-right: 1px solid rgba(238,241,242,.15);
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-num {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--coral-lt);
+      line-height: 1;
+    }
+    .strip-title {
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-top: 6px;
+    }
+    .strip-text {
+      font-size: .86rem;
+      line-height: 1.55;
+      color: rgba(238,241,242,.7);
+      font-weight: 300;
+    }
+
+    /* ── ABOUT ──────────────────────────────────── */
+    .about-tw {
+      padding: 130px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-vis-tw {
+      aspect-ratio: 1 / 1;
+      max-width: 380px;
+      width: 100%;
+      justify-self: center;
+      background:
+        radial-gradient(circle at 40% 35%, var(--seaglass) 0%, transparent 60%),
+        linear-gradient(180deg, var(--fog), var(--bone));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 1px 0 var(--rule),
+        0 40px 80px -40px rgba(31,42,51,.25);
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--slate);
+      text-align: center;
+      padding: 60px;
+      font-size: 1.15rem;
+      line-height: 1.5;
+    }
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 24px;
+    }
+    .section-kicker::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--coral);
+    }
+    .section-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--abyss);
+      letter-spacing: -.005em;
+      margin-bottom: 24px;
+    }
+    .section-h2 i { font-style: italic; color: var(--slate); }
+    .about-tw-p {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--deep);
+      margin-bottom: 16px;
+      max-width: 540px;
+    }
+    .about-tw-sign {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--slate);
+      font-weight: 500;
+    }
+
+    /* ── COLLECTION ─────────────────────────────── */
+    .collection {
+      background: var(--bone);
+      padding: 130px 56px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .collection-head {
+      max-width: 1200px;
+      margin: 0 auto 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+    }
+    .collection-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .cw-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform .35s, box-shadow .35s;
+    }
+    .cw-card:hover { transform: translateY(-3px); box-shadow: 0 30px 60px -30px rgba(31,42,51,.2); }
+    .cw-thumb {
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(160deg, var(--fog), var(--seaglass) 60%, var(--seaglass-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cw-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255,255,255,.35);
+      pointer-events: none;
+    }
+    .cw-thumb-coral { background: linear-gradient(160deg, var(--bone), var(--coral-lt) 60%, var(--coral)); }
+    .cw-thumb-slate { background: linear-gradient(160deg, var(--fog), var(--slate-lt) 60%, var(--slate)); }
+    .cw-thumb-rope  { background: linear-gradient(160deg, var(--bone), var(--rope) 65%, #9D8460); }
+    .cw-letter {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 3rem;
+      color: var(--abyss);
+      opacity: .35;
+    }
+    .cw-tag {
+      font-size: .66rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 500;
+      padding-top: 6px;
+    }
+    .cw-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--abyss);
+      line-height: 1.15;
+    }
+    .cw-desc {
+      font-family: var(--serif);
+      font-size: .98rem;
+      color: var(--deep);
+      line-height: 1.55;
+    }
+    .cw-link {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--abyss);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cw-link::after { content: '→'; transition: transform .25s; }
+    .cw-card:hover .cw-link::after { transform: translateX(4px); }
+
+    /* ── REQUEST ────────────────────────────────── */
+    .request-tw {
+      padding: 130px 56px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .request-tw .section-kicker { justify-content: center; }
+    .request-p {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--deep);
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto 44px;
+    }
+    .request-form-tw {
+      background: var(--bone);
+      border: 1px solid var(--rule);
+      padding: 40px;
+      text-align: left;
+    }
+    .fg { margin-bottom: 20px; }
+    .fg label {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .fg input,
+    .fg textarea {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--rule);
+      background: var(--white);
+      color: var(--abyss);
+      resize: vertical;
+      transition: border-color .25s;
+    }
+    .fg input:focus, .fg textarea:focus { outline: none; border-color: var(--coral); }
+    .fg input::placeholder, .fg textarea::placeholder { color: var(--slate-lt); font-style: italic; }
+    .request-submit-tw {
+      width: 100%;
+      padding: 16px;
+      background: var(--abyss);
+      color: var(--white);
+      border: none;
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s;
+    }
+    .request-submit-tw:hover { background: var(--coral); }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--abyss);
+      color: var(--bone);
+      padding: 72px 56px 40px;
+    }
+    .footer-top {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(238,241,242,.15);
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .footer-logo b { color: var(--coral-lt); font-style: italic; }
+    .footer-line {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-style: italic;
+      color: rgba(238,241,242,.7);
+      line-height: 1.55;
+      max-width: 280px;
+    }
+    .footer-col h5 {
+      font-size: .68rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--coral-lt);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: rgba(238,241,242,.7);
+      transition: color .25s;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bot {
+      max-width: 1180px;
+      margin: 26px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .76rem;
+      letter-spacing: .14em;
+      color: rgba(238,241,242,.45);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 18px 22px; }
+      .nav-right { gap: 14px; }
+      .nav-right a:not(.nav-cta) { display: none; }
+      .horizon-wrap { padding: 150px 22px 80px; grid-template-columns: 1fr; gap: 56px; }
+      .strip { padding: 50px 22px; }
+      .strip-wrap { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .strip-item { border-right: none; padding-right: 0; }
+      .about-tw { padding: 80px 22px; grid-template-columns: 1fr; gap: 40px; }
+      .collection { padding: 80px 22px; }
+      .collection-head { grid-template-columns: 1fr; gap: 24px; }
+      .collection-grid { grid-template-columns: 1fr; gap: 22px; }
+      .request-tw { padding: 80px 22px; }
+      .request-form-tw { padding: 28px; }
+      footer { padding: 56px 22px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="#collection">Collection</a>
+    <a href="#about">About</a>
+    <a href="#request">Request</a>
+    <a href="#request" class="nav-cta">Share</a>
+  </div>
+</nav>
+
+<section class="horizon">
+  <div class="horizon-wrap">
+    <div>
+      <div class="hero-kicker">The fog will lift</div>
+      <h1 class="hero-h1">A quiet place at the <i>edge of the water.</i></h1>
+      <p class="hero-lede">
+        Art for the experiences we were told to hold quietly. You don't have to know the words yet. You just have to be here.
+      </p>
+      <div class="hero-actions">
+        <a href="#collection" class="btn-deep">Walk the Collection
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#about" class="btn-ghost-tw">Why this exists</a>
+      </div>
+    </div>
+    <div class="hero-port">
+      <div class="hero-port-inner">
+        <div class="port-mark">Today's piece</div>
+        <div class="port-title">Authenticity</div>
+        <div class="port-desc">The face we wear in public, the one we carry alone. Both are real. Both belong here.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="strip-wrap">
+    <div class="strip-item">
+      <span class="strip-num">i.</span>
+      <span class="strip-title">No pressure</span>
+      <span class="strip-text">Browse silently. Leave whenever. This site is not asking anything of you.</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-num">ii.</span>
+      <span class="strip-title">Soft entries</span>
+      <span class="strip-text">Heavy pieces are tucked behind gentle doors. You choose what you open.</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-num">iii.</span>
+      <span class="strip-title">Real, not performed</span>
+      <span class="strip-text">Every piece is drawn from a real experience. Nothing here is here to shock you.</span>
+    </div>
+    <div class="strip-item">
+      <span class="strip-num">iv.</span>
+      <span class="strip-title">You are welcome</span>
+      <span class="strip-text">Whether you've arrived in pain or just walked by. The door is open either way.</span>
+    </div>
+  </div>
+</section>
+
+<section class="about-tw" id="about">
+  <div class="about-vis-tw">"some things move at the speed of water."</div>
+  <div>
+    <div class="section-kicker">A note from the artist</div>
+    <h2 class="section-h2">I made this in the kind of quiet <i>I needed first.</i></h2>
+    <p class="about-tw-p">
+      The project began on nights when I couldn't say a thing out loud and needed somewhere for it to go. Then readers wrote in. They had things they needed pictures for and had never found.
+    </p>
+    <p class="about-tw-p">
+      So the collection is what we've made together. Every piece begins with a real experience, given to me, and returned to anyone else who needed to know they weren't alone in it.
+    </p>
+    <div class="about-tw-sign">— The Artist</div>
+  </div>
+</section>
+
+<section class="collection" id="collection">
+  <div class="collection-head">
+    <div>
+      <div class="section-kicker">The Collection</div>
+      <h2 class="section-h2">Pieces, grouped by <i>what they hold.</i></h2>
+    </div>
+    <p class="about-tw-p" style="margin:0;">
+      No graduation. No required order. Open the one that calls to you. Skip the ones that don't.
+    </p>
+  </div>
+
+  <div class="collection-grid">
+    <a href="#" class="cw-card">
+      <div class="cw-thumb"><span class="cw-letter">A</span></div>
+      <div class="cw-tag">Identity</div>
+      <div class="cw-title">Authenticity</div>
+      <div class="cw-desc">The face you carry alone is just as real as the one you show the world.</div>
+      <div class="cw-link">Open Piece</div>
+    </a>
+    <a href="#" class="cw-card">
+      <div class="cw-thumb cw-thumb-coral"><span class="cw-letter">P</span></div>
+      <div class="cw-tag">Healing</div>
+      <div class="cw-title">Process of Healing</div>
+      <div class="cw-desc">Not linear. Layered, slow, and still worth every step.</div>
+      <div class="cw-link">Open Piece</div>
+    </a>
+    <a href="#" class="cw-card">
+      <div class="cw-thumb cw-thumb-slate"><span class="cw-letter">W</span></div>
+      <div class="cw-tag">Strength</div>
+      <div class="cw-title">The Wolf Series</div>
+      <div class="cw-desc">What looks dangerous from the outside often just learned to protect itself.</div>
+      <div class="cw-link">Open Piece</div>
+    </a>
+    <a href="#" class="cw-card">
+      <div class="cw-thumb cw-thumb-rope"><span class="cw-letter">S</span></div>
+      <div class="cw-tag">Grief &amp; Change</div>
+      <div class="cw-title">Seasons</div>
+      <div class="cw-desc">Every season of suffering carries the seed of the next season of growth.</div>
+      <div class="cw-link">Open Piece</div>
+    </a>
+    <a href="#" class="cw-card">
+      <div class="cw-thumb"><span class="cw-letter">U</span></div>
+      <div class="cw-tag">Emotional Pain</div>
+      <div class="cw-title">Unable to Cry</div>
+      <div class="cw-desc">Sometimes the pain moves past tears into something heavier and harder to name.</div>
+      <div class="cw-link">Open Piece</div>
+    </a>
+    <a href="#" class="cw-card">
+      <div class="cw-thumb cw-thumb-coral"><span class="cw-letter">A</span></div>
+      <div class="cw-tag">Identity</div>
+      <div class="cw-title">Anonymous</div>
+      <div class="cw-desc">The face we show the world and the face we carry alone are rarely the same.</div>
+      <div class="cw-link">Open Piece</div>
+    </a>
+  </div>
+</section>
+
+<section class="request-tw" id="request">
+  <div class="section-kicker">A Request</div>
+  <h2 class="section-h2">If something you've lived doesn't have a piece yet, <i>tell me about it.</i></h2>
+  <p class="request-p">
+    Anonymous is welcome. A few sentences is enough. I read every one.
+  </p>
+
+  <form class="request-form-tw" onsubmit="event.preventDefault();">
+    <div class="fg">
+      <label>Your name (or any name)</label>
+      <input type="text" placeholder="What should I call you?" />
+    </div>
+    <div class="fg">
+      <label>Email (for a quiet reply)</label>
+      <input type="email" placeholder="your@email.com" />
+    </div>
+    <div class="fg">
+      <label>What would you have the piece say?</label>
+      <textarea rows="5" placeholder="Take your time. A few sentences is enough."></textarea>
+    </div>
+    <button class="request-submit-tw" type="submit">Send With Care</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">A quiet place at the edge of the water. The door is open either way.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Walk</h5>
+      <ul>
+        <li><a href="#collection">The Collection</a></li>
+        <li><a href="#">Recent Pieces</a></li>
+        <li><a href="#">All Pieces</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sit</h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#request">Request</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>

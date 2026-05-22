@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Iris Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --void:       #1A1226;
+      --plum:       #2B1B3E;
+      --plum-up:    #38264F;
+      --iris:       #6E5184;
+      --iris-lt:    #A38FB8;
+      --lilac:      #C7B6D6;
+      --lilac-pale: #E0D5EB;
+      --silver:     #B8C0CC;
+      --silver-lt:  #D6DCE5;
+      --cream:      #F5F2EE;
+      --moonlight:  #FAFAFA;
+      --rose:       #D8A0B5;
+      --muted:      #847593;
+      --rule:       rgba(245,242,238,.10);
+      --rule-st:    rgba(245,242,238,.18);
+
+      --display: 'DM Serif Display', Georgia, serif;
+      --body:    'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--body);
+      background: var(--plum);
+      color: var(--cream);
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(ellipse 1200px 800px at 80% 10%, rgba(199,182,214,.12), transparent 65%),
+        radial-gradient(ellipse 900px 600px at 10% 90%, rgba(216,160,181,.08), transparent 65%);
+      background-attachment: fixed;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--lilac); color: var(--void); }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 72px;
+      background: rgba(26,18,38,.78);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .logo {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: .005em;
+    }
+    .logo b { color: var(--lilac); font-style: italic; }
+    .nav-right { display: flex; align-items: center; gap: 38px; }
+    .nav-right a {
+      font-size: .76rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--lilac-pale);
+      opacity: .7;
+      transition: opacity .25s, color .25s;
+    }
+    .nav-right a:hover { opacity: 1; color: var(--cream); }
+    .nav-cta {
+      background: transparent !important;
+      border: 1px solid var(--iris-lt);
+      color: var(--cream) !important;
+      padding: 10px 22px;
+      border-radius: 100px;
+      opacity: 1 !important;
+      transition: all .25s !important;
+    }
+    .nav-cta:hover { background: var(--iris) !important; border-color: var(--iris); }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 180px 60px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 80px;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 5%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(199,182,214,.18), transparent 65%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-mark {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 400;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--lilac);
+      margin-bottom: 38px;
+      padding: 7px 16px;
+      border: 1px solid var(--iris);
+      border-radius: 100px;
+    }
+
+    .hero-h1 {
+      font-family: var(--display);
+      font-size: clamp(3rem, 6.4vw, 5.6rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--cream);
+      letter-spacing: -.02em;
+      margin-bottom: 36px;
+    }
+    .hero-h1 i { font-style: italic; color: var(--lilac); }
+
+    .hero-lede {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--lilac-pale);
+      max-width: 480px;
+      margin-bottom: 44px;
+      opacity: .9;
+    }
+
+    .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .btn-iris {
+      background: var(--cream);
+      color: var(--plum);
+      padding: 16px 30px;
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      transition: all .3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-iris:hover { background: var(--lilac); }
+    .btn-iris-ghost {
+      padding: 15px 26px;
+      border: 1px solid var(--iris-lt);
+      background: transparent;
+      color: var(--cream);
+      font-size: .8rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      transition: all .3s;
+    }
+    .btn-iris-ghost:hover { background: rgba(245,242,238,.08); border-color: var(--lilac); }
+
+    /* Featured piece — soft halo */
+    .hero-halo {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 460px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .hero-halo::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(circle at 50% 40%, rgba(216,160,181,.22), transparent 65%);
+      filter: blur(30px);
+      z-index: 0;
+    }
+    .hero-halo-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 40% 35%, var(--iris-lt) 0%, transparent 55%),
+        linear-gradient(160deg, var(--plum-up), var(--plum));
+      border-radius: 8px;
+      border: 1px solid var(--rule-st);
+      box-shadow:
+        0 0 0 1px var(--rule),
+        0 60px 100px -40px rgba(26,18,38,.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 40px;
+      text-align: center;
+    }
+    .halo-mark {
+      font-size: .66rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--lilac);
+      margin-bottom: 14px;
+      opacity: .8;
+    }
+    .halo-title {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 2.4rem;
+      color: var(--cream);
+      margin-bottom: 18px;
+      line-height: 1.05;
+    }
+    .halo-desc {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--lilac-pale);
+      line-height: 1.55;
+      max-width: 240px;
+      opacity: .85;
+    }
+
+    /* ── HOW IT FEELS ─────────────────────────── */
+    .feels {
+      background: var(--plum-up);
+      padding: 90px 60px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .feels-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr repeat(3, 1fr);
+      gap: 56px;
+      align-items: start;
+    }
+    .feels-head {
+      font-family: var(--display);
+      font-size: 1.6rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--lilac);
+    }
+    .feel-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-left: 22px;
+      border-left: 1px solid var(--rule-st);
+    }
+    .feel-card-title {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--cream);
+    }
+    .feel-card-text {
+      font-size: .92rem;
+      line-height: 1.65;
+      color: var(--lilac-pale);
+      opacity: .75;
+      font-weight: 300;
+    }
+
+    /* ── ABOUT ──────────────────────────────────── */
+    .about-i {
+      padding: 130px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-i-portrait {
+      aspect-ratio: 3 / 4;
+      background:
+        radial-gradient(circle at 35% 25%, var(--iris-lt) 0%, transparent 55%),
+        linear-gradient(160deg, var(--plum-up), var(--plum) 60%, var(--void));
+      border-radius: 6px;
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-style: italic;
+      color: var(--lilac);
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 60px 100px -40px rgba(26,18,38,.7);
+    }
+
+    .section-mark {
+      display: inline-block;
+      font-size: .66rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--lilac);
+      margin-bottom: 20px;
+      padding: 6px 14px;
+      border: 1px solid var(--rule-st);
+      border-radius: 100px;
+    }
+    .section-h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4.2vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--cream);
+      letter-spacing: -.01em;
+      margin-bottom: 28px;
+    }
+    .section-h2 i { font-style: italic; color: var(--lilac); }
+    .about-i-p {
+      font-family: var(--display);
+      font-size: 1.18rem;
+      line-height: 1.65;
+      color: var(--lilac-pale);
+      margin-bottom: 16px;
+      max-width: 540px;
+      opacity: .85;
+    }
+    .about-i-sign {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule-st);
+      font-size: .7rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--lilac);
+    }
+
+    /* ── PIECES ────────────────────────────────── */
+    .pieces-i {
+      padding: 110px 60px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .pieces-i-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 64px;
+    }
+    .pieces-i-head .section-mark { margin-bottom: 20px; }
+
+    .pieces-grid-i {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .piece-i {
+      background: var(--plum-up);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: transform .35s, border-color .35s;
+    }
+    .piece-i:hover {
+      transform: translateY(-3px);
+      border-color: var(--iris);
+    }
+    .piece-i-thumb {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(circle at 40% 35%, var(--iris-lt) 0%, transparent 55%),
+        linear-gradient(160deg, var(--plum), var(--void));
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .piece-i-thumb.var2 { background: radial-gradient(circle at 60% 35%, var(--rose) 0%, transparent 55%), linear-gradient(160deg, var(--plum-up), var(--plum)); }
+    .piece-i-thumb.var3 { background: radial-gradient(circle at 50% 50%, var(--lilac) 0%, transparent 55%), linear-gradient(160deg, var(--void), var(--plum)); }
+    .piece-i-thumb.var4 { background: radial-gradient(circle at 35% 65%, var(--iris) 0%, transparent 55%), linear-gradient(160deg, var(--plum), var(--plum-up)); }
+    .piece-i-letter {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 3rem;
+      color: var(--cream);
+      opacity: .4;
+    }
+    .piece-i-tag {
+      font-size: .64rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--lilac);
+      font-weight: 400;
+    }
+    .piece-i-title {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.15;
+    }
+    .piece-i-desc {
+      font-family: var(--display);
+      font-size: 1rem;
+      color: var(--lilac-pale);
+      line-height: 1.55;
+      opacity: .8;
+    }
+    .piece-i-link {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule-st);
+      font-size: .66rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--lilac);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .piece-i-link::after { content: '→'; }
+
+    /* ── REQUEST ──────────────────────────────── */
+    .request-i {
+      padding: 130px 60px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .request-p-i {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--lilac-pale);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 44px;
+      opacity: .85;
+    }
+    .request-form-i {
+      background: var(--plum-up);
+      border: 1px solid var(--rule-st);
+      border-radius: 6px;
+      padding: 40px;
+      text-align: left;
+    }
+    .fg-i { margin-bottom: 22px; }
+    .fg-i label {
+      font-size: .64rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--lilac);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .fg-i input,
+    .fg-i textarea {
+      font-family: var(--display);
+      font-size: 1.08rem;
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--rule-st);
+      border-radius: 4px;
+      background: rgba(26,18,38,.4);
+      color: var(--cream);
+      resize: vertical;
+      transition: border-color .25s;
+    }
+    .fg-i input::placeholder, .fg-i textarea::placeholder { color: rgba(199,182,214,.4); font-style: italic; }
+    .fg-i input:focus, .fg-i textarea:focus { outline: none; border-color: var(--lilac); }
+    .request-submit-i {
+      width: 100%;
+      padding: 16px;
+      background: var(--cream);
+      color: var(--plum);
+      border: none;
+      border-radius: 100px;
+      font-family: var(--body);
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s;
+    }
+    .request-submit-i:hover { background: var(--lilac); }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--void);
+      padding: 76px 60px 44px;
+      border-top: 1px solid var(--rule-st);
+    }
+    .footer-top {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .footer-logo b { color: var(--lilac); font-style: italic; }
+    .footer-line {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.02rem;
+      color: rgba(199,182,214,.7);
+      line-height: 1.55;
+      max-width: 280px;
+    }
+    .footer-col h5 {
+      font-size: .66rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--lilac);
+      margin-bottom: 14px;
+      font-weight: 400;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a {
+      font-family: var(--display);
+      font-size: 1rem;
+      color: rgba(199,182,214,.7);
+      transition: color .25s;
+    }
+    .footer-col ul a:hover { color: var(--cream); }
+    .footer-bot {
+      max-width: 1200px;
+      margin: 26px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .7rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(199,182,214,.4);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 22px; height: 64px; }
+      .nav-right { gap: 12px; }
+      .nav-right a:not(.nav-cta) { display: none; }
+      .hero { padding: 140px 22px 80px; grid-template-columns: 1fr; gap: 56px; min-height: auto; }
+      .feels { padding: 60px 22px; }
+      .feels-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .feel-card { padding-left: 0; border-left: none; border-top: 1px solid var(--rule-st); padding-top: 24px; }
+      .about-i { padding: 80px 22px; grid-template-columns: 1fr; gap: 40px; }
+      .pieces-i { padding: 80px 22px 50px; }
+      .pieces-grid-i { grid-template-columns: 1fr; }
+      .request-i { padding: 80px 22px; }
+      .request-form-i { padding: 28px; }
+      footer { padding: 60px 22px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Behind the <b>Mask</b></a>
+  <div class="nav-right">
+    <a href="#pieces">Pieces</a>
+    <a href="#about">About</a>
+    <a href="#request">Request</a>
+    <a href="#request" class="nav-cta">Share</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-mark">A held room</div>
+    <h1 class="hero-h1">Stay as long as <i>you need to.</i></h1>
+    <p class="hero-lede">
+      A quieter, cooler kind of company for the experiences we were told to keep small. The lights are low on purpose. No one is asking you to be okay yet.
+    </p>
+    <div class="hero-actions">
+      <a href="#pieces" class="btn-iris">Walk the Collection
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#about" class="btn-iris-ghost">Why this exists</a>
+    </div>
+  </div>
+  <div class="hero-halo">
+    <div class="hero-halo-inner">
+      <div class="halo-mark">Today's piece</div>
+      <div class="halo-title">Authenticity</div>
+      <div class="halo-desc">The face we wear in public and the one we carry alone are rarely the same. Both belong here.</div>
+    </div>
+  </div>
+</section>
+
+<section class="feels">
+  <div class="feels-wrap">
+    <div class="feels-head">A room with the lights set low on purpose.</div>
+    <div class="feel-card">
+      <div class="feel-card-title">No pressure</div>
+      <div class="feel-card-text">Browse silently. Leave whenever. This site is not asking anything of you.</div>
+    </div>
+    <div class="feel-card">
+      <div class="feel-card-title">Soft entries</div>
+      <div class="feel-card-text">Heavy pieces are tucked behind quiet doors. You choose what you open.</div>
+    </div>
+    <div class="feel-card">
+      <div class="feel-card-title">Not performed</div>
+      <div class="feel-card-text">Every piece is drawn from a real experience. Nothing here is here to shock you.</div>
+    </div>
+  </div>
+</section>
+
+<section class="about-i" id="about">
+  <div class="about-i-portrait">a portrait of the artist</div>
+  <div>
+    <span class="section-mark">A note from the artist</span>
+    <h2 class="section-h2">I made the kind of room <i>I would have wanted</i> on the hardest nights.</h2>
+    <p class="about-i-p">
+      Quiet enough that you can hear yourself. Cool enough that nothing in the room is asking you to perform brightness. The work is honest, but never hostile.
+    </p>
+    <p class="about-i-p">
+      You don't have to be okay yet to be here. You don't have to have it figured out. You can just be here.
+    </p>
+    <div class="about-i-sign">— The Artist</div>
+  </div>
+</section>
+
+<section class="pieces-i" id="pieces">
+  <div class="pieces-i-head">
+    <span class="section-mark">The Collection</span>
+    <h2 class="section-h2">Pieces, grouped by <i>what they hold.</i></h2>
+    <p class="about-i-p" style="margin:0 auto; text-align: center;">
+      No graduation. No required order. Open the one that calls to you. Skip the ones that don't.
+    </p>
+  </div>
+
+  <div class="pieces-grid-i">
+    <a href="#" class="piece-i">
+      <div class="piece-i-thumb"><span class="piece-i-letter">A</span></div>
+      <div class="piece-i-tag">Identity</div>
+      <div class="piece-i-title">Authenticity</div>
+      <div class="piece-i-desc">The face you carry alone is just as real as the one you show the world.</div>
+      <div class="piece-i-link">Open Piece</div>
+    </a>
+    <a href="#" class="piece-i">
+      <div class="piece-i-thumb var2"><span class="piece-i-letter">P</span></div>
+      <div class="piece-i-tag">Healing</div>
+      <div class="piece-i-title">Process of Healing</div>
+      <div class="piece-i-desc">Not linear. Layered, slow, and still worth every step.</div>
+      <div class="piece-i-link">Open Piece</div>
+    </a>
+    <a href="#" class="piece-i">
+      <div class="piece-i-thumb var3"><span class="piece-i-letter">W</span></div>
+      <div class="piece-i-tag">Strength</div>
+      <div class="piece-i-title">The Wolf Series</div>
+      <div class="piece-i-desc">What looks dangerous from outside often just learned to protect itself.</div>
+      <div class="piece-i-link">Open Piece</div>
+    </a>
+    <a href="#" class="piece-i">
+      <div class="piece-i-thumb var4"><span class="piece-i-letter">S</span></div>
+      <div class="piece-i-tag">Grief &amp; Change</div>
+      <div class="piece-i-title">Seasons</div>
+      <div class="piece-i-desc">Every season of suffering carries the seed of the next season of growth.</div>
+      <div class="piece-i-link">Open Piece</div>
+    </a>
+    <a href="#" class="piece-i">
+      <div class="piece-i-thumb var2"><span class="piece-i-letter">U</span></div>
+      <div class="piece-i-tag">Emotional Pain</div>
+      <div class="piece-i-title">Unable to Cry</div>
+      <div class="piece-i-desc">Sometimes the pain moves past tears into something heavier.</div>
+      <div class="piece-i-link">Open Piece</div>
+    </a>
+    <a href="#" class="piece-i">
+      <div class="piece-i-thumb var3"><span class="piece-i-letter">A</span></div>
+      <div class="piece-i-tag">Identity</div>
+      <div class="piece-i-title">Anonymous</div>
+      <div class="piece-i-desc">The face we show the world and the face we carry alone are rarely the same.</div>
+      <div class="piece-i-link">Open Piece</div>
+    </a>
+  </div>
+</section>
+
+<section class="request-i" id="request">
+  <span class="section-mark">A Request</span>
+  <h2 class="section-h2">If something you've lived doesn't have a piece yet, <i>tell me about it.</i></h2>
+  <p class="request-p-i">
+    Anonymous is welcome. A few sentences is enough. I read every one.
+  </p>
+
+  <form class="request-form-i" onsubmit="event.preventDefault();">
+    <div class="fg-i">
+      <label>Your name (or any name)</label>
+      <input type="text" placeholder="What should I call you?" />
+    </div>
+    <div class="fg-i">
+      <label>Email (for a quiet reply)</label>
+      <input type="email" placeholder="your@email.com" />
+    </div>
+    <div class="fg-i">
+      <label>What would you have the piece say?</label>
+      <textarea rows="5" placeholder="Take your time. A few sentences is enough."></textarea>
+    </div>
+    <button class="request-submit-i" type="submit">Send</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind the <b>Mask</b></div>
+      <p class="footer-line">A quieter kind of company for the experiences we were told to keep small.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Collection</h5>
+      <ul>
+        <li><a href="#pieces">All Pieces</a></li>
+        <li><a href="#">Recent</a></li>
+        <li><a href="#">Themes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#request">Request</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Quiet</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>

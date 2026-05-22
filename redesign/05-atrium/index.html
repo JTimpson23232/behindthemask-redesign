@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Behind the Mask · Atrium Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --white:     #FFFFFF;
+      --shell:     #F5F5F2;
+      --paper:     #ECECE6;
+      --ink:       #15181A;
+      --char:      #2F353A;
+      --slate:     #56656F;
+      --slate-lt:  #8C99A2;
+      --mist:      #C4CDD3;
+      --ochre:     #B8722E;
+      --ochre-lt:  #D89C5A;
+      --clay:      #9A4D2E;
+      --muted:     #768089;
+      --rule:      rgba(21,24,26,.08);
+      --rule-st:   rgba(21,24,26,.18);
+
+      --serif: 'Newsreader', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+      font-weight: 300;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--ochre); color: var(--white); }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      padding: 0 56px;
+      height: 76px;
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+    }
+    .logo {
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .logo b { color: var(--ochre); font-weight: 600; }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+    }
+    .nav-center a {
+      font-size: .78rem;
+      font-weight: 400;
+      color: var(--char);
+      transition: color .2s;
+    }
+    .nav-center a:hover { color: var(--ochre); }
+    .nav-right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-num {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--slate-lt);
+      font-size: .92rem;
+    }
+    .nav-cta {
+      background: var(--ink);
+      color: var(--white);
+      padding: 11px 22px;
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: background .25s;
+    }
+    .nav-cta:hover { background: var(--ochre); }
+
+    /* ── HERO — split editorial ────────────────── */
+    .hero {
+      padding: 140px 0 0;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 96vh;
+    }
+
+    .hero-left {
+      padding: 100px 64px 80px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--rule);
+    }
+
+    .hero-tag {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 38px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--ochre);
+    }
+
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.2vw, 4.6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--ink);
+      letter-spacing: -.015em;
+      margin-bottom: 32px;
+    }
+    .hero-h1 i { font-style: italic; color: var(--ochre); font-weight: 400; }
+
+    .hero-lede {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--char);
+      max-width: 440px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .btn-ink {
+      background: var(--ink);
+      color: var(--white);
+      padding: 16px 28px;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: background .25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-ink:hover { background: var(--ochre); }
+    .btn-line {
+      padding: 15px 26px;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: all .25s;
+    }
+    .btn-line:hover { background: var(--ink); color: var(--white); }
+
+    .hero-bottom-meta {
+      margin-top: 52px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .hero-meta-item .hm-label {
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+    .hero-meta-item .hm-val {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .hero-meta-item .hm-val b { color: var(--ochre); font-style: normal; font-weight: 500; }
+
+    /* Hero right — the featured piece sits in cool gallery white */
+    .hero-right {
+      position: relative;
+      background: var(--shell);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 64px;
+      overflow: hidden;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 6px; height: 56px;
+      background: var(--ochre);
+    }
+
+    .hero-frame {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 4 / 5;
+      background: var(--white);
+      box-shadow:
+        0 1px 0 var(--rule),
+        0 40px 80px -40px rgba(21,24,26,.2);
+    }
+    .hero-frame-inner {
+      position: absolute;
+      inset: 18px;
+      background:
+        linear-gradient(160deg, var(--paper), var(--mist) 60%, var(--slate-lt));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 50px 36px;
+      text-align: center;
+    }
+    .hero-frame-letter {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 4.5rem;
+      color: var(--ink);
+      opacity: .35;
+      margin-bottom: 18px;
+      line-height: 1;
+    }
+    .hero-frame-cap {
+      padding-top: 18px;
+      border-top: 1px solid rgba(21,24,26,.18);
+      width: 100%;
+    }
+    .hero-frame-mark {
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .hero-frame-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--ink);
+    }
+
+    /* ── INDEX BAR ──────────────────────────────── */
+    .index-bar {
+      background: var(--ink);
+      color: var(--white);
+      padding: 26px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .ix-l {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .ix-l-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--ochre-lt);
+    }
+    .ix-l-text {
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      font-weight: 400;
+    }
+    .ix-r {
+      display: flex;
+      gap: 28px;
+    }
+    .ix-r a {
+      font-size: .76rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      font-weight: 400;
+      transition: color .25s;
+    }
+    .ix-r a:hover { color: var(--white); }
+
+    /* ── MANIFESTO ─────────────────────────────── */
+    .manifesto {
+      padding: 130px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .manifesto-label {
+      font-size: .68rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      font-weight: 500;
+    }
+    .manifesto-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 22px;
+      letter-spacing: -.005em;
+    }
+    .manifesto-h2 i { font-style: italic; color: var(--ochre); }
+    .manifesto-p {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--char);
+      margin-bottom: 18px;
+      max-width: 580px;
+    }
+
+    /* ── COLLECTION ──────────────────────────── */
+    .collection {
+      background: var(--shell);
+      padding: 130px 56px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .col-head {
+      max-width: 1280px;
+      margin: 0 auto 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule-st);
+    }
+    .col-head-left .col-mark {
+      font-size: .68rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .col-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+    .col-h2 i { font-style: italic; color: var(--ochre); }
+    .col-count {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--slate);
+    }
+    .col-count b { color: var(--ink); font-style: normal; font-weight: 500; }
+
+    .col-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .col-card {
+      background: var(--white);
+      transition: transform .35s, box-shadow .35s;
+    }
+    .col-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 30px 60px -30px rgba(21,24,26,.2);
+    }
+    .col-thumb {
+      aspect-ratio: 4 / 5;
+      background:
+        linear-gradient(160deg, var(--paper), var(--mist) 60%, var(--slate));
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .col-thumb.acc {
+      background: linear-gradient(160deg, var(--paper), var(--ochre-lt) 60%, var(--ochre));
+    }
+    .col-thumb.cool {
+      background: linear-gradient(160deg, var(--paper), var(--mist) 50%, var(--char));
+    }
+    .col-letter {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 3.4rem;
+      color: var(--white);
+      opacity: .8;
+    }
+    .col-num-mark {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--white);
+      padding: 4px 10px;
+      font-size: .62rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .col-body {
+      padding: 22px 24px 28px;
+      border-top: 1px solid var(--rule);
+    }
+    .col-tag {
+      font-size: .64rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .col-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .col-desc {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--char);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .col-link {
+      font-size: .7rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 500;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .col-link::after { content: '→'; transition: transform .25s; }
+    .col-card:hover .col-link::after { transform: translateX(4px); }
+
+    /* ── ESSAY ────────────────────────────────── */
+    .essay-at {
+      padding: 130px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .essay-portrait {
+      aspect-ratio: 3 / 4;
+      background:
+        linear-gradient(160deg, var(--paper), var(--mist) 60%, var(--slate));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--white);
+      padding: 40px;
+      text-align: center;
+      font-size: 1.1rem;
+      box-shadow: 0 30px 60px -30px rgba(21,24,26,.2);
+    }
+    .essay-text-at {
+      padding-top: 8px;
+    }
+    .essay-at-mark {
+      font-size: .68rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+    .essay-at-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--ink);
+      letter-spacing: -.005em;
+      margin-bottom: 28px;
+    }
+    .essay-at-h2 i { font-style: italic; color: var(--ochre); }
+    .essay-at-body {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--char);
+      font-weight: 300;
+    }
+    .essay-at-body p { margin-bottom: 1em; }
+    .essay-at-sign {
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      font-weight: 500;
+    }
+
+    /* ── REQUEST ─────────────────────────────── */
+    .req-at {
+      background: var(--ink);
+      color: var(--white);
+      padding: 130px 56px;
+    }
+    .req-at-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .req-at-head .req-mark {
+      font-size: .68rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ochre-lt);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .req-at-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+      letter-spacing: -.005em;
+      margin-bottom: 24px;
+    }
+    .req-at-h2 i { font-style: italic; color: var(--ochre-lt); }
+    .req-at-p {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(255,255,255,.7);
+      line-height: 1.55;
+      max-width: 380px;
+    }
+
+    .fg-at { margin-bottom: 24px; }
+    .fg-at label {
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--ochre-lt);
+      margin-bottom: 10px;
+      display: block;
+      font-weight: 500;
+    }
+    .fg-at input, .fg-at textarea {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      width: 100%;
+      padding: 12px 0;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+      background: transparent;
+      color: var(--white);
+      resize: vertical;
+      transition: border-color .25s;
+    }
+    .fg-at input::placeholder, .fg-at textarea::placeholder { color: rgba(255,255,255,.35); font-style: italic; }
+    .fg-at input:focus, .fg-at textarea:focus { outline: none; border-bottom-color: var(--ochre-lt); }
+    .req-submit-at {
+      margin-top: 8px;
+      padding: 14px 32px;
+      background: var(--ochre);
+      color: var(--white);
+      border: none;
+      font-family: var(--sans);
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s;
+    }
+    .req-submit-at:hover { background: var(--ochre-lt); }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--white);
+      padding: 70px 56px 40px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-top {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 56px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .footer-logo {
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .footer-logo b { color: var(--ochre); font-weight: 600; }
+    .footer-line {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--slate);
+      line-height: 1.55;
+      max-width: 280px;
+      font-weight: 300;
+    }
+    .footer-col h5 {
+      font-size: .62rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul a {
+      font-size: .92rem;
+      font-weight: 300;
+      color: var(--char);
+      transition: color .25s;
+    }
+    .footer-col ul a:hover { color: var(--ochre); }
+    .footer-bot {
+      max-width: 1280px;
+      margin: 26px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--slate);
+      font-weight: 400;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 22px; height: 64px; grid-template-columns: 1fr auto; }
+      .nav-center { display: none; }
+      .nav-num { display: none; }
+      .hero { padding: 100px 0 0; grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 22px; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-right { padding: 60px 22px; }
+      .index-bar { padding: 22px; }
+      .manifesto { padding: 70px 22px; grid-template-columns: 1fr; gap: 32px; }
+      .collection { padding: 70px 22px; }
+      .col-grid { grid-template-columns: 1fr; }
+      .essay-at { padding: 70px 22px; grid-template-columns: 1fr; gap: 32px; }
+      .req-at { padding: 70px 22px; }
+      .req-at-wrap { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 56px 22px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Behind <b>·</b> the Mask</a>
+  <div class="nav-center">
+    <a href="#collection">Collection</a>
+    <a href="#essay">Essay</a>
+    <a href="#request">Request</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-num">No. 01</span>
+    <a href="#request" class="nav-cta">Share a Story</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">A current collection</div>
+    <h1 class="hero-h1">Art for the experiences <i>we don't have language for</i> yet.</h1>
+    <p class="hero-lede">
+      A clean, open room for the work to live in. No content warnings as scary gates. No melodrama at the door. Just the pieces, presented with care, for whoever needed them.
+    </p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn-ink">View the Collection
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#essay" class="btn-line">Read the Essay</a>
+    </div>
+    <div class="hero-bottom-meta">
+      <div class="hero-meta-item">
+        <div class="hm-label">Edition</div>
+        <div class="hm-val"><b>25+</b> pieces &middot; living archive</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hm-label">Updated</div>
+        <div class="hm-val">Weekly, with care</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-frame">
+      <div class="hero-frame-inner">
+        <div class="hero-frame-letter">A</div>
+        <div class="hero-frame-cap">
+          <div class="hero-frame-mark">Currently on view</div>
+          <div class="hero-frame-title">Authenticity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="index-bar">
+  <div class="ix-l">
+    <span class="ix-l-num">i.</span>
+    <span class="ix-l-text">A quiet, considered room. No shock. No theater. Real.</span>
+  </div>
+  <div class="ix-r">
+    <a href="#collection">Browse</a>
+    <a href="#essay">Read</a>
+    <a href="#request">Request</a>
+  </div>
+</section>
+
+<section class="manifesto">
+  <span class="manifesto-label">Manifesto</span>
+  <div>
+    <h2 class="manifesto-h2">Nothing here is here to <i>perform pain</i>, or to pull you under.</h2>
+    <p class="manifesto-p">
+      Every piece in this archive begins with a real experience. Many of them ones I lived. Many that readers and friends asked me to give shape to. None of them are made to shock you.
+    </p>
+    <p class="manifesto-p">
+      Browse silently. Skip what doesn't call to you. Linger where it does. You don't owe this site anything. You are welcome here regardless.
+    </p>
+  </div>
+</section>
+
+<section class="collection" id="collection">
+  <div class="col-head">
+    <div class="col-head-left">
+      <div class="col-mark">The Collection</div>
+      <h2 class="col-h2">Currently <i>on view.</i></h2>
+    </div>
+    <div class="col-count">Six of <b>twenty-five+</b> pieces &middot; <a href="#" style="border-bottom: 1px solid var(--ochre); color: var(--ink);">view all →</a></div>
+  </div>
+
+  <div class="col-grid">
+    <a href="#" class="col-card">
+      <div class="col-thumb">
+        <span class="col-num-mark">No. 01</span>
+        <span class="col-letter">A</span>
+      </div>
+      <div class="col-body">
+        <div class="col-tag">Identity</div>
+        <div class="col-title">Authenticity</div>
+        <div class="col-desc">The face you carry alone is just as real as the one you show the world.</div>
+        <div class="col-link">View Piece</div>
+      </div>
+    </a>
+    <a href="#" class="col-card">
+      <div class="col-thumb acc">
+        <span class="col-num-mark">No. 02</span>
+        <span class="col-letter">P</span>
+      </div>
+      <div class="col-body">
+        <div class="col-tag">Healing</div>
+        <div class="col-title">Process of Healing</div>
+        <div class="col-desc">Not linear. Layered, slow, and still worth every step.</div>
+        <div class="col-link">View Piece</div>
+      </div>
+    </a>
+    <a href="#" class="col-card">
+      <div class="col-thumb cool">
+        <span class="col-num-mark">No. 03</span>
+        <span class="col-letter">W</span>
+      </div>
+      <div class="col-body">
+        <div class="col-tag">Strength</div>
+        <div class="col-title">The Wolf Series</div>
+        <div class="col-desc">What looks dangerous from the outside often just learned to protect itself.</div>
+        <div class="col-link">View Piece</div>
+      </div>
+    </a>
+    <a href="#" class="col-card">
+      <div class="col-thumb acc">
+        <span class="col-num-mark">No. 04</span>
+        <span class="col-letter">S</span>
+      </div>
+      <div class="col-body">
+        <div class="col-tag">Grief &amp; Change</div>
+        <div class="col-title">Seasons</div>
+        <div class="col-desc">Every season of suffering carries the seed of the next season of growth.</div>
+        <div class="col-link">View Piece</div>
+      </div>
+    </a>
+    <a href="#" class="col-card">
+      <div class="col-thumb">
+        <span class="col-num-mark">No. 05</span>
+        <span class="col-letter">U</span>
+      </div>
+      <div class="col-body">
+        <div class="col-tag">Emotional Pain</div>
+        <div class="col-title">Unable to Cry</div>
+        <div class="col-desc">Sometimes the pain moves past tears into something heavier and harder to name.</div>
+        <div class="col-link">View Piece</div>
+      </div>
+    </a>
+    <a href="#" class="col-card">
+      <div class="col-thumb cool">
+        <span class="col-num-mark">No. 06</span>
+        <span class="col-letter">A</span>
+      </div>
+      <div class="col-body">
+        <div class="col-tag">Identity</div>
+        <div class="col-title">Anonymous</div>
+        <div class="col-desc">The face we show the world and the face we carry alone are rarely the same.</div>
+        <div class="col-link">View Piece</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="essay-at" id="essay">
+  <div class="essay-portrait">a portrait of the artist</div>
+  <div class="essay-text-at">
+    <div class="essay-at-mark">Essay &middot; A note from the artist</div>
+    <h2 class="essay-at-h2">I started drawing the things <i>I couldn't say.</i></h2>
+    <div class="essay-at-body">
+      <p>
+        The project began as private. A handful of drawings made on nights I needed somewhere for an unspeakable thing to go. Then friends wrote in. They had things they had needed pictures for, and never found them.
+      </p>
+      <p>
+        So this archive is what we made together. Every piece begins with a real experience, given to me, and is returned to anyone else who needed to know they were not alone in it.
+      </p>
+      <p>
+        You are not strange for feeling what you feel. You are <em>human</em>. You are welcome here.
+      </p>
+    </div>
+    <div class="essay-at-sign">— The Artist</div>
+  </div>
+</section>
+
+<section class="req-at" id="request">
+  <div class="req-at-wrap">
+    <div class="req-at-head">
+      <div class="req-mark">Request &middot; Open Submissions</div>
+      <h2 class="req-at-h2">If something you've lived doesn't have a piece yet, <i>tell me about it.</i></h2>
+      <p class="req-at-p">
+        Anonymous is welcome. A few sentences is enough. I read every one.
+      </p>
+    </div>
+
+    <form onsubmit="event.preventDefault();">
+      <div class="fg-at">
+        <label>Name (any name will do)</label>
+        <input type="text" placeholder="What should I call you" />
+      </div>
+      <div class="fg-at">
+        <label>Email (for a quiet reply)</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="fg-at">
+        <label>What would you have the piece say</label>
+        <textarea rows="5" placeholder="Take your time. A few sentences is enough."></textarea>
+      </div>
+      <button type="submit" class="req-submit-at">Submit Request</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Behind <b>·</b> the Mask</div>
+      <p class="footer-line">A clean, considered archive for the experiences we were told to keep small.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Collection</h5>
+      <ul>
+        <li><a href="#collection">All Pieces</a></li>
+        <li><a href="#">Recent</a></li>
+        <li><a href="#">Themes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="#essay">Essay</a></li>
+        <li><a href="#request">Request</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Colophon</h5>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© Behind the Mask</span>
+    <span>You are welcome here</span>
+  </div>
+</footer>
+
+</body>
+</html>
