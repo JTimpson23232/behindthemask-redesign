@@ -12,41 +12,42 @@
   <style>
 
     .about-hero {
-      max-width: 1200px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 160px 60px 80px;
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .about-portrait {
-      aspect-ratio: 3 / 4;
-      background:
-        radial-gradient(circle at 35% 30%, rgba(184,153,118,.4) 0%, transparent 55%),
-        linear-gradient(180deg, var(--bark), var(--moss) 60%, var(--forest));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--mushroom);
-      padding: 40px;
       text-align: center;
-      font-size: 1.15rem;
-      box-shadow: 0 60px 100px -40px rgba(0,0,0,.5);
-      border: 1px solid var(--rule-st);
+      border-bottom: 1px solid var(--rule-st);
     }
-    .about-hero-text h1 {
+    .about-hero .section-mark { justify-content: center; }
+    .about-hero .section-mark::before { display: none; }
+    .about-hero h1 {
       font-family: var(--serif);
-      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-size: clamp(2.8rem, 5.4vw, 4.4rem);
       font-weight: 400;
-      line-height: 1.05;
+      line-height: 1.02;
       color: var(--birch);
       letter-spacing: -.015em;
       margin-bottom: 28px;
     }
-    .about-hero-text h1 i { font-style: italic; color: var(--lichen); }
+    .about-hero h1 i { font-style: italic; color: var(--lichen); }
+    .about-hero .section-p {
+      margin: 0 auto;
+      text-align: center;
+    }
+    .anonymity-note {
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule-st);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--rust-lt);
+      letter-spacing: .04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .anonymity-note .mark { font-size: .7rem; opacity: .8; }
 
     .about-body {
       max-width: 760px;
@@ -149,7 +150,7 @@
     }
 
     @media (max-width: 900px) {
-      .about-hero { padding: 120px 22px 60px; grid-template-columns: 1fr; gap: 40px; }
+      .about-hero { padding: 120px 22px 60px; }
       .about-body { padding: 60px 22px 80px; }
       .process { padding: 80px 22px; }
       .process-steps { grid-template-columns: 1fr; gap: 18px; }
@@ -172,13 +173,14 @@
 </nav>
 
 <section class="about-hero">
-  <div class="about-portrait">a portrait of the artist</div>
-  <div class="about-hero-text">
-    <div class="section-mark">About the artist</div>
-    <h1>I made this in the kind of quiet <i>the woods give back.</i></h1>
-    <p class="section-p" style="font-size: 1.25rem;">
-      Behind the Mask is a personal art project that combines drawing and words to express experiences that are often hidden. It exists for whoever needs to feel less isolated in what they are carrying, and to show that healing is possible without rushing anyone through it.
-    </p>
+  <div class="section-mark">About the artist</div>
+  <h1>I made this in the kind of quiet <i>the woods give back.</i></h1>
+  <p class="section-p" style="font-size: 1.25rem;">
+    Behind the Mask is a personal art project that combines drawing and words to express experiences that are often hidden. It exists for whoever needs to feel less isolated in what they are carrying, and to show that healing is possible without rushing anyone through it.
+  </p>
+  <div class="anonymity-note">
+    <span class="mark">◆</span>
+    The artist remains anonymous, on purpose. The work is the portrait.
   </div>
 </section>
 

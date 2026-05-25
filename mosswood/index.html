@@ -179,22 +179,68 @@
       gap: 80px;
       align-items: center;
     }
-    .grove-portrait {
+    /* Typographic card instead of a portrait — artist stays anonymous */
+    .grove-statement {
       aspect-ratio: 3 / 4;
       background:
-        radial-gradient(circle at 35% 30%, rgba(184,153,118,.4) 0%, transparent 55%),
-        linear-gradient(180deg, var(--bark), var(--moss) 60%, var(--forest));
+        radial-gradient(circle at 35% 25%, rgba(184,153,118,.18) 0%, transparent 55%),
+        linear-gradient(180deg, var(--moss-up), var(--moss) 60%, var(--forest));
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--mushroom);
-      padding: 40px;
+      padding: 48px 40px;
       text-align: center;
-      font-size: 1.15rem;
+      gap: 24px;
       box-shadow: 0 60px 100px -40px rgba(0,0,0,.5);
       border: 1px solid var(--rule-st);
+      position: relative;
+    }
+    .grove-statement::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 1px;
+      background: var(--rust-lt);
+    }
+    .grove-statement-mark {
+      font-size: .66rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      font-weight: 500;
+      margin-top: 12px;
+    }
+    .grove-statement-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      line-height: 1.4;
+      color: var(--birch);
+      max-width: 260px;
+    }
+    .grove-statement-quote em { font-style: normal; color: var(--lichen); }
+    .grove-statement-sig {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--rust-lt);
+      letter-spacing: .04em;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule-st);
+      width: 100%;
+    }
+    .grove-leaf {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      color: var(--rust-lt);
+      opacity: .5;
     }
 
     /* ── PIECES / COLLECTION ────────────────── */
@@ -459,7 +505,16 @@
 </section>
 
 <section class="grove">
-  <div class="grove-portrait">a portrait of the artist</div>
+  <div class="grove-statement">
+    <div class="grove-statement-mark">a note from the artist</div>
+    <div class="grove-statement-quote">
+      You are not strange for feeling what you feel. <em>You are human.</em>
+    </div>
+    <div class="grove-statement-sig">— Behind the Mask</div>
+    <svg class="grove-leaf" viewBox="0 0 60 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 5 Q 10 30 10 55 Q 10 80 30 95 Q 50 80 50 55 Q 50 30 30 5 Z"/>
+    </svg>
+  </div>
   <div>
     <div class="section-mark">A note from the artist</div>
     <h2 class="section-h2">I made this in the kind of quiet <i>the woods give back.</i></h2>
